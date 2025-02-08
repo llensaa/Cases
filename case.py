@@ -1,0 +1,32 @@
+import turtle as trt
+import math
+trt.penup()
+def right_triangle(x, y, leg, color):
+    trt.fillcolor(color)
+    trt.setpos(x, y)
+    trt.pendown()
+    trt.begin_fill()
+    trt.right(90)
+    trt.fd(leg)
+    trt.left(90)
+    trt.fd(leg)
+    trt.left(135)
+    trt.fd(leg*math.sqrt(2))
+    trt.end_fill()
+    trt.penup()
+    trt.home()
+    pass
+right_triangle(100, 100, 100, 'green')
+def regular_triangle(x, y, leg, color):
+    trt.fillcolor()
+    trt.setpos(x, y)
+    trt.pendown()
+    trt.begin_fill()
+    trt.right(30)
+    trt.fd(leg)
+    trt.right(60)
+    trt.fd(leg)
+    trt.right(30)
+    trt.fd(leg)
+regular_triangle(-100, -100, 50, 'green')
+trt.mainloop()
