@@ -70,7 +70,8 @@ triangle(-50, -50, 100, 'pink')
 
 parallelogramm(-25, -25,50,
                50 * 0.5 * mth.sqrt(2),
-               'moccasin')
+               'moccasin'
+               )
 
 trt.right(180)
 triangle(-100, -10, 50, 'pink')
@@ -78,20 +79,67 @@ triangle(-100, -10, 50, 'pink')
 trt.right(90)
 parallelogramm(-125, 21 + 25 * 0.5 * mth.sqrt(2),25,
                25 * 0.5 * mth.sqrt(2),
-               'moccasin')
+               'moccasin'
+               )
 
 trt.right(135)
 square(-125, 16,
-       25 * 0.5 * mth.sqrt(2), 25 * 0.5 * mth.sqrt(2), 'purple')
+       25 * 0.5 * mth.sqrt(2),
+       25 * 0.5 * mth.sqrt(2),
+       'purple'
+       )
 
 trt.right(180)
 triangle(-137.5, 4, 25, 'orange')
 
 triangle(-187.5, 4, 50, 'red')
 
-triangle(-137.5, 34 + 25 * 0.5 * mth.sqrt(2), 25, 'green')
+triangle(-137.5, 34 + 25 * 0.5 * mth.sqrt(2),
+         25, 'green'
+         )
 
 trt.left(90)
-triangle(-200, -8.5, 25, 'yellow')
+triangle(-205, -15, 37.5, 'yellow')
+
+trt.left(135)
+triangle(-90, -80, 37.5, 'yellow')
+
+trt.right(135)
+square(-86.25 - 25 * 0.5 * mth.sqrt(2),
+       -82.75 + 25 * 0.5 * mth.sqrt(2),
+       25 * 0.5 * mth.sqrt(2),
+       25 * 0.5 * mth.sqrt(2),
+       'purple'
+       )
+
+trt.right(180)
+triangle(-85 - 25 * 0.5 * mth.sqrt(2),
+         -73 - 25 * 0.5 * mth.sqrt(2),
+         50, 'red'
+         )
+
+trt.right(135)
+triangle(-110 - 25 * 0.5 * mth.sqrt(2),
+         -48 - 25 * 0.5 * mth.sqrt(2),
+         50, 'pink')
+
+trt.right(180)
+parallelogramm(-97.5 - 25 * 0.5 * mth.sqrt(2),
+               -85.5 - 25 * 0.5 * mth.sqrt(2) ,
+               25, 25 * 0.5 * mth.sqrt(2),
+               'moccasin'
+               )
+
+trt.right(90)
+triangle(-140 - 25 * 0.5 * mth.sqrt(2),
+         -78 - 25 * 0.5 * mth.sqrt(2),
+         25, 'orange'
+         )
+
+trt.right(135)
+triangle(-110 - 75 * 0.5 * mth.sqrt(2),
+         -48 - 25 * 0.5 * mth.sqrt(2),
+         25, 'green'
+         )
 
 trt.mainloop()
