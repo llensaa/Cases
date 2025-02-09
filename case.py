@@ -360,7 +360,36 @@ def rabbit():
              )
     pass
 
-#Two figures are in progress...
+def person():
+    '''
+    Function, drawing smth
+    :params: None
+    :return: None
+    '''
+    trt.right(45)
+    rectangle(80, -70,
+           25 * 0.5 * mth.sqrt(2),
+           25 * 0.5 * mth.sqrt(2),
+           'purple'
+           )
+    trt.right(180)
+    triangle(115, -117, 38, 'moccasin')
+
+    triangle(46, -97, 50, 'pink')
+
+    trt.right(45)
+    triangle(36, -87, 50, 'yellow')
+
+    trt.right(90)
+    parallelogram(36, -102, 20, 25, 'red')
+
+    trt.right(67.5)
+    triangle(33, -67, 20, 'green')
+
+    trt.right(50)
+    triangle(13, -67, 20, 'orange')
+
+#One figure is in progress...
 
 mosaic()
 horse()
@@ -369,5 +398,6 @@ lion()
 bear()
 rhino()
 rabbit()
+person()
 trt.mainloop()
 
