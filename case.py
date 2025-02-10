@@ -95,7 +95,7 @@ def mosaic():
            50 * 0.5 * mth.sqrt(2),
            50 * 0.5 * mth.sqrt(2),
            'purple'
-           )
+             )
 
     trt.left(45)
     triangle(0, -50, 71, 'yellow')
@@ -108,7 +108,8 @@ def mosaic():
 
     parallelogram(-25, -25,50,
                    50 * 0.5 * mth.sqrt(2),
-                   'moccasin')
+                   'moccasin'
+                 )
     pass
 
 def horse():
@@ -124,14 +125,14 @@ def horse():
     parallelogram(-125, 21 + 25 * 0.5 * mth.sqrt(2),25,
                    25 * 0.5 * mth.sqrt(2),
                    'moccasin'
-                   )
+                 )
 
     trt.right(135)
     rectangle(-125, 16,
            25 * 0.5 * mth.sqrt(2),
            25 * 0.5 * mth.sqrt(2),
            'purple'
-           )
+             )
 
     trt.right(180)
     triangle(-137.5, 4, 25, 'orange')
@@ -161,19 +162,19 @@ def swan():
            25 * 0.5 * mth.sqrt(2),
            25 * 0.5 * mth.sqrt(2),
            'purple'
-           )
+             )
 
     trt.right(180)
     triangle(-85 - 25 * 0.5 * mth.sqrt(2),
              -73 - 25 * 0.5 * mth.sqrt(2),
              50, 'red'
-             )
+            )
 
     trt.right(135)
     triangle(-110 - 25 * 0.5 * mth.sqrt(2),
              -48 - 25 * 0.5 * mth.sqrt(2),
              50, 'pink'
-             )
+            )
 
     trt.right(180)
     parallelogram(-97.5 - 25 * 0.5 * mth.sqrt(2),
