@@ -296,7 +296,7 @@ def rhino():
     '''
     trt.right(90)
     triangle(100+25*mth.sqrt(2), 130-12.5*mth.sqrt(2),
-             12.5*mth.sqrt(2), 'green'
+             25, 'green'
              )
 
     trt.right(135)
