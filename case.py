@@ -6,6 +6,8 @@ import math as mth
 
 trt.penup()
 
+trt.speed(0)
+
 def triangle(x, y, l, color):
     '''
     Function, drawing triangle
