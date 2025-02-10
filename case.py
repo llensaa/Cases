@@ -293,35 +293,35 @@ def rhino():
     '''
     trt.right(90)
     triangle(100+25*mth.sqrt(2), 130-12.5*mth.sqrt(2),
-             12.5*mth.sqrt(2), 'red'
+             12.5*mth.sqrt(2), 'green'
              )
 
     trt.right(135)
     triangle(100+45*mth.sqrt(2), 130+2.5*mth.sqrt(2),
-             40, 'blue'
+             40, 'pink'
              )
 
     trt.left(45)
     triangle(100+30*mth.sqrt(2), 130-12.5*mth.sqrt(2),
-             50, 'green'
+             50, 'red'
              )
 
     rectangle(100+40*mth.sqrt(2), 130-12.5*mth.sqrt(2),
-              10*mth.sqrt(2), 10*mth.sqrt(2), 'yellow'
+              10*mth.sqrt(2), 10*mth.sqrt(2), 'purple'
               )
 
     trt.left(90)
     triangle(100+55*mth.sqrt(2), 130-12.5*mth.sqrt(2),
-             25*mth.sqrt(2), 'orange'
+             25*mth.sqrt(2), 'yellow'
              )
 
     parallelogram(100+67.5*mth.sqrt(2), 130,
-                  12.5*mth.sqrt(2), 25, 'purple'
+                  12.5*mth.sqrt(2), 25, 'moccasin'
                   )
 
     trt.right(45)
     triangle(100+67.5*mth.sqrt(2), 130+12.5*mth.sqrt(2),
-             25, 'brown'
+             25, 'orange'
              )
     pass
 
@@ -333,16 +333,16 @@ def rabbit():
     '''
     # Rabbit should be smaller
     trt.left(90)
-    triangle(115, -60, 50, 'red')
+    triangle(115, -60, 50, 'yellow')
 
     trt.left(45)
     triangle(115, -60,
              50*mth.sqrt(2),'pink'
              )
 
-    triangle(105, 0, 70, 'blue')
+    triangle(105, 0, 70, 'red')
 
-    rectangle(130, 20, 20, 20, 'brown')
+    rectangle(130, 20, 20, 20, 'purple')
 
     trt.left(135)
     parallelogram(100, 20, 30*mth.sqrt(2),
@@ -356,7 +356,7 @@ def rabbit():
 
     trt.left(225)
     triangle(210, 50,
-             30*mth.sqrt(2), 'yellow'
+             30*mth.sqrt(2), 'orange'
              )
     pass
 
@@ -400,4 +400,3 @@ rhino()
 rabbit()
 person()
 trt.mainloop()
-
