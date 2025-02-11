@@ -10,7 +10,7 @@ trt.speed(0)
 
 def triangle(x, y, l, color):
     '''
-    Function, drawing triangle
+    Function, drawing right triangle
     :param x: left end of hypothenuse coordinate x
     :param y: left end of hypothenuse coordinate y
     :param l: length of hypothenuse
@@ -336,31 +336,32 @@ def rabbit():
     '''
     # Rabbit should be smaller
     trt.left(90)
-    triangle(115, -60, 50, 'yellow')
+    triangle(110, -55, 37.5, 'yellow')
 
     trt.left(45)
-    triangle(115, -60,
-             50*mth.sqrt(2),'pink'
+    triangle(110, -55,
+             50,'pink'
              )
 
-    triangle(105, 0, 70, 'red')
+    triangle(104, -12, 50, 'red')
 
-    rectangle(130, 20, 20, 20, 'purple')
+    rectangle(120, 6,
+              25 * 0.5 * mth.sqrt(2),
+              25 * 0.5 * mth.sqrt(2),
+              'purple'
+             )
 
     trt.left(135)
-    parallelogram(100, 20, 30*mth.sqrt(2),
-                  30, 'moccasin'
+    parallelogram(103, 6, 25,
+                  25 * 0.5 * mth.sqrt(2),
+                  'moccasin'
                   )
 
     trt.left(45)
-    triangle(150, 20,
-             30*mth.sqrt(2), 'green'
-             )
+    triangle(138, 6,25, 'green')
 
     trt.left(225)
-    triangle(210, 50,
-             30*mth.sqrt(2), 'orange'
-             )
+    triangle(174, 24,25, 'orange')
     pass
 
 def person():
@@ -391,8 +392,6 @@ def person():
 
     trt.right(50)
     triangle(13, -67, 20, 'orange')
-
-#One figure is in progress...
 
 mosaic()
 horse()
