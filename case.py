@@ -10,7 +10,7 @@ trt.speed(0)
 
 def triangle(x, y, l, color):
     '''
-    Function, drawing right triangle
+    Function, drawing right isosceles triangle
     :param x: left end of hypothenuse coordinate x
     :param y: left end of hypothenuse coordinate y
     :param l: length of hypothenuse
