@@ -31,6 +31,7 @@ def triangle(x, y, l, color):
     trt.home()
     pass
 
+
 def rectangle (x, y, l, w, color):
     '''
     Function, drawing rectangle
@@ -55,6 +56,7 @@ def rectangle (x, y, l, w, color):
     trt.home()
     pass
 
+
 def parallelogram (x, y, l, w, color):
     '''
     Function, drawing rectangle
@@ -78,6 +80,7 @@ def parallelogram (x, y, l, w, color):
     trt.penup()
     trt.home()
     pass
+
 
 def mosaic():
     '''
@@ -147,6 +150,7 @@ def horse():
     triangle(-205, -15, 37.5, 'yellow')
     pass
 
+
 def swan():
     '''
     Function, drawing swan
@@ -196,6 +200,7 @@ def swan():
              )
     pass
 
+
 def lion():
     '''
     Function, drawing lion
@@ -244,6 +249,7 @@ def lion():
                    )
     pass
 
+
 def bear():
     '''
     Function, drawing bear
@@ -288,6 +294,7 @@ def bear():
              )
     pass
 
+
 def rhino():
     '''
     Function, drawing rhino
@@ -328,6 +335,7 @@ def rhino():
              )
     pass
 
+
 def rabbit():
     '''
     Function, drawing rabbit
@@ -363,6 +371,7 @@ def rabbit():
     trt.left(225)
     triangle(174, 24,25, 'orange')
     pass
+
 
 def person():
     '''
