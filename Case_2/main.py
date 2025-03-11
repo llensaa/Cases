@@ -12,9 +12,9 @@ def main():
 
     people = int(input(ru.PEOPLE_NUM))
     length = int(input(ru.MISSION_LENGTH))
-    water_per_person = 3
+    water_per_person = 2.2
     oxygen_per_person = 0.84
-    food_per_person = 2
+    food_per_person = 1.6
     electricity_per_person = 5
 
     water_quantity = water_per_person * people * length
