@@ -1,5 +1,5 @@
 # Part of case-study #2: Colonization of Mars
-# Developers:
+# Developers: Dak A., Kruykov G., Lebedev N., Cheremisina E.
 #
 
 import ru_local as ru
