@@ -12,6 +12,12 @@ Input data:
 - number of colonists, 
 - mission duration (in days). 
 
+Output data:
+- the need for water,
+- oxygen demand,
+- the need for food,
+- energy consumption
+
 
 
 SpaceX Mars program - это план компании SpaceX по колонизации Марса. Основная цель - создать самоподдерживающееся крупное поселение и колонию на планете. Стратегия освоения Марса включает следующие этапы:
@@ -33,8 +39,3 @@ SpaceX Mars program - это план компании SpaceX по колони�
 - потребность в кислороде,
 - потребность в еде,
 - энергопотребление
-Output data:
-- the need for water,
-- oxygen demand,
-- the need for food,
-- energy consumption
