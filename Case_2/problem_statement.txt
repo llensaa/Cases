@@ -1,4 +1,5 @@
 SpaceX Mars program is SpaceX's plan to colonise Mars. The main goal is to create a self-sustaining large settlement and colony on the planet. The Mars exploration strategy includes the following stages:
+
 1. The initial mission. Sending the first cargo ships with equipment for the production of water, oxygen and fuel.
 2. The first settlers. Sending a group of researchers who will begin the construction of the first bases.
 3. Mass colonization. Over time, it is planned to relocate a million people to Mars.
