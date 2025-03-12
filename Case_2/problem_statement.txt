@@ -18,3 +18,24 @@ SpaceX Mars program - это план компании SpaceX по колони�
 - потребность в кислороде,
 - потребность в еде,
 - энергопотребление
+
+
+
+SpaceX Mars program is SpaceX's plan to colonise Mars. The main goal is to create a self-sustaining large settlement and colony on the planet. The Mars exploration strategy includes the following stages:
+The initial mission. Sending the first cargo ships with equipment for the production of water, oxygen and fuel.
+The first settlers. Sending a group of researchers who will begin the construction of the first bases.
+Mass colonization. Over time, it is planned to relocate a million people to Mars.
+Imagine that you are designing the first Martian colony. Write a program that calculates how many resources (water, oxygen, food, and energy) will be needed to support life on Mars. It is known that for normal functioning, one person needs 3 liters of water, 0.84 kg of oxygen, 2 kg of food and 5 kW of energy per day.
+
+
+The program should work as follows:
+
+Input data:
+- number of colonists, 
+- mission duration (in days). 
+
+Output data:
+- the need for water,
+- oxygen demand,
+- the need for food,
+- energy consumption
