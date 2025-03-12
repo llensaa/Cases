@@ -39,5 +39,6 @@ def main():
     print(f'{"{:.1f}".format(total_food)} {ru.KG} {ru.FOOD}')
     print(f'{"{:.1f}".format(total_energy)} {ru.KILOWATT} {ru.ELECTRICITY}')
 
+
 if __name__ == '__main__':
     main()
