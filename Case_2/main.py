@@ -23,10 +23,10 @@ def main():
     food_quantity = food_per_person * people * length
     electricity_quantity = electricity_per_person * 24 * people * length
 
-    total_water *= (1 + safety_reserve)
-    total_oxygen *= (1 + safety_reserve)
-    total_food *= (1 + safety_reserve)
-    total_energy *= (1 + safety_reserve)
+    total_water = water_quantity * (1 + safety_reserve)
+    total_oxygen = oxygen_quantity * (1 + safety_reserve)
+    total_food = food_quantity * (1 + safety_reserve)
+    total_energy = electricity_quantity * (1 + safety_reserve)
 
     print(f'{ru.WATER_REQUIRED} - {"{:.1f}".format(water_quantity)} {ru.LITRES}')
     print(f'{ru.OXYGEN_REQUIRED} - {"{:.1f}".format(oxygen_quantity)} {ru.KG}')
