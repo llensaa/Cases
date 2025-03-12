@@ -9,7 +9,7 @@ def main():
     Main function.
     :return: None
     '''
-
+    
     people = int(input(ru.PEOPLE_NUM))
     length = int(input(ru.MISSION_LENGTH))
     water_per_person = 2.2
