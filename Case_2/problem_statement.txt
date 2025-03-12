@@ -3,7 +3,7 @@ SpaceX Mars program is SpaceX's plan to colonise Mars. The main goal is to creat
 2. The first settlers. Sending a group of researchers who will begin the construction of the first bases.
 3. Mass colonization. Over time, it is planned to relocate a million people to Mars.
 
-Imagine that you are designing the first Martian colony. Write a program that calculates how many resources (water, oxygen, food, and energy) will be needed to support life on Mars. It is known that for normal functioning, one person needs 3 liters of water, 0.84 kg of oxygen, 2 kg of food and 5 kW of energy per day.
+Imagine that you are designing the first Martian colony. Write a program that calculates how many resources (water, oxygen, food, and energy) will be needed to support life on Mars. It is known that for normal functioning, one person needs 3 liters of water, 0.84 kg of oxygen, 2 kg of food and 5 kW * hour of energy per day.
 
 The program should work as follows:
 
@@ -19,7 +19,7 @@ SpaceX Mars program - это план компании SpaceX по колони�
 2. Первые поселенцы. Отправка группы исследователей, которые начнут строительство первых баз.
 3. Массовая колонизация. Со временем на Марс планируется переселить миллион человек.
 
-Представьте, что вы проектируете первую марсианскую колонию. Напишите программу, которая рассчитывает, сколько ресурсов (воды, кислорода, еды и энергии) понадобится для поддержания жизни на Марсе. Известно, что для нормальной жизнедеятельности одному человеку необходимо 3 литра воды, 0,84 кг кислорода, 2 кг еды и 5 кВт энергии в день.
+Представьте, что вы проектируете первую марсианскую колонию. Напишите программу, которая рассчитывает, сколько ресурсов (воды, кислорода, еды и энергии) понадобится для поддержания жизни на Марсе. Известно, что для нормальной жизнедеятельности одному человеку необходимо 3 литра воды, 0,84 кг кислорода, 2 кг еды и 5 кВт * ч энергии в день.
 
 Программа должна работать следующим образом:
 
