@@ -31,7 +31,8 @@ def main():
     print(f'{ru.WATER_REQUIRED} - {"{:.1f}".format(water_quantity)} {ru.LITRES}')
     print(f'{ru.OXYGEN_REQUIRED} - {"{:.1f}".format(oxygen_quantity)} {ru.KG}')
     print(f'{ru.FOOD_REQUIRED} - {"{:.1f}".format(food_quantity)} {ru.KG}')
-    print(f'{ru.ELECTRICITY_REQUIRED} - {"{:.1f}".format(electricity_quantity)} {ru.KILOWATT}')
+    print(f'{ru.ELECTRICITY_REQUIRED} - ' 
+          f'{"{:.1f}".format(electricity_quantity)} {ru.KILOWATT}')
 
     print(f'\n{ru.SAFETY_RESERVE}')
     print(f'{"{:.1f}".format(total_water)} {ru.LITRES} {ru.WATER}')
