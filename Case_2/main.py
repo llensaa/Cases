@@ -33,11 +33,11 @@ def main():
     print(f'{ru.FOOD_REQUIRED} - {"{:.1f}".format(food_quantity)} {ru.KG}')
     print(f'{ru.ELECTRICITY_REQUIRED} - {"{:.1f}".format(electricity_quantity)} {ru.KILOWATT}')
 
-    print(f'{ru.SAFETY_RESERVE}')
-    print(f'{"{:.1f}".format(total_water)} {ru.LITRES}')
-    print(f'{"{:.1f}".format(total_oxygen)} {ru.KG}')
-    print(f'{"{:.1f}".format(total_food)} {ru.KG}')
-    print(f'{"{:.1f}".format(total_energy)} {ru.KILOWATT}')
+    print(f'\n{ru.SAFETY_RESERVE}')
+    print(f'{"{:.1f}".format(total_water)} {ru.LITRES} {ru.WATER}')
+    print(f'{"{:.1f}".format(total_oxygen)} {ru.KG} {ru.OXYGEN}')
+    print(f'{"{:.1f}".format(total_food)} {ru.KG} {ru.FOOD}')
+    print(f'{"{:.1f}".format(total_energy)} {ru.KILOWATT} {ru.ELECTRICITY}')
 
 if __name__ == '__main__':
     main()
