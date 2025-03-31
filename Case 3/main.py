@@ -23,7 +23,7 @@ def main():
 
         print('Введите индекс станции, которая собирается сделать ход: ')
         for i in range(3):
-            print(f'{i + 1}. {names[i]}')
+            print(f'{i + 1}. {enemies[i]}')
         st_index_turn = int(input())
         match st_index_turn:
             case 1:
