@@ -38,12 +38,14 @@ class Station:
         '''
         self.resources -= 20
         choice = input('Какое предприятие вы хотите строить: ферму или фабрику?')
-        while choice != 'Ферма' or choice != 'ферма' or choice != 'Фабрика' or choice != 'фабрика':
+        while True:
             match choice:
                 case 'Фабрика' | 'фабрика':
                     self.station_factory += 1
+                    break
                 case 'Ферма' | 'ферма':
                     self.station_farm += 1
+                    break
 
 
     def battle(self, enemy):
