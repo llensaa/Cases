@@ -8,8 +8,12 @@ import random_events as rdev
 
 
 def main():
+    '''
+    main function, describing all gaming process
+    :return: None
+    '''
     metro_stations = ['Площадь Карла Маркса', 'Студенческая', 'Речной вокзал',
-                      'Октябрьская', 'Площаль Ленина', 'Красный проспект',
+                      'Октябрьская', 'Площадь Ленина', 'Красный проспект',
                       'Гагаринская', 'Заельцовская', 'Площадь Гарина-Михайловского',
                       'Сибирская', 'Маршала Покрышкина', 'Березовая роща', 'Золотая нива']
     names = []
@@ -29,6 +33,7 @@ def main():
                     print('Такой станции нет, попробуйте снова.')
             except ValueError:
                 print('Введите индекс станции(число).')
+
     st_1 = st.Station(names[0])
     st_2 = st.Station(names[1])
     st_3 = st.Station(names[2])
@@ -38,8 +43,11 @@ def main():
     actions_names = ['Вылазка', 'Прокачка', 'Битва']
     actions = {'Вылазка': rdev.objst.searching, 'Прокачка': rdev.objst.upgrading, 'Битва': rdev.objst.battle}
     turn_counter = 0
+    char = '+'
 
     for i in range(1, 7):
+        rdev.objst.display_info()
+        station_stats = {'Ресурсы до хода' :rdev.objst.resources, 'Люди до хода': rdev.objst.people, 'Мощь до хода': rdev.objst.military}
         turn_counter += 1
         print('\nВведите индекс станции, которая собирается сделать ход: ')
         for i in range(3):
@@ -55,7 +63,7 @@ def main():
             except ValueError:
                 print("Введите индекс станции(число).")
         print('\nЧто вы хотите сделать?')
-        if turn_counter == 1:
+        if turn_counter <= 2:
             lim = 2
         else:
             lim = 3
@@ -89,9 +97,10 @@ def main():
                                 enemy = stations.get(enemies[1])
                         rdev.random_choice_battle()
                         input()
-                        rdev.objst.battle(enemy)
-                        rdev.objst.display_info()
-                        enemy.display_info()
+                        winner, loser = rdev.objst.battle(enemy)
+                        print(f'Бой окончен!')
+                        print(f'Станция - победитель - {winner.name}')
+                        print(f'Проигравшая станция - {loser.name}\n')
                         break
                     case _:
                         print('Такого действия нет, попробуйте снова.')
