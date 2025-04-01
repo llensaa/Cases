@@ -3,7 +3,7 @@ import station as st
 
 objst = st.Station('Моя станция')
 event = rd.randint(1, 17)
-event_battle = rd.randint(18, 21)
+event_2 = rd.randint(18, 25)
 number_resources = rd.randint(1,5)
 number_military = rd.randint(1, 4)
 number_people = rd.randint(1, 3)
@@ -80,14 +80,37 @@ def random_choice_local():
             objst.people -= 2 * number_people
 
 def random_choice_battle():
-    match event_battle:
+    match event_2:
         case 18:
             print('\nПроизошёл обвал в тоннеле')
             objst.resources -= 100
             objst.people -= 15
         case 19:
-            print('\n')
+            print('\nВо время битвы вы получили трофейные'
+                  ' боеприпасы и оружие')
+            objst.military += 15
         case 20:
-            print('\n')
+            print('\nВаши бойцы получили сильное облучение'
+                  ' и они теперь не боеспособны')
+            objst.military -= 5 * number_military
+            objst.people -= 10
         case 21:
-            print('\n')
+            print('\nКогда ваши люди возвращались с битвы,'
+                  ' они наткнулись на аномалию.'
+                  ' Лишь часть из них вернулась в живых')
+            objst.people -= 10
+        case 22:
+            print('\nВ момент атаки на ваших людей напала стая мутантов')
+            objst.military -= 5 * number_military
+            objst.people -= 10
+        case 23:
+            print('\nВ тоннелях метро вы нашли брошенный бронепоезд,'
+                  ' чей же он может быть?')
+            objst.military += 25
+        case 24:
+            print('\nВы обнаружили ящики с припасами на базе бандитов')
+            objst.resources += 10 * number_resources
+        case 25:
+            print('\nВозвращаясь с миссии вы обнаружили скрытое поселение,'
+                  ' его люди присоединяются к вам')
+            objst.people += 20 * number_people
