@@ -2,7 +2,7 @@
 # Developers: Dak A., Kryukov G., Lebedev N., Cheremisina E.
 #
 
-import math
+import math as mt
 import station as st
 import random_events as rdev
 
