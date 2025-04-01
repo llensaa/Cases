@@ -12,7 +12,7 @@ class Station:
 
 
     def display_info(self):
-        print(f'Название: {self.name}')
+        print(f'\nНазвание: {self.name}')
         print(f'Универсальные единицы: {self.resources}')
         print(f'Население: {self.people}')
         print(f'Военная мощь: {self.military}')
@@ -63,14 +63,3 @@ class Station:
         winner.resources += 20
         loser.resources -= 30
         loser.people -= 40
-
-
-
-
-
-
-
-
-
-
-
