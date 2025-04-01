@@ -61,9 +61,9 @@ def main():
                             case 2:
                                 enemy = stations.get(enemies[1])
                         names.append(rdev.objst.name)
-                        rdev.objst.battle(enemy)
                         rdev.random_choice_battle()
                         input()
+                        rdev.objst.battle(enemy)
                         rdev.objst.display_info()
                         enemy.display_info()
                     case _:
