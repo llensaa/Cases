@@ -3,7 +3,7 @@ import station as st
 
 objst = st.Station('Моя станция')
 event = rd.randint(1, 17)
-event_2 = rd.randint(18, 21)
+event_battle = rd.randint(18, 21)
 number_resources = rd.randint(1,5)
 number_military = rd.randint(1, 4)
 number_people = rd.randint(1, 3)
@@ -80,7 +80,7 @@ def random_choice_local():
             objst.people -= 2 * number_people
 
 def random_choice_battle():
-    match event_2:
+    match event_battle:
         case 18:
             print('\nПроизошёл обвал в тоннеле')
             objst.resources -= 100
