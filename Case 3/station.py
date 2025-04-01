@@ -1,5 +1,5 @@
 import random as rd
-import math as mt
+import ru_local as ru
 
 class Station:
 
@@ -10,30 +10,15 @@ class Station:
         self.military = 50
         self.station_farm = 0
         self.station_factory = 0
-        self.result = mt.sqrt(self.resources
-                              * self.military
-                              * self.people)
 
 
     def display_info(self):
-        print(f'\nНазвание: {self.name}')
-        print(f'Универсальные единицы: {self.resources}')
-        print(f'Население: {self.people}')
-        print(f'Военная мощь: {self.military}')
+        print(f'\n{ru.NAME}: {self.name}')
+        print(f'{ru.MULTYPURPOSE_UNITS}: {self.resources}')
+        print(f'{ru.POPULATION}: {self.people}')
+        print(f'{ru.MILITARY_POWER}: {self.military}')
 
 
-    def delta_resources(self):
-        delta_r = self.resources - self.stats_before_turn.get('1')
-        delta_p = self.resources - self.stats_before_turn.get('2')
-        delta_m = self.resources - self.stats_before_turn.get('3')
-        delta_stats = {delta_r: 'универсальных единиц', delta_p: 'людей',  delta_m: 'военной мощи'}
-        print(f'Итоги хода для станции {self.name}:')
-        for delta in delta_stats:
-            if delta == 0:
-                continue
-            print(f'Число {delta_stats.get(delta)} изменилось на {delta} единиц')
-
-    
     def searching(self):
         '''
         Function, station is going to search for resources
@@ -53,13 +38,13 @@ class Station:
         :return: None
         '''
         self.resources -= 20
-        choice = input('Какое предприятие вы хотите строить: ферму или фабрику?')
+        choice = input({ru.UPGRADING_CHOICE})
         while True:
             match choice:
-                case 'Фабрика' | 'фабрика':
+                case ru.FACTORY | ru.FACTORY_2:
                     self.station_factory += 1
                     break
-                case 'Ферма' | 'ферма':
+                case ru.FARM | ru.FARM_2:
                     self.station_farm += 1
                     break
 
@@ -79,3 +64,4 @@ class Station:
         winner.resources += 20
         loser.resources -= 30
         loser.people -= 40
+        print(f'\n{ru.WINNER} - {winner.name}, {ru.LOSER} - {loser.name}.')
