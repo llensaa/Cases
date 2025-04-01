@@ -12,50 +12,49 @@ def main():
     st_3 = st.Station('Заельцовская')
     names = [st_1.name, st_2.name, st_3.name]
     stations = {st_1.name: st_1, st_2.name: st_2, st_3.name: st_3}
-    st_1.display_info()
-    st_2.display_info()
-    st_3.display_info()
 
     for i in range(1, 7):
-        st_1.display_info()
-        st_2.display_info()
-        st_3.display_info()
-
-        print('Введите индекс станции, которая собирается сделать ход: ')
+        print('\nВведите индекс станции, которая собирается сделать ход: ')
         for i in range(3):
-            print(f'{i + 1}. {enemies[i]}')
+            print(f'{i + 1}. {names[i]}')
         st_index_turn = int(input())
         match st_index_turn:
             case 1:
                 rdev.objst = st_1
+                rdev.objst.display_info()
             case 2:
                 rdev.objst = st_2
+                rdev.objst.display_info()
             case 3:
                 rdev.objst = st_3
-        print('Что вы хотите сделать?')
+                rdev.objst.display_info()
+        print('\nЧто вы хотите сделать?')
         print('1. Вылазка', '2. Прокачка станции', '3. Битва')
         turn_choice = int(input())
         match turn_choice:
             case 1:
                 rdev.objst.searching()
+                rdev.random_choice_local()
             case 2:
                 rdev.objst.upgrading()
+                rdev.random_choice_local()
             case 3:
-                print('Введите индекс станции, на которую хотите напасть:')
+                print('\nВведите индекс станции, на которую хотите напасть:')
                 enemies = [n for n in names if n != rdev.objst.name]
                 for i in range(2):
-                    print(f'{i + 1}. {names[i]}')
+                    print(f'{i + 1}. {enemies[i]}')
                 enemy_index = int(input())
                 match enemy_index:
                     case 1:
-                        enemy = stations.get(names[0])
+                        enemy = stations.get(enemies[0])
                     case 2:
-                        enemy = stations.get(names[1])
+                        enemy = stations.get(enemies[1])
                 names.append(rdev.objst.name)
                 rdev.objst.battle(enemy)
-        
-        rdev.objst.random_choice()    
+                rdev.random_choice_battle()
+                input()
+                rdev.objst.display_info()
+                enemy.display_info()    
     
-
 if __name__ == '__main__':
     main()
