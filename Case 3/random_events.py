@@ -1,7 +1,8 @@
 import random as rd
 import station as st
+import ru_local as ru
 
-objst = st.Station('Моя станция')
+objst = st.Station()
 event = rd.randint(1, 17)
 event_2 = rd.randint(18, 25)
 number_resources = rd.randint(1,5)
@@ -11,106 +12,93 @@ number_people = rd.randint(1, 3)
 def random_choice_local():
     match event:
         case 1:
-            print('\nПроизошёл обвал на станции!')
+            print(f'\{ru.DOWNFALL}')
             objst.resources -= 100
             objst.people -= 15
         case 2:
-            print('\nВаши люди нашли запасы строительных материалов')
+            print(f'\n{ru.BUILDING_MATERIALS}')
             objst.resources += 50 * number_resources
         case 3:
-            print('\nВ близлежащем тоннеле были обнаружены'
-                ' оружие и обмундирование')
+            print(f'\n{ru.ARMAMENT}')
             objst.military += 15 * number_military
         case 4:
-            print('\nНа станцию напали мутанты!')
+            print(f'\n{ru.MUTANT_ATTACK}')
             objst.people -= 15
             objst.military -= 5 * number_military
         case 5:
-            print('\nНа станции произошёл бунт!')
+            print(f'\n{ru.REBEL}')
             objst.people -= 30
             objst.military -= 5 * number_military
         case 6:
-            print('\nК вам присоединились жители с ближайших тоннелей')
+            print(f'\n{ru.OUTER_RESIDENTS}')
             objst.people += 10 * number_people
         case 7:
-            print('\nНа станцию напали бандиты!')
+            print(f'\n{ru.BANDITS_ATTACK}')
             objst.military -= 5 * number_military
         case 8:
-            print('\nСтанцию затопило!')
+            print(f'\n{ru.FLOOD}')
             objst.people -= 5 * number_people
             objst.military -= 2 * number_military
         case 9:
-            print('\nНа станции произошла поножовщина!')
+            print(f'\n{ru.KNIFING}')
             objst.people -= 2 * number_people
             objst.military -= number_military
         case 10:
-            print('\nОтряд военных дезертировал и забрал с собой оружие!')
+            print(f'\n{ru.DESERTER}')
             objst.people -= 2 * number_people
             objst.military -= 3 * number_military
         case 11:
-            print('\nНа станции началась эпидемия!')
+            print(f'\n{ru.EPIDEMY}')
             objst.people -= 4 * number_people
             objst.military -= number_military
         case 12:
-            print('\nЭтот год неурожайный, провианта на всех не хватает!')
+            print(f'\n{ru.LEAN_YEAR}')
             objst.people -= 8 * number_people
             objst.military -= 4 * number_military
         case 13:
-            print('\nВы нашли ранее неизвестную комнату'
-                ' на станции, в которой оказались большие запасы ресурсов!')
+            print(f'\n{ru.UNFAMILIAR_ROOM}')
             objst.resources += 100
             objst.military += 5 * number_military
         case 14:
-            print('\nВаша радиостанция уловила странный сигнал!'
-                ' Значит ли это, что не только Вы остались в живых?...')
+            print(f'\n{ru.STRANGE_SIGNAL}')
         case 15:
-            print('\nОтряд военных отправился на поиски ресурсов'
-                ' в тоннель, однако спустя 3 дня они так и не вернулись.')
+            print(f'\n{ru.MISSING_SQUAD}')
             objst.people -= 10
             objst.military -= 5 * number_military
         case 16:
-            print('\nНа вашу станцию пришли люди с оружием, но'
-                ' злых намерений у них нет, им просто нужно убежище.')
+            print(f'\n{ru.PEOPLE_GOOD_INTENTIONS}')
             objst.people += 4 * number_people
             objst.military += 5 * number_military
         case 17:
-            print('\nУже вторую неделю из тоннелей раздается плач'
-                ' ребенка. Все, кто пытался узнать, что является'
-                ' источником звука, так и не вернулись на станцию.')
+            print(f'\n{ru.WEEPING}')
             objst.people -= 2 * number_people
 
 def random_choice_battle():
     match event_2:
         case 18:
-            print('\nПроизошёл обвал в тоннеле')
+            print(f'\n{ru.DOWNFALL_BATTLE}')
             objst.resources -= 100
             objst.people -= 15
         case 19:
-            print('\nПо пути на битву вы получили'
-                  ' боеприпасы и оружие')
+            print(f'\n{ru.TROPHY_ARMAMENT}')
             objst.military += 15
         case 20:
-            print('\nВаши бойцы получили сильное облучение'
-                  ' и часть из них теперь не боеспособна')
+            print(f'\n{ru.IRRADIATION}')
             objst.military -= 5 * number_military
             objst.people -= 10
         case 21:
-            print('\nКогда ваши люди возвращались с битвы,'
-                  ' они наткнулись на аномалию.'
-                  ' Лишь часть из них вернулась в живых')
+            print(f'\n{ru.ANOMALY}')
             objst.people -= 10
         case 22:
-            print('\nВ момент атаки на ваших людей напала стая мутантов')
+            print(f'\n{ru.MUTANT_ATTACK_BATTLE}')
             objst.military -= 5 * number_military
             objst.people -= 10
         case 23:
-            print('\nВ тоннелях метро вы нашли брошенный бронепоезд,'
-                  ' чей же он может быть?')
+            print(f'\n{ru.ARMORED_TRAIN}')
             objst.military += 25
         case 24:
-            print('\nВы обнаружили ящики с припасами на базе бандитов')
+            print(f'\n{ru.CRATES_OF_SUPPLIES}')
             objst.resources += 10 * number_resources
         case 25:
-            print('\nВозвращаясь с миссии вы обнаружили скрытое поселение,'
-                  ' его люди присоединяются к вам')
+            print(f'\n{ru.HIDDEN_SETTLEMENT}')
             objst.people += 20 * number_people
