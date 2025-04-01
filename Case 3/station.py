@@ -9,6 +9,9 @@ class Station:
         self.military = 50
         self.station_farm = 0
         self.station_factory = 0
+        self.result = mt.sqrt(self.resources
+                              * self.military
+                              * self.people)
 
 
     def display_info(self):
