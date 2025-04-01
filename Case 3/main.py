@@ -70,6 +70,20 @@ def main():
                         print('Такого действия нет, попробуйте снова.')
             except ValueError:
                 print('Введите индекс действия(число).')
+        
+    result_list = [st_1.result, st_2.result, st_3.result]
+    result_list.sort()
+
+    result = {st_1.result: st_1, st_2.result: st_2, st_3.result: st_3}
+    winner = result.get(max(result_list))
+    loser = result.get(min(result_list))
+    print(f'Победившая станция: {winner}')
+    print(f'Проигравшая станция: {loser}')
+    for i in range(2):
+        result_list.pop(i)
+    mid = result.get(0)
+    print(f'Станция "Посередине" {mid}')
+    
     
 if __name__ == '__main__':
     main()
