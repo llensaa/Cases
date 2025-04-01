@@ -17,44 +17,59 @@ def main():
         print('\nВведите индекс станции, которая собирается сделать ход: ')
         for i in range(3):
             print(f'{i + 1}. {names[i]}')
-        st_index_turn = int(input())
-        match st_index_turn:
-            case 1:
-                rdev.objst = st_1
-                rdev.objst.display_info()
-            case 2:
-                rdev.objst = st_2
-                rdev.objst.display_info()
-            case 3:
-                rdev.objst = st_3
-                rdev.objst.display_info()
+        while True:
+            try:
+                st_index_turn = int(input())
+                match st_index_turn:
+                    case 1:
+                        rdev.objst = st_1
+                        rdev.objst.display_info()
+                        break
+                    case 2:
+                        rdev.objst = st_2
+                        rdev.objst.display_info()
+                        break
+                    case 3:
+                        rdev.objst = st_3
+                        rdev.objst.display_info()
+                        break
+                    case _:
+                        print("Такой станции нет, попробуйте снова.")
+            except ValueError:
+                print("Введите индекс станции(число).")
         print('\nЧто вы хотите сделать?')
         print('1. Вылазка', '2. Прокачка станции', '3. Битва')
-        turn_choice = int(input())
-        match turn_choice:
-            case 1:
-                rdev.objst.searching()
-                rdev.random_choice_local()
-            case 2:
-                rdev.objst.upgrading()
-                rdev.random_choice_local()
-            case 3:
-                print('\nВведите индекс станции, на которую хотите напасть:')
-                enemies = [n for n in names if n != rdev.objst.name]
-                for i in range(2):
-                    print(f'{i + 1}. {enemies[i]}')
-                enemy_index = int(input())
-                match enemy_index:
+        while True:
+            try:
+                turn_choice = int(input())
+                match turn_choice:
                     case 1:
-                        enemy = stations.get(enemies[0])
+                        rdev.objst.searching()
+                        rdev.random_choice_local()
                     case 2:
-                        enemy = stations.get(enemies[1])
-                names.append(rdev.objst.name)
-                rdev.objst.battle(enemy)
-                rdev.random_choice_battle()
-                input()
-                rdev.objst.display_info()
-                enemy.display_info()    
+                        rdev.objst.upgrading()
+                        rdev.random_choice_local()
+                    case 3:
+                        print('\nВведите индекс станции, на которую хотите напасть:')
+                        enemies = [n for n in names if n != rdev.objst.name]
+                        for i in range(2):
+                            print(f'{i + 1}. {enemies[i]}')
+                        enemy_index = int(input())
+                        match enemy_index:
+                            case 1:
+                                enemy = stations.get(enemies[0])
+                            case 2:
+                                enemy = stations.get(enemies[1])
+                        names.append(rdev.objst.name)
+                        rdev.objst.battle(enemy)
+                        rdev.random_choice_battle()
+                        input()
+                        rdev.objst.display_info()
+                        enemy.display_info()
+                    case _:
+                        print('Такого действия нет, попробуйте снова.')
+            except ValueError:
+                print('Введите индекс действия(число).')
     
 if __name__ == '__main__':
     main()
