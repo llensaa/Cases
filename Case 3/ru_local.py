@@ -1,3 +1,51 @@
+# stations
+#
+PLOSHCHAD_MARKSA = 'Площадь Карла Маркса'
+STUDENCHESKAYA = 'Студенческая'
+RECHNOY_VOKZAL = 'Речной вокзал'
+OKTYABRSKAYA = 'Октябрьская'
+PLOSHCHAD_LENINA = 'Площадь Ленина'
+KRASNY_PROSPEKT = 'Красный проспект'
+GAGARINSKAYA = 'Гагаринская'
+ZAELTSOVSKAYA = 'Заельцовская'
+PLOSHCHAD_GAGARINA_MIKHAYLOVSKOGO = 'Площадь Гарина-Михайловского'
+SIBIRSKAYA = 'Сибирская'
+MARSHALA_POKRYSHKINA = 'Маршала Покрышкина'
+BERYOZOVAYA_ROSCHA = 'Березовая роща'
+ZOLOTAYA_NIVA = 'Золотая нива'
+
+# output information
+# 
+NAME = 'Название: '
+MULTYPURPOSE_UNITS = 'Универсальные единицы: '
+POPULATION = 'Население: '
+MILITARY_POWER = 'Военная мощь: '
+UPGRADING_CHOICE = 'Какое предприятие вы хотите строить: ферму или фабрику?'
+FARM = 'Ферма'
+FARM_2 = 'ферма'
+FACTORY = 'Фабрика'
+FACTORY_2 = 'фабрика'
+WINNER = 'Станция-победитель'
+LOSER = 'проигравшая станция'
+STATION_CHOICE = '-ая команда, выберите номер станции, за которую хотите играть: '
+WRONG_STATION = 'Такой станции нет, попробуйте снова.'
+INCORRECT_STATION = 'Введите индекс станции(число).'
+EXPEDITION = 'Вылазка'
+UPGRADING = 'Прокачка'
+BATTLE = 'Битва'
+MULTYPURPOSE_UNITS_BEFORE = 'Универсальные единицы до хода: '
+POPULATION_BEFORE = 'Население до хода: '
+MILITARY_POWER_BEFORE = 'Военная мощь до хода: '
+STATION_TURN = 'Введите индекс станции, которая собирается сделать ход:'
+TURN_CHOICE = 'Что вы хотите сделать?'
+BATTLE_CHOICE = 'Введите индекс станции, на которую хотите напасть:'
+END_BATTLE = 'Бой окончен!'
+WRONG_ACTION = 'Такого действия нет, попробуйте снова.'
+INCORRECT_ACTION = 'Введите индекс действия(число).'
+END_WINNER = 'Окончательный победитель: '
+END_LOSER = 'Окончательный проигравший: '
+END_MEDIUM = 'Станция "посередине"'
+
 # local random events
 #
 DOWNFALL = 'Произошёл обвал на станции!'
@@ -40,6 +88,8 @@ ARMORED_TRAIN = 'В тоннелях метро вы нашли брошенны
                   ' чей же он может быть?'
 CRATES_OF_SUPPLIES = 'Вы обнаружили ящики с припасами на базе бандитов'
 'Возвращаясь с миссии вы обнаружили скрытое поселение,'\
+                  ' его люди присоединяются к вам'
+HIDDEN_SETTLEMENT = 'Возвращаясь с миссии вы обнаружили скрытое поселение,'\
                   ' его люди присоединяются к вам'
 
 # expedition random events
