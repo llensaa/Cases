@@ -86,12 +86,12 @@ def random_choice_battle():
             objst.resources -= 100
             objst.people -= 15
         case 19:
-            print('\nВо время битвы вы получили трофейные'
+            print('\nПо пути на битву вы получили'
                   ' боеприпасы и оружие')
             objst.military += 15
         case 20:
             print('\nВаши бойцы получили сильное облучение'
-                  ' и они теперь не боеспособны')
+                  ' и часть из них теперь не боеспособна')
             objst.military -= 5 * number_military
             objst.people -= 10
         case 21:
