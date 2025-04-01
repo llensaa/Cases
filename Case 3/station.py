@@ -22,6 +22,18 @@ class Station:
         print(f'Военная мощь: {self.military}')
 
 
+    def delta_resources(self):
+        delta_r = self.resources - self.stats_before_turn.get('1')
+        delta_p = self.resources - self.stats_before_turn.get('2')
+        delta_m = self.resources - self.stats_before_turn.get('3')
+        delta_stats = {delta_r: 'универсальных единиц', delta_p: 'людей',  delta_m: 'военной мощи'}
+        print(f'Итоги хода для станции {self.name}:')
+        for delta in delta_stats:
+            if delta == 0:
+                continue
+            print(f'Число {delta_stats.get(delta)} изменилось на {delta} единиц')
+
+    
     def searching(self):
         '''
         Function, station is going to search for resources
