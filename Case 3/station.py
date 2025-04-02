@@ -38,7 +38,7 @@ class Station:
         :return: None
         '''
         self.resources -= 20
-        print(f'\nru.UPGRADING_CHOICE')
+        print(f'\n{ru.UPGRADING_CHOICE}')
         while True:
             choice = input()
             match choice:
