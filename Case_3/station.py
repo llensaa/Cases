@@ -57,9 +57,13 @@ class Station:
             match choice:
                 case ru.FACTORY | ru.FACTORY_2:
                     self.station_factory += 1
+                    print(f'\n{ru.FACTORY_BUILT}')
+                    input()
                     break
                 case ru.FARM | ru.FARM_2:
                     self.station_farm += 1
+                    print(f'\n{ru.FARM_BUILT}')
+                    input()
                     break
                 case _:
                     print(ru.WRONG_CHOICE)
@@ -70,7 +74,7 @@ class Station:
         '''
         Function, station fights with enemy station
         :param enemy:
-        :return: None
+        :return: winer, loser
         '''
         self_power = 0.7 * self.military + 0.3 * self.people
         enemy_power = 0.7 * enemy.military + 0.3 * enemy.people
