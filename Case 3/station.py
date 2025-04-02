@@ -4,6 +4,10 @@ import ru_local as ru
 class Station:
 
     def __init__(self, name):
+        '''
+        Function, assigning a value to station's resource
+        :return: None
+        '''
         self.name = name
         self.resources = 1000
         self.people = 200
@@ -13,6 +17,10 @@ class Station:
 
 
     def display_info(self):
+        '''
+        Function, showing information about station's resources
+        :return: None
+        '''
         print(f'\n{ru.NAME}: {self.name}')
         print(f'{ru.MULTYPURPOSE_UNITS}: {self.resources}')
         print(f'{ru.POPULATION}: {self.people}')
