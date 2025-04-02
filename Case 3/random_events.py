@@ -2,7 +2,7 @@ import random as rd
 import station as st
 import ru_local as ru
 
-objst = st.Station()
+objst = st.Station('')
 event = rd.randint(1, 17)
 event_2 = rd.randint(18, 25)
 number_resources = rd.randint(1,5)
