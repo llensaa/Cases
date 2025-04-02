@@ -12,7 +12,7 @@ number_people = rd.randint(1, 3)
 def random_choice_local():
     match event:
         case 1:
-            print(f'\{ru.DOWNFALL}')
+            print(f'\n{ru.DOWNFALL}')
             objst.resources -= 100
             objst.people -= 15
         case 2:
