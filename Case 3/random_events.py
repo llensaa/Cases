@@ -2,7 +2,7 @@ import random as rd
 import station as st
 import ru_local as ru
 
-objst = st.Station('')
+objst = st.Station('Все станции')
 
 def random_choice_local():
     event = rd.randint(1, 17)
