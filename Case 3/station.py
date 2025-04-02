@@ -36,9 +36,13 @@ class Station:
         self.resources -= 200
         self.people -= 10
         probability = rd.randint(1, 100)
-        if probability > 20:
-            self.resources += 350
-            self.people += 10
+        match probability:
+            case _ if probability in range(20, 100):
+                self.resources += 350
+                self.people += 10
+                print(f'\n{ru.EXPEDITION_RESULT_LUCK}')
+            case _ if probability in range(1, 20):
+                print(f'\n{ru.EXPEDITION_RESULT_UNLUCK}')
 
 
     def upgrading(self):
