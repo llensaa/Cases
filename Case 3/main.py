@@ -114,6 +114,9 @@ def main():
         rdev.objst.people += 10 * rdev.objst.station_farm - 20
         rdev.objst.military += 5 * rdev.objst.station_factory - 10
 
+    print(f'\n{ru.RESULT}')
+    input()
+    
     result_list = [st_1.result, st_2.result, st_3.result]
     result_list.sort()
 
