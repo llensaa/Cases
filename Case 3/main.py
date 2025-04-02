@@ -50,10 +50,6 @@ def main():
     turn_counter = 0
 
     for i in range(1, 7):
-        rdev.objst.display_info()
-        station_stats = {ru.MULTYPURPOSE_UNITS_BEFORE: rdev.objst.resources, 
-                         ru.POPULATION_BEFORE: rdev.objst.people, 
-                         ru.MILITARY_POWER_BEFORE: rdev.objst.military}
         turn_counter += 1
         print(f'\n{ru.STATION_TURN}')
         for i in range(3):
@@ -68,6 +64,7 @@ def main():
                     print(ru.WRONG_STATION)
             except ValueError:
                 print(ru.INCORRECT_STATION)
+        rdev.objst.display_info()
         print(f'\n{ru.TURN_CHOICE}')
         if turn_counter <= 2:
             lim = 2
