@@ -122,7 +122,7 @@ def main():
     print(f'{ru.END_LOSER} {loser}')
     for i in range(2):
         result_list.pop(i)
-    mid = result.get(0)
+    mid = result.get(result_list[0])
     print(f'{ru.END_MEDIUM} {mid}')
     
     
