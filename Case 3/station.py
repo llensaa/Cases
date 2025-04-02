@@ -69,3 +69,4 @@ class Station:
         loser.resources -= 30
         loser.people -= 40
         print(f'\n{ru.WINNER} - {winner.name}, {ru.LOSER} - {loser.name}.')
+        return winner, loser
