@@ -112,6 +112,8 @@ def main():
                         print(ru.WRONG_ACTION)
             except ValueError:
                 print(ru.INCORRECT_ACTION)
+        rdev.objst.people += 10 * rdev.objst.station_farm - 20
+        rdev.objst.military += 5 * rdev.objst.station_factory - 10
 
     result_list = [st_1.result, st_2.result, st_3.result]
     result_list.sort()
