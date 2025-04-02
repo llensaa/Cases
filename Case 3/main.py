@@ -21,7 +21,7 @@ def main():
                     ru.ZOLOTAYA_NIVA]
     names = []
     for k in range(3):
-        print(f'{k + 1}{ru.STATION_CHOICE}\n')
+        print(f'\n{k + 1}{ru.STATION_CHOICE}\n')
         for n in range(len(metro_stations)):
             print(f'{n + 1}. {metro_stations[n]}')
         while True:
@@ -48,7 +48,6 @@ def main():
                ru.UPGRADING: rdev.objst.upgrading, 
                ru.BATTLE: rdev.objst.battle}
     turn_counter = 0
-    char = '+'
 
     for i in range(1, 7):
         rdev.objst.display_info()
