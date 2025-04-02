@@ -66,7 +66,7 @@ def main():
                 print(ru.INCORRECT_STATION)
         rdev.objst.display_info()
         print(f'\n{ru.TURN_CHOICE}')
-        if turn_counter <= 2:
+        if turn_counter <= 3:
             lim = 2
         else:
             lim = 3
@@ -79,7 +79,6 @@ def main():
                 match turn_choice:
                     case 1:
                         actions.get(actions_names[0])()
-                        rdev.random_choice_local()
                         input()
                         break
                     case 2:
