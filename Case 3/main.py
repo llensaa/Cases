@@ -80,11 +80,13 @@ def main():
                     case 1:
                         actions.get(actions_names[0])()
                         input()
+                        rdev.objst.display_info()
                         break
                     case 2:
                         actions.get(actions_names[1])()
                         rdev.random_choice_local()
                         input()
+                        rdev.objst.display_info()
                         break
                     case 3:
                         print(f'\n{ru.BATTLE_CHOICE}')
@@ -103,6 +105,7 @@ def main():
                         print(f'{ru.END_BATTLE}')
                         print(f'{ru.WINNER} - {winner.name}')
                         print(f'{ru.LOSER} - {loser.name}\n')
+                        rdev.objst.display_info()
                         break
                     case _:
                         print(ru.WRONG_ACTION)
