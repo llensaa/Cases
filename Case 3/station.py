@@ -14,7 +14,8 @@ class Station:
         self.military = 50
         self.station_farm = 0
         self.station_factory = 0
-
+        self.result = (self.resources * self.military
+                       * self.people) ** (1/3)
 
     def display_info(self):
         '''
