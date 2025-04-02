@@ -10,7 +10,6 @@ def random_choice_local():
     number_military = rd.randint(1, 4)
     number_people = rd.randint(1, 3)
 
-
     match event:
         case 1:
             print(f'\n{ru.DOWNFALL}')
