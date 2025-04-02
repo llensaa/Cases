@@ -38,8 +38,9 @@ class Station:
         :return: None
         '''
         self.resources -= 20
-        choice = input({ru.UPGRADING_CHOICE})
+        print(ru.UPGRADING_CHOICE)
         while True:
+            choice = input()
             match choice:
                 case ru.FACTORY | ru.FACTORY_2:
                     self.station_factory += 1
@@ -47,6 +48,9 @@ class Station:
                 case ru.FARM | ru.FARM_2:
                     self.station_farm += 1
                     break
+                case _:
+                    print(ru.WRONG_CHOICE)
+                    continue
 
 
     def battle(self, enemy):
