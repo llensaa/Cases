@@ -80,13 +80,11 @@ def main():
                     case 1:
                         actions.get(actions_names[0])()
                         input()
-                        rdev.objst.display_info()
                         break
                     case 2:
                         actions.get(actions_names[1])()
                         rdev.random_choice_local()
                         input()
-                        rdev.objst.display_info()
                         break
                     case 3:
                         print(f'\n{ru.BATTLE_CHOICE}')
@@ -101,11 +99,8 @@ def main():
                                 enemy = stations.get(enemies[1])
                         rdev.random_choice_battle()
                         input()
-                        winner, loser = rdev.objst.battle(enemy)
                         print(f'{ru.END_BATTLE}')
-                        print(f'{ru.WINNER} - {winner.name}')
-                        print(f'{ru.LOSER} - {loser.name}\n')
-                        rdev.objst.display_info()
+                        winner, loser = rdev.objst.battle(enemy)
                         break
                     case _:
                         print(ru.WRONG_ACTION)
@@ -113,21 +108,23 @@ def main():
                 print(ru.INCORRECT_ACTION)
         rdev.objst.people += 10 * rdev.objst.station_farm - 20
         rdev.objst.military += 5 * rdev.objst.station_factory - 10
-
+        rdev.objst.display_info()
+    
     print(f'\n{ru.RESULT}')
     input()
     
-    result_list = [st_1.result, st_2.result, st_3.result]
-    result_list.sort()
+    results = [
+        (st_1.result, st_1.name), 
+        (st_2.result, st_2.name),
+        (st_3.result, st_3.name)
+    ]
+    results_sorted = sorted(results, key=lambda x: x[0])
+    winner = results[-1][1]
+    loser = results[0][1]
+    mid = results[1][1]
 
-    result = {st_1.result: st_1, st_2.result: st_2, st_3.result: st_3}
-    winner = result.get(max(result_list))
-    loser = result.get(min(result_list))
     print(f'{ru.END_WINNER} {winner}')
     print(f'{ru.END_LOSER} {loser}')
-    for i in range(2):
-        result_list.pop(i)
-    mid = result.get(result_list[0])
     print(f'{ru.END_MEDIUM} {mid}')
     
     
