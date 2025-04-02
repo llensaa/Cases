@@ -16,7 +16,7 @@ ZOLOTAYA_NIVA = 'Золотая нива'
 
 # output information
 # 
-NAME = 'Название: '
+NAME = 'Название'
 MULTYPURPOSE_UNITS = 'Универсальные единицы'
 POPULATION = 'Население'
 MILITARY_POWER = 'Военная мощь'
