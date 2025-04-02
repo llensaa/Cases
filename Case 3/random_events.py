@@ -3,13 +3,14 @@ import station as st
 import ru_local as ru
 
 objst = st.Station('')
-event = rd.randint(1, 17)
-event_2 = rd.randint(18, 25)
-number_resources = rd.randint(1,5)
-number_military = rd.randint(1, 4)
-number_people = rd.randint(1, 3)
 
 def random_choice_local():
+    event = rd.randint(1, 17)
+    number_resources = rd.randint(1,5)
+    number_military = rd.randint(1, 4)
+    number_people = rd.randint(1, 3)
+
+
     match event:
         case 1:
             print(f'\n{ru.DOWNFALL}')
@@ -74,6 +75,10 @@ def random_choice_local():
             objst.people -= 2 * number_people
 
 def random_choice_battle():
+    event_2 = rd.randint(18, 25)
+    number_resources = rd.randint(1,5)
+    number_military = rd.randint(1, 4)
+    number_people = rd.randint(1, 3)
     match event_2:
         case 18:
             print(f'\n{ru.DOWNFALL_BATTLE}')
