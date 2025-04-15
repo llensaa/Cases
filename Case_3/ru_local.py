@@ -15,7 +15,7 @@ BERYOZOVAYA_ROSCHA = 'Березовая роща'
 ZOLOTAYA_NIVA = 'Золотая нива'
 
 # output information
-# 
+#
 NAME = 'Название'
 MULTYPURPOSE_UNITS = 'Универсальные единицы'
 POPULATION = 'Население'
@@ -37,7 +37,7 @@ EXPEDITION_RESULT_LUCK = 'Вылазка оказалась удачной! Вы
 EXPEDITION_RESULT_UNLUCK = 'Вылазка не удалась... Вы только потеряли время и ресурсы.'
 FARM_BUILT = 'Вы построили ферму!'
 FACTORY_BUILT = 'Вы построили фабрику!'
-STATION_TURN = 'Введите индекс станции, которая собирается сделать ход:'
+STATION_TURN = 'Ход станции '
 TURN_CHOICE = 'Что вы хотите сделать?'
 BATTLE_CHOICE = 'Введите индекс станции, на которую хотите напасть:'
 END_BATTLE = 'Бой окончен!'
