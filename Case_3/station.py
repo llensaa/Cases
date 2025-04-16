@@ -6,8 +6,8 @@ class Station:
     def __init__(self, name):
         self.name = name
         self.resources = 1000
-        self.people = 200
-        self.military = 50
+        self.people = 250
+        self.military = 100
         self.station_farm = 0
         self.station_factory = 0
 
