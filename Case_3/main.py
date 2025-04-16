@@ -39,7 +39,7 @@ def main():
     actions_names = [ru.EXPEDITION, ru.UPGRADING, ru.BATTLE]
     turn_counter = 0
 
-    for i in range(1, 7):
+    for i in range(1, 13):
         turn_counter += 1
         current_name = names[i % 3]
         station = stations[current_name]
