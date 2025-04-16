@@ -12,7 +12,7 @@ class Station:
         self.station_factory = 0
 
     def result_value(self):
-        return (self.resources * self.military * self.people) ** (1/3)
+        return (self.resources * self.military * self.people)
 
     def display_info(self):
         print(f'\n{ru.NAME}: {self.name}')
