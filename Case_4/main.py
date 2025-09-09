@@ -8,8 +8,16 @@ if language != 'en':
     text = GoogleTranslator(source='auto', target='en').translate(text)
 
 blob = TextBlob(text)
-
 polarity, subjectivity = blob.sentiment
 
-print(f"Polarity: {polarity}")
-print(f"Subjectivity: {subjectivity}")
+if -1 <= polarity < -0.6:
+    tone = 'негативная'
+elif 0.6 < polarity <= 1:
+    tone = 'позитивная'
+else:
+    tone = 'нейтральная'
+
+objectivity = int(100 * (1 - subjectivity))
+
+print(f'Тональность текста: {tone}')
+print(f"Объективность: {objectivity}%")
