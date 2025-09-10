@@ -19,7 +19,7 @@ def total_words(a):
 
 def asw(a):
     b = total_words(a)
-    total_syllables = len([x for x in a if x.lower in ['a', 'y',
+    total_syllables = len([x for x in a if x.lower() in ['a', 'y',
                                                        'u', 'e',
                                                        'o', 'i',
                                                        'а', 'е',
