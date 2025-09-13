@@ -65,12 +65,19 @@ else:
 
 objectivity = int(100 * (1 - subjectivity))
 
-print(f'Предложений: {total_sen(text)}')
-print(f'Слов: {total_words(text)}')
-print(f'Слогов: {total_syllabs(text)}')
-print(f'Средняя длина предллжения в словах: {asl(text)}')
-print(f'Средняя длина слова в слогах: {asw(text)}')
-print(f'Индекс удобочитаемости Флеша: {flesh_index}')
-
-print(f'Тональность текста: {tone}')
-print(f"Объективность: {objectivity}%")
+print(f'Предложений: {total_sen(text)} \n')
+print(f'Слов: {total_words(text)}\n')
+print(f'Слогов: {total_syllabs(text)}\n')
+print(f'Средняя длина предллжения в словах: {asl(text)}\n')
+print(f'Средняя длина слова в слогах: {asw(text)}\n')
+print(f'Индекс удобочитаемости Флеша: {flesh_index}\n')
+if flesh_index >= 100:
+    print(f'Очень легко читается.\n')
+elif 65 <= flesh_index < 100:
+    print(f'Текст очень легко читается (для младших школьников).\n')
+elif 30 <= flesh_index < 65:
+    print(f'Немного трудно читать.\n')
+else:
+    print(f'Очень трудно читать.\n')
+print(f'Тональность текста: {tone}\n')
+print(f"Объективность: {objectivity}%\n")
