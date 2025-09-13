@@ -28,13 +28,13 @@ def asw(a):
                                                        'я', 'ы',
                                                        'э', 'у'
                                                             'ё', 'ю']])
-    return total_syllables // b
+    return total_syllables / b
 
 
 def asl(a):
     b = total_words(a)
     c = total_sen(a)
-    return b // c
+    return b / c
 
 
 text = input()
