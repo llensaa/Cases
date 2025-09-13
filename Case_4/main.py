@@ -68,7 +68,7 @@ objectivity = int(100 * (1 - subjectivity))
 print(f'Предложений: {total_sen(text)} \n')
 print(f'Слов: {total_words(text)}\n')
 print(f'Слогов: {total_syllabs(text)}\n')
-print(f'Средняя длина предллжения в словах: {asl(text)}\n')
+print(f'Средняя длина предложения в словах: {asl(text)}\n')
 print(f'Средняя длина слова в слогах: {asw(text)}\n')
 print(f'Индекс удобочитаемости Флеша: {flesh_index}\n')
 if flesh_index >= 100:
