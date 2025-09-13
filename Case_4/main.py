@@ -4,11 +4,12 @@ from deep_translator import GoogleTranslator
 
 
 def total_sen(a):
-    counter = 0
+    counter = 1 #учитывая последнее предложение, без пробела
     for i in range(len(a)):
-        if (a[i] + a[i - 1] == '?!') or (a[i] + a[i - 1] == '!?') and i > 1:
-            counter += 1
-        elif a[i] in ['.', '!', '?']:
+        if ((a[i] + a[i - 1] == '. ') or \
+            (a[i] + a[i - 1] == '! ') or \
+            (a[i] + a[i - 1] == '? ')) \
+                and i > 1:
             counter += 1
     return counter
 
