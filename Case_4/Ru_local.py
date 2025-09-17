@@ -1,1 +1,1 @@
-ENTER_TEXT = ''
+ENTER_TEXT = 'Введите текст: '
