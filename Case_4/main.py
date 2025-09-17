@@ -1,5 +1,5 @@
 import re
-import Ru_local as ru
+import ru_local as ru
 from textblob import TextBlob
 from langdetect import detect
 from deep_translator import GoogleTranslator
