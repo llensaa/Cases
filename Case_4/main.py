@@ -6,7 +6,7 @@ from deep_translator import GoogleTranslator
 
 
 def total_sen(a):
-     '''
+    '''
     Function, counting sentences
     :param a: text
     :return: counter
