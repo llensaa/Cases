@@ -5,6 +5,11 @@ from deep_translator import GoogleTranslator
 
 
 def total_sen(a):
+     '''
+    Function, counting sentences
+    :param a: text
+    :return: counter
+    '''
     counter = 1  # counting last sentence, without space
     for i in range(len(a)):
         if a[i - 1] + a[i] in ['. ', '! ', '? '] and i > 1:
@@ -13,11 +18,21 @@ def total_sen(a):
 
 
 def total_words(a):
+    '''
+    Function, counting words
+    :param a: text
+    :return: number of words
+    '''
     a = re.sub(r'[^\w\s]', '', a.lower())
     return len([word for word in a.split() if word])
 
 
 def total_syllabs(a):
+    '''
+    Function, counting syllables in text
+    :param a: text
+    :return: number of syllables
+    '''
     total_syllables = len([x for x in a if x.lower() in ['a', 'y',
                                                          'u', 'e',
                                                          'o', 'i',
@@ -30,12 +45,22 @@ def total_syllabs(a):
 
 
 def asw(a):
+    '''
+    Function, counting average number of syllables per word
+    :param a: text
+    :return: asw
+    '''
     b = total_words(a)
     c = total_syllabs(a)
     return c / b
 
 
 def asl(a):
+    '''
+    Function, counting average number of words per sentence
+    :param a: text
+    :return: asl
+    '''
     b = total_words(a)
     c = total_sen(a)
     return b / c
