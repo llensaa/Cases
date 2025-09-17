@@ -1,4 +1,5 @@
 import re
+import Ru_local as ru
 from textblob import TextBlob
 from langdetect import detect
 from deep_translator import GoogleTranslator
@@ -66,7 +67,7 @@ def asl(a):
     return b / c
 
 
-text = input(f'Введите текст: ')
+text = input(f'{ru.ENTER_TEXT')
 
 language = detect(text)
 if language != 'en':
@@ -79,27 +80,27 @@ blob = TextBlob(text_eng)
 polarity, subjectivity = blob.sentiment
 
 if -1 <= polarity < -0.6:
-    tone = 'негативная'
+    tone = ru.NEGATIVE
 elif 0.6 < polarity <= 1:
-    tone = 'позитивная'
+    tone = ru.POSITIVE
 else:
-    tone = 'нейтральная'
+    tone = ru.NEUTRAL
 
 objectivity = int(100 * (1 - subjectivity))
 
-print(f'Предложений: {total_sen(text)} \n')
-print(f'Слов: {total_words(text)}\n')
+print(f'{ru.SENTENCES} {total_sen(text)} \n')
+print(f'{ru.WORDS} {total_words(text)}\n')
 print(f'Слогов: {total_syllabs(text)}\n')
-print(f'Средняя длина предложения в словах: {asl(text)}\n')
-print(f'Средняя длина слова в слогах: {asw(text)}\n')
-print(f'Индекс удобочитаемости Флеша: {flesh_index}\n')
+print(f'{ru.ASL} {asl(text)}\n')
+print(f'{ru.ASW} {asw(text)}\n')
+print(f'{FLASH} {flesh_index}\n')
 if flesh_index >= 100:
-    print(f'Очень легко читается.\n')
+    print(f'{ru.EASY_TO_READ}.\n')
 elif 65 <= flesh_index < 100:
-    print(f'Текст очень легко читается (для младших школьников).\n')
+    print(f'{ru.EASY_TO_READ} ({ru.JUNIOR}).\n')
 elif 30 <= flesh_index < 65:
-    print(f'Немного трудно читать.\n')
+    print(f'{ru.QUITE_TOUGH}.\n')
 else:
-    print(f'Очень трудно читать.\n')
-print(f'Тональность текста: {tone}\n')
-print(f"Объективность: {objectivity}%\n")
+    print(f'{ru.TOUGH}.\n')
+print(f'{ru.POLARITY} {tone}\n')
+print(f"{ru.OBJECTIVITY} {objectivity}%\n")
