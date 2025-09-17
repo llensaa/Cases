@@ -5,18 +5,15 @@ from deep_translator import GoogleTranslator
 
 
 def total_sen(a):
-    counter = 1  # учитывая последнее предложение, без пробела
+    counter = 1  # counting last sentence, without space
     for i in range(len(a)):
-        if ((a[i - 1] + a[i] == '. ') or \
-            (a[i - 1] + a[i] == '! ') or \
-            (a[i - 1] + a[i] == '? ')) \
-                and i > 1:
+        if a[i - 1] + a[i] in ['. ', '! ', '? '] and i > 1:
             counter += 1
     return counter
 
 
 def total_words(a):
-    a = re.sub(r'[^\w\s]', '', text.lower())
+    a = re.sub(r'[^\w\s]', '', a.lower())
     return len([word for word in a.split() if word])
 
 
