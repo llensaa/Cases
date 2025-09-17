@@ -10,7 +10,7 @@ def total_sen(a):
     :param a: text
     :return: counter
     '''
-    counter = 1  # counting last sentence, without space
+    counter = 1  # Counting last sentence, without space.
     for i in range(len(a)):
         if a[i - 1] + a[i] in ['. ', '! ', '? '] and i > 1:
             counter += 1
