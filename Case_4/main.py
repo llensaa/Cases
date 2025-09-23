@@ -67,7 +67,7 @@ def asl(a):
     return b / c
 
 
-text = input(f'{ru.ENTER_TEXT')
+text = input(f'{ru.ENTER_TEXT}')
 
 language = detect(text)
 if language != 'en':
