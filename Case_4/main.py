@@ -79,9 +79,9 @@ else:
 blob = TextBlob(text_eng)
 polarity, subjectivity = blob.sentiment
 
-if -1 <= polarity < -0.6:
+if -1 <= polarity < -0.34:
     tone = ru.NEGATIVE
-elif 0.6 < polarity <= 1:
+elif 0.34 < polarity <= 1:
     tone = ru.POSITIVE
 else:
     tone = ru.NEUTRAL
