@@ -90,7 +90,7 @@ objectivity = int(100 * (1 - subjectivity))
 
 print(f'{ru.SENTENCES} {total_sen(text)} \n')
 print(f'{ru.WORDS} {total_words(text)}\n')
-print(f'Слогов: {total_syllabs(text)}\n')
+print(f'{ru.SYLLABLES} {total_syllabs(text)}\n')
 print(f'{ru.ASL} {asl(text)}\n')
 print(f'{ru.ASW} {asw(text)}\n')
 print(f'{FLASH} {flesh_index}\n')
