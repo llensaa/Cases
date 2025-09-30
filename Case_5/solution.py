@@ -2,7 +2,6 @@ import requests
 import bs4
 import re
 from operator import itemgetter
-import csv
 import ru_local as ru
 
 url = r'https://obuv-tut2000.ru/'
