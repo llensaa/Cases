@@ -70,7 +70,7 @@ for item in items:
     counter += 1
     print(f'{ru.CARD} {counter} {ru.PROCESSED}')
 
-answ_list_sorted = sorted(answ_list, key=itemgetter(1), reverse=True)
+answ_list_sorted = sorted(answ_list, key=itemgetter(1))
 
 with open('answ.csv', 'w', encoding='utf-8') as file:
     for row in answ_list_sorted:
