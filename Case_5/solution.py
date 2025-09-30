@@ -65,8 +65,7 @@ for item in items:
         desc = char.find_all('div', class_='option-body')
         final_description.extend([d.text.strip() for d in desc])
 
-    answ_list.append((
-        name.text.strip() if name else '', price_number, *final_description))
+    answ_list.append((name.text.strip(), price_number, *final_description))
     counter += 1
     print(f'{ru.CARD} {counter} {ru.PROCESSED}')
 
