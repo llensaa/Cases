@@ -58,7 +58,7 @@ for item in items:
     price = item.find('div', class_='price-current')
     characteristics = item_card_soup.find_all('div', class_='shop2-product-options')
 
-    price_number = int(re.sub(r'\D', '', price.text.strip())) if price else 0
+    price_number = int(re.sub(r'\D', '', price.text.strip()))
 
     final_description = []
     for char in characteristics:
