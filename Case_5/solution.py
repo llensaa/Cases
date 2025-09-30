@@ -56,7 +56,8 @@ for item in items:
 
     name = item.find('div', class_='gr-product-name')
     price = item.find('div', class_='price-current')
-    characteristics = item_card_soup.find_all('div', class_='shop2-product-options')
+    characteristics = item_card_soup.find_all('div', 
+                        class_='shop2-product-options')
 
     price_number = int(re.sub(r'\D', '', price.text.strip()))
 
@@ -74,6 +75,3 @@ answ_list_sorted = sorted(answ_list, key=itemgetter(1), reverse=True)
 with open('answ.csv', 'w', encoding='utf-8') as file:
     for row in answ_list_sorted:
         file.write('; '.join([str(e) for e in row]) + '\n')
-
-for element in answ_list_sorted:
-    print('; '.join([str(e) for e in element]))
