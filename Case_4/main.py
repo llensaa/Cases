@@ -72,10 +72,10 @@ text = input(f'{ru.ENTER_TEXT}')
 language = detect(text)
 if language != 'en':
     text_eng = GoogleTranslator(source='auto', target='en').translate(text)
-    flesh_index = 206.835 - 1.52 * asl(text) - 65.14 * asw(text)
+    flesh_index = 206.835 - 1.52 * asl(text_eng) - 65.14 * asw(text_eng)
 else:
     text_eng = text
-    flesh_index = 206.835 - 1.015 * asl(text) - 84.6 * asw(text)
+    flesh_index = 206.835 - 1.015 * asl(text_eng) - 84.6 * asw(text_eng)
 blob = TextBlob(text_eng)
 polarity, subjectivity = blob.sentiment
 
