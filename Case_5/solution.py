@@ -25,8 +25,8 @@ def get_page(query, page: int = 1, timeout=15):
     Note: uses 'a' parameter for page number
     '''
     params = {'a': page, 'gr_smart_search': 1, 'search_text': query}
-    response = session.get(search_url, params=params, timeout=timeout, headers=headers)
-    return response.url
+    resp = session.get(search_url, params=params, timeout=timeout, headers=headers)
+    return resp.url
 
 
 def get_link(item):
