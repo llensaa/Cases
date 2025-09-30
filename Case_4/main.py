@@ -81,7 +81,7 @@ polarity, subjectivity = blob.sentiment
 
 if -1 <= polarity < -0.34:
     tone = ru.NEGATIVE
-elif 0.34 < polarity <= 1:
+elif 0.34 =< polarity <= 1:
     tone = ru.POSITIVE
 else:
     tone = ru.NEUTRAL
@@ -93,7 +93,7 @@ print(f'{ru.WORDS} {total_words(text)}\n')
 print(f'{ru.SYLLABLES} {total_syllabs(text)}\n')
 print(f'{ru.ASL} {asl(text)}\n')
 print(f'{ru.ASW} {asw(text)}\n')
-print(f'{FLASH} {flesh_index}\n')
+print(f'{ru.FLASH} {flesh_index}\n')
 if flesh_index >= 100:
     print(f'{ru.EASY_TO_READ}.\n')
 elif 65 <= flesh_index < 100:
