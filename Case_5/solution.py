@@ -3,6 +3,7 @@ import bs4
 import re
 from operator import itemgetter
 import csv
+import ru_local as ru
 
 url = r'https://obuv-tut2000.ru/'
 search_url = url + 'magazin/search'
@@ -35,9 +36,9 @@ def get_link(item):
     return url + name.find('a').get('href')
 
 
-search_text = input("Введите название товара для поиска: ").strip()
+search_text = input({ru.REQUEST}).strip()
 url_new = get_page(search_text)
-print("URL поиска:", url_new)
+print(f"{ru.SEARCH_URL} url_new")
 
 response = requests.get(url_new, headers=headers)
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
@@ -64,7 +65,7 @@ for item in items:
     answ_list.append((
         name.text.strip() if name else '', price_number, *final_description))
     counter += 1
-    print(f"Карточка {counter} обработана")
+    print(f"{ru.CARD} {counter} {ru.PROCESSED}")
 
 answ_list_sorted = sorted(answ_list, key=itemgetter(1), reverse=True)
 
