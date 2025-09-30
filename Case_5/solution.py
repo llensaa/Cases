@@ -1,3 +1,7 @@
+# Case-study 7
+# Developers: Dak A., Kryukov G., Cheremisina E.
+#
+
 import requests
 import bs4
 import re
@@ -35,9 +39,9 @@ def get_link(item):
     return url + name.find('a').get('href')
 
 
-search_text = input({ru.REQUEST}).strip()
+search_text = input(ru.REQUEST).strip()
 url_new = get_page(search_text)
-print(f'{ru.SEARCH_URL} url_new')
+print(f'{ru.SEARCH_URL} {url_new}')
 
 response = requests.get(url_new, headers=headers)
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
@@ -68,7 +72,7 @@ for item in items:
 
 answ_list_sorted = sorted(answ_list, key=itemgetter(1), reverse=True)
 
-with open('Cases/Case_5/answ.csv', 'w', encoding='utf-8') as file:
+with open('answ.csv', 'w', encoding='utf-8') as file:
     for row in answ_list_sorted:
         file.write('; '.join([str(e) for e in row]) + '\n')
 
