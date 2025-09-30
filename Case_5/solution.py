@@ -4,7 +4,7 @@ import re
 from operator import itemgetter
 import ru_local as ru
 
-url = r'https://obuv-tut2000.ru/'
+url = 'https://obuv-tut2000.ru/'
 search_url = url + 'magazin/search'
 
 session = requests.Session()
@@ -37,7 +37,7 @@ def get_link(item):
 
 search_text = input({ru.REQUEST}).strip()
 url_new = get_page(search_text)
-print(f"{ru.SEARCH_URL} url_new")
+print(f'{ru.SEARCH_URL} url_new')
 
 response = requests.get(url_new, headers=headers)
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
@@ -54,7 +54,7 @@ for item in items:
     price = item.find('div', class_='price-current')
     characteristics = item_card_soup.find_all('div', class_='shop2-product-options')
 
-    price_number = int(re.sub(r"\D", "", price.text.strip())) if price else 0
+    price_number = int(re.sub(r'\D', '', price.text.strip())) if price else 0
 
     final_description = []
     for char in characteristics:
@@ -64,7 +64,7 @@ for item in items:
     answ_list.append((
         name.text.strip() if name else '', price_number, *final_description))
     counter += 1
-    print(f"{ru.CARD} {counter} {ru.PROCESSED}")
+    print(f'{ru.CARD} {counter} {ru.PROCESSED}')
 
 answ_list_sorted = sorted(answ_list, key=itemgetter(1), reverse=True)
 
