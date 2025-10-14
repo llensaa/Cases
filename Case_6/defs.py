@@ -5,7 +5,7 @@ import re
 #2
 
 #3
-def find_system_info(text):
+def find_system_info(text) -> dict[str, list[str]]:
     '''
     Finds system information
     Return: {'ips': [], 'files': [], 'emails': []}
@@ -23,7 +23,7 @@ def find_system_info(text):
         if email not in result['emails']:
             result['emails'].append(email)
     
-    ip_pattern = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'
+    ip_pattern = r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
   
     for match in re.finditer(ip_pattern, text):
         ip = match.group()
