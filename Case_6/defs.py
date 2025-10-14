@@ -43,7 +43,85 @@ def find_system_info(text) -> dict[str, list[str]]:
     return result
 
 #4
+def decode_messages(text) -> dict[str, list[str]]:
+    """
+    Finds and decodes messages
+    Return: {'base64': [], 'hex': [], 'rot13': []}
+    """
+    result = {
+        'base64': [],
+        'hex': [],
+        'rot13': []
+    }
+    
+    base64_pattern = r'[A-Za-z0-9+/]{4,}={0,2}'
+    
+    for match in re.finditer(base64_pattern, text):
+        base64_string = match.group()
+        try:
+            decoded_bytes = base64.b64decode(base64_string)
+            decoded_text = decoded_bytes.decode('utf-8')
+            if len(decoded_text) > 1:
+                result['base64'].append(f"{base64_string} -> {decoded_text}")
+        except (base64.binascii.Error, UnicodeDecodeError, ValueError):
+            pass
 
+
+    hex_escape_pattern = r'(?:\\x[0-9A-Fa-f]{2})+'
+    
+    for match in re.finditer(hex_escape_pattern, text):
+        hex_escape_string = match.group()
+        try:
+            hex_only = hex_escape_string.replace(r'\x', '')
+            if len(hex_only) % 2 != 0:
+                continue
+            
+            decoded_bytes = bytes.fromhex(hex_only)
+            decoded_text = decoded_bytes.decode('utf-8')
+            if len(decoded_text) > 1:
+                result['hex'].append(f"{hex_escape_string} -> {decoded_text}")
+        except (ValueError, UnicodeDecodeError):
+            pass
+
+    hex_direct_pattern = r'\b(?:0x)?[0-9A-Fa-f]{6,}\b'
+
+    for match in re.finditer(hex_direct_pattern, text):
+        hex_string = match.group()
+        hex_clean = hex_string[2:] if hex_string.startswith('0x') else hex_string
+    
+        if len(hex_clean) % 2 != 0:
+            continue
+        
+        try:
+            decoded_bytes = bytes.fromhex(hex_clean)
+            decoded_text = decoded_bytes.decode('utf-8')
+            if len(decoded_text) > 1:
+                result['hex'].append(f"{hex_string} -> {decoded_text}")
+        except (ValueError, UnicodeDecodeError):
+            pass
+
+
+
+    def rot13_decode(text) -> str:
+        result_rot = []
+        for char in text:
+            if char.isalpha():
+                ascii_offset = ord('a') if char.islower() else ord('A')
+                result_rot.append(chr((ord(char) - ascii_offset + 13) % 26 + ascii_offset))
+            else:
+                result_rot.append(char)
+        return ''.join(result_rot)
+    
+    rot13_pattern = r'\b(?:[a-zA-Z]{1,}(?:\s+[a-zA-Z]{1,})*)\b'
+    
+    for match in re.finditer(rot13_pattern, text):
+        rot13_string = match.group()
+        decoded_text = rot13_decode(rot13_string)
+        if (decoded_text != rot13_string and 
+            len(decoded_text) > 1):
+            result['rot13'].append(f"{rot13_string} -> {decoded_text}")
+    
+    return result
 #5
 
 #6
