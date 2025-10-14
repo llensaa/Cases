@@ -67,7 +67,8 @@ def find_system_info(main_text) -> dict[str, list[str]]:
         'emails': []
     }
 
-    email_pattern = r'\b[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?@[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+\b'
+    email_pattern = r'\b[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?
+                    r'@[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+\b'
 
     for match in re.finditer(email_pattern, main_text):
         email = match.group()
@@ -83,7 +84,8 @@ def find_system_info(main_text) -> dict[str, list[str]]:
         if valid and ip not in result['ips']:
             result['ips'].append(ip)
 
-    file_pattern = r'\b\w+\.(txt|pdf|doc|docx|xls|xlsx|ppt|pptx|jpg|jpeg|png|gif|zip|rar|exe|dll|sys|log|config|ini|xml|json|csv|py|js|html|css)\b'
+    file_pattern = r'\b\w+\.(txt|pdf|doc|docx|xls|xlsx|ppt|pptx|jpg|jpeg|png|gif|
+                    r'zip|rar|exe|dll|sys|log|config|ini|xml|json|csv|py|js|html|css)\b'
     file_matches = re.finditer(file_pattern, main_text, re.IGNORECASE)
 
     for match in file_matches:
