@@ -101,22 +101,11 @@ def decode_messages(text) -> dict[str, list[str]]:
             pass
 
 
-
-    def rot13_decode(text) -> str:
-        result_rot = []
-        for char in text:
-            if char.isalpha():
-                ascii_offset = ord('a') if char.islower() else ord('A')
-                result_rot.append(chr((ord(char) - ascii_offset + 13) % 26 + ascii_offset))
-            else:
-                result_rot.append(char)
-        return ''.join(result_rot)
-    
     rot13_pattern = r'\b(?:[a-zA-Z]{1,}(?:\s+[a-zA-Z]{1,})*)\b'
     
     for match in re.finditer(rot13_pattern, text):
         rot13_string = match.group()
-        decoded_text = rot13_decode(rot13_string)
+        decoded_text = codecs.decode(rot13_string, 'rot13')
         if (decoded_text != rot13_string and 
             len(decoded_text) > 1):
             result['rot13'].append(f"{rot13_string} -> {decoded_text}")
