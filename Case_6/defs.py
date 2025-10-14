@@ -6,10 +6,10 @@ import re
 
 #3
 def find_system_info(text):
-    """
+    '''
     Finds system information
     Return: {'ips': [], 'files': [], 'emails': []}
-    """
+    '''
     result = {
         'ips': [],
         'files': [],
