@@ -2,11 +2,57 @@ import re
 import base64
 import codecs
 
-def find_and_validate_credit_cards(main_text):
-    pass
+def validate_luhn(card_number):
+    digits = re.sub(r'\D', '', card_number)
+    if len(digits) != 16:
+        return False
+
+    total = 0
+    reversed_digits = digits[::-1]
+    for i, digit in enumerate(reversed_digits):
+        n = int(digit)
+        if i % 2 == 1:
+            n *= 2
+            if n > 9:
+                n -= 9
+        total += n
+
+    return total % 10 == 0
+
+def find_and_validate_credit_cards(text):
+    valid, invalid = [], []
+    for card in text:
+        if validate_luhn(card):
+            valid.append(card)    # сохраняем как есть
+        else:
+            invalid.append(card)  # сохраняем как есть
+    return {'valid': valid, 'invalid': invalid}
 
 def find_secrets(main_text):
-    pass
+    secrets = []
+
+    # 1. Поиск API-ключей Stripe (исправлено: добавлены короткие ключи)
+    stripe_pattern = (
+        r'(?:sk_(?:live|test)_[a-zA-Z0-9]{10,})|'  # от 10 символов вместо 24
+        r'(?:pk_(?:live|test)_[a-zA-Z0-9]{10,})|'
+        r'(?:rk_(?:live|test)_[a-zA-Z0-9]{10,})'
+    )
+    stripe_secrets = re.findall(stripe_pattern, text)
+    secrets.extend(stripe_secrets)
+
+    # 2. Поиск AWS ключей (AKIA, ASIA, ABIA, ACCA) - без изменений
+    aws_pattern = r'(?:AKIA|ASIA|ABIA|ACCA)[0-9A-Z]{16}'
+    aws_secrets = re.findall(aws_pattern, text)
+    secrets.extend(aws_secrets)
+
+    # 3. Поиск паролей (добавлено: простые пароли)
+    password_pattern = (
+        r'(?i)(?:password|pwd|pass)[\s:=]+\'?\"?([a-zA-Z0-9!@#$%^&*()_+\-=]{6,})\'?\"?'
+    )
+    password_matches = re.findall(password_pattern, text)
+    secrets.extend(password_matches)
+
+    return secrets
 
 
 def find_system_info(main_text) -> dict[str, list[str]]:
