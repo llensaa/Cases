@@ -29,7 +29,7 @@ def find_and_validate_credit_cards(text):
             invalid.append(card)
     return {'valid': valid, 'invalid': invalid}
 
-def find_secrets(main_text):
+def find_secrets(text):
     secrets = []
 
     stripe_pattern = (
