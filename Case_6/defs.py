@@ -19,14 +19,14 @@ def find_system_info(text):
     email_pattern = r'\b[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?@[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+\b'
     
     for match in re.finditer(email_pattern, text):
-        email = match.group(0)
+        email = match.group()
         if email not in result['emails']:
             result['emails'].append(email)
     
     ip_pattern = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'
   
     for match in re.finditer(ip_pattern, text):
-        ip = match.group(0)
+        ip = match.group()
         octets = ip.split('.')
         valid = all(0 <= int(octet) <= 255 for octet in octets)
         if valid and ip not in result['ips']:
@@ -36,7 +36,7 @@ def find_system_info(text):
     file_matches = re.finditer(file_pattern, text, re.IGNORECASE)
     
     for match in file_matches:
-        filename = match.group(0)
+        filename = match.group()
         if filename not in result['files']:
             result['files'].append(filename)
     
