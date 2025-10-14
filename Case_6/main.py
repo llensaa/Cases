@@ -3,7 +3,7 @@ import base64
 import codecs
 from datetime import datetime
 
-def validate_luhn(card_number):
+def validate_luhn(card_number) -> bool:
     digits = re.sub(r'\D', '', card_number)
     if len(digits) != 16:
         return False
@@ -20,7 +20,7 @@ def validate_luhn(card_number):
 
     return total % 10 == 0
 
-def find_and_validate_credit_cards(text):
+def find_and_validate_credit_cards(text) -> dict:
     valid, invalid = [], []
     for card in text:
         if validate_luhn(card):
@@ -29,7 +29,7 @@ def find_and_validate_credit_cards(text):
             invalid.append(card)
     return {'valid': valid, 'invalid': invalid}
 
-def find_secrets(text):
+def find_secrets(text) -> list:
     secrets = []
 
     stripe_pattern = (
