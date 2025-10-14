@@ -3,6 +3,7 @@ import base64
 import codecs
 from datetime import datetime
 
+
 def validate_luhn(card_number) -> bool:
     digits = re.sub(r'\D', '', card_number)
     if len(digits) != 16:
@@ -20,6 +21,7 @@ def validate_luhn(card_number) -> bool:
 
     return total % 10 == 0
 
+
 def find_and_validate_credit_cards(text) -> dict:
     valid, invalid = [], []
     for card in text:
@@ -28,6 +30,7 @@ def find_and_validate_credit_cards(text) -> dict:
         else:
             invalid.append(card)
     return {'valid': valid, 'invalid': invalid}
+
 
 def find_secrets(text) -> list:
     secrets = []
@@ -90,8 +93,10 @@ def find_system_info(main_text) -> dict[str, list[str]]:
 
     return result
 
+
 def decode_messages(main_text):
     pass
+
 
 def analyze_logs(log_text) -> dict:
     sql_injection_patterns = [
@@ -105,7 +110,7 @@ def analyze_logs(log_text) -> dict:
     xss_patterns = [
         r'<script.*?>.*?</script.*?>',  # <script>...</script>
         r"on\w+\s*=\s*['\"]?.*?['\"]?",  # onerror=, onclick=, etc.
-        r'<.*?javascript:.*?>',         # <a href="javascript:...">
+        r'<.*?javascript:.*?>',  # <a href="javascript:...">
         r'document\.cookie',
         r'<iframe.*?>',
         r'<img\s+.*?onerror\s*=.*?>'
@@ -171,15 +176,17 @@ def validate_inn(inn: str) -> bool:
     return False
 
 
-def normalize_and_validate(text):
+def normalize_and_validate(text) -> dict:
     result = {
         'phones': {'valid': [], 'invalid': []},
         'dates': {'normalized': [], 'invalid': []},
         'inn': {'valid': [], 'invalid': []},
         'cards': find_and_validate_credit_cards(text)
     }
-    #phone numbers
-    phone_re = re.compile(r'(?:\+7|8)\s*\(?\d{3}\)?[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}')
+    # phone numbers
+    phone_re = re.compile(r'(?:\+7|8)'  # +7 or 8
+                          r'\s*\(?\d{3}\)'  # operators num
+                          r'?[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}')  # left nums
     for match in phone_re.findall(text):
         normalized = ''.join(re.findall(r'\d', match))
         if len(normalized) == 11 and normalized.startswith('7'):
@@ -187,8 +194,10 @@ def normalize_and_validate(text):
         else:
             result['phones']['invalid'].append(match)
 
-    #dates
-    date_re = re.compile(r'\b([0-3]?\d)[\.\-/]([01]?\d)[\.\-/](\d{2}|\d{4})\b')
+    # dates
+    date_re = re.compile(r'\b([0-3]?\d)'  # day
+                         r'[\.\-/]([01]?\d)'  # month
+                         r'[\.\-/](\d{2}|\d{4})\b')  # year
     for d, m, y in date_re.findall(text):
         if len(y) == 2:
             y = '20' + y
@@ -198,7 +207,7 @@ def normalize_and_validate(text):
         except ValueError:
             result['dates']['invalid'].append(f'{d}.{m}.{y}')
 
-    #inn
+    # INN
     inn_re = re.compile(r'\b\d{10}\b|\b\d{12}\b')
     for inn in inn_re.findall(text):
         if validate_inn(inn):
@@ -206,6 +215,7 @@ def normalize_and_validate(text):
         else:
             result['inn']['invalid'].append(inn)
 
+    return result
 
 
 def generate_comprehensive_report(main_text, log_text, messy_data) -> dict:
