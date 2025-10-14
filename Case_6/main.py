@@ -1,6 +1,7 @@
 import re
 import base64
 import codecs
+from datetime import datetime
 
 def validate_luhn(card_number):
     digits = re.sub(r'\D', '', card_number)
@@ -157,8 +158,91 @@ def analyze_logs(log_text) -> dict:
     return results
 
 
-def normalize_and_validate(messy_data):
-    pass
+def validate_luhn(card_number):
+    digits = re.sub(r'\D', '', card_number)
+    if len(digits) != 16:
+        return False
+
+    total = 0
+    reversed_digits = digits[::-1]
+    for i, digit in enumerate(reversed_digits):
+        n = int(digit)
+        if i % 2 == 1:
+            n *= 2
+            if n > 9:
+                n -= 9
+        total += n
+
+    return total % 10 == 0
+
+def find_and_validate_credit_cards(text):
+    valid, invalid = [], []
+    for card in text:
+        if validate_luhn(card):
+            valid.append(card)
+        else:
+            invalid.append(card)
+    return {'valid': valid, 'invalid': invalid}
+
+
+
+def validate_inn(inn: str) -> bool:
+    if not inn.isdigit():
+        return False
+    if len(inn) == 10:
+        coefficients = [2, 4, 10, 3, 5, 9, 4, 6, 8]
+        control = sum(int(a) * b for a, b in zip(inn[:-1], coefficients)) % 11 % 10
+        return control == int(inn[-1])
+    elif len(inn) == 12:
+        coeff1 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 8]
+        coeff2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8]
+        n11 = sum(int(a) * b for a, b in zip(inn[:-2], coeff1)) % 11 % 10
+        n12 = sum(int(a) * b for a, b in zip(inn[:-1], coeff2)) % 11 % 10
+        return n11 == int(inn[-2]) and n12 == int(inn[-1])
+    return False
+
+
+def normalize_and_validate(text):
+    """
+    Приводит данные к единому формату и проверяет их.
+    Возвращает словарь с разделением valid / invalid.
+    """
+
+    result = {
+        'phones': {'valid': [], 'invalid': []},
+        'dates': {'normalized': [], 'invalid': []},
+        'inn': {'valid': [], 'invalid': []},
+        'cards': find_and_validate_credit_cards(text)
+    }
+
+    # --- Телефоны ---
+    phone_re = re.compile(r'(?:\+7|8)\s*\(?\d{3}\)?[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}')
+    for match in phone_re.findall(text):
+        normalized = ''.join(re.findall(r'\d', match))  # убираем всё кроме цифр
+        if len(normalized) == 11 and normalized.startswith('7'):
+            result['phones']['valid'].append(normalized)
+        else:
+            result['phones']['invalid'].append(match)
+
+    #dates
+    date_re = re.compile(r'\b([0-3]?\d)[\.\-/]([01]?\d)[\.\-/](\d{2}|\d{4})\b')
+    for d, m, y in date_re.findall(text):
+        if len(y) == 2:
+            y = '20' + y
+        try:
+            date_obj = datetime(int(y), int(m), int(d)).date()
+            result['dates']['normalized'].append(str(date_obj))
+        except ValueError:
+            result['dates']['invalid'].append(f'{d}.{m}.{y}')
+
+    #inn
+    inn_re = re.compile(r'\b\d{10}\b|\b\d{12}\b')
+    for inn in inn_re.findall(text):
+        if validate_inn(inn):
+            result['inn']['valid'].append(inn)
+        else:
+            result['inn']['invalid'].append(inn)
+
 
 
 def generate_comprehensive_report(main_text, log_text, messy_data) -> dict:
