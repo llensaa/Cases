@@ -203,11 +203,6 @@ def validate_inn(inn: str) -> bool:
 
 
 def normalize_and_validate(text):
-    """
-    Приводит данные к единому формату и проверяет их.
-    Возвращает словарь с разделением valid / invalid.
-    """
-
     result = {
         'phones': {'valid': [], 'invalid': []},
         'dates': {'normalized': [], 'invalid': []},
@@ -215,10 +210,9 @@ def normalize_and_validate(text):
         'cards': find_and_validate_credit_cards(text)
     }
 
-    # --- Телефоны ---
     phone_re = re.compile(r'(?:\+7|8)\s*\(?\d{3}\)?[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}')
     for match in phone_re.findall(text):
-        normalized = ''.join(re.findall(r'\d', match))  # убираем всё кроме цифр
+        normalized = ''.join(re.findall(r'\d', match))
         if len(normalized) == 11 and normalized.startswith('7'):
             result['phones']['valid'].append(normalized)
         else:
