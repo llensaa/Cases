@@ -24,9 +24,9 @@ def find_and_validate_credit_cards(text):
     valid, invalid = [], []
     for card in text:
         if validate_luhn(card):
-            valid.append(card)    # сохраняем как есть
+            valid.append(card)
         else:
-            invalid.append(card)  # сохраняем как есть
+            invalid.append(card)
     return {'valid': valid, 'invalid': invalid}
 
 def find_secrets(main_text):
