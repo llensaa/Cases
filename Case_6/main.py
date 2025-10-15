@@ -1,6 +1,6 @@
 import re
 import base64
-import codecs
+import ru_local as ru
 from datetime import datetime
 
 
@@ -305,16 +305,16 @@ def generate_comprehensive_report(main_text, log_text, messy_data) -> dict:
 
 def print_report(report):
     print('=' * 50)
-    print('ОТЧЕТ ОПЕРАЦИИ \'DATA SHIELD\'')
+    print(ru.data_report)
     print('=' * 50)
 
     sections = [
-        ('ФИНАНСОВЫЕ ДАННЫЕ', report['financial_data']),
-        ('СЕКРЕТНЫЕ КЛЮЧИ', report['secrets']),
-        ('СИСТЕМНАЯ ИНФОРМАЦИЯ', report['system_info']),
-        ('РАСШИФРОВАННЫЕ СООБЩЕНИЯ', report['encoded_messages']),
-        ('УГРОЗЫ БЕЗОПАСНОСТИ', report['security_threats']),
-        ('НОРМАЛИЗОВАННЫЕ ДАННЫЕ', report['normalized_data'])
+        (ru.financial, report['financial_data']),
+        (ru.secrets, report['secrets']),
+        (ru.system, report['system_info']),
+        (ru.encoded, report['encoded_messages']),
+        (ru.threats, report['security_threats']),
+        (ru.normilized, report['normalized_data'])
     ]
 
     for title, data in sections:
