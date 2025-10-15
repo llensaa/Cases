@@ -1,0 +1,45 @@
+# Конфиденциальные данные
+
+- Номера карт:
+  4532-4512-8795-2109
+  4111 1111 1111 1111
+  5500-0000-0000-0004
+  6011 0009 9013 9424
+
+- API-ключи:
+  sk_test_51Mn8cB7xY9zA1b2C3d4E5f6G7h8I9j0K_fake
+  sk_live_9aBcDeFgHiJkLmNoPqRsTuVwXyZ1234567890
+  API_KEY=AIzaSyA7-Yw9Ko9ZVx7iD8AaBkfZT2ZCmz99999
+
+- Пароли:
+  like_This_123!
+  Summer2024!
+  qwerty123
+  pa$$w0rd!
+  Admin@1234
+
+- IP-адреса:
+  192.168.1.1
+  10.0.0.255
+  172.16.0.5
+  203.0.113.42
+  8.8.8.8
+
+- Email:
+  alice.wonderland@securecorp.com
+  bob_builder99@gmail.com
+  admin@company.internal
+  test.user+leak@demo.dev
+
+- Закодированные сообщения:
+  Base64:
+    VGhpcyBpcyBhIHNlY3JldCBtZXNzYWdlIQ==
+    QWx3YXlzIHVzZSBzdHJvbmcgcGFzc3dvcmRzIQ==
+  
+  Hex:
+    0x4D7950617373776F7264313233
+    0x7365637265745F636F64655F68657265
+
+  ROT13:
+    Gur cnffjbeq vf Summer2024!
+    V'z abg n fxvyyre, ohg V'z n cbyvpr znva!
