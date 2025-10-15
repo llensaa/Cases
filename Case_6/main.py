@@ -5,6 +5,11 @@ from datetime import datetime
 
 
 def validate_luhn(card_number) -> bool:
+    '''
+    function, checking if card number is correct
+    :params: card_number
+    :return: True, False
+    '''
     digits = re.sub(r'\D', '', card_number)
     if len(digits) != 16:
         return False
@@ -23,6 +28,11 @@ def validate_luhn(card_number) -> bool:
 
 
 def find_and_validate_credit_cards(text) -> dict:
+    '''
+    function, finding all validate card numbers
+    :params: text
+    :return: valid, invalid
+    '''
     valid, invalid = [], []
     for card in text:
         if validate_luhn(card):
@@ -33,6 +43,11 @@ def find_and_validate_credit_cards(text) -> dict:
 
 
 def find_secrets(text) -> list:
+    '''
+    function, searching for secrets in text
+    :params: text
+    :return: secrets
+    '''
     secrets = []
 
     stripe_pattern = (
@@ -58,8 +73,9 @@ def find_secrets(text) -> list:
 
 def find_system_info(main_text) -> dict[str, list[str]]:
     '''
-    Finds system information
-    Return: {'ips': [], 'files': [], 'emails': []}
+    function, finds system information
+    :params: main_text
+    :return: {'ips': [], 'files': [], 'emails': []}
     '''
     result = {
         'ips': [],
@@ -102,10 +118,11 @@ def find_system_info(main_text) -> dict[str, list[str]]:
 
 
 def decode_messages(text) -> dict[str, list[str]]:
-    """
-    Finds and decodes messages
-    Return: {'base64': [], 'hex': [], 'rot13': []}
-    """
+    '''
+    function, finds and decodes messages
+    :params: text
+    :return: {'base64': [], 'hex': [], 'rot13': []}
+    '''
     result = {
         'base64': [],
         'hex': [],
@@ -172,6 +189,11 @@ def decode_messages(text) -> dict[str, list[str]]:
 
 
 def analyze_logs(log_text) -> dict:
+    '''
+    function, looking for threats in logs
+    :params: log_text
+    :return: results
+    '''
     sql_injection_patterns = [
         r'(\%27)|(\')|(\-\-)|(\%23)|(#)',  # ' or -- or #
         r'((\%3D)|(=))[^\n]*((\%27)|(\')|(\-\-)|(\%3B)|(;))',  # =’ or =--
@@ -182,7 +204,7 @@ def analyze_logs(log_text) -> dict:
 
     xss_patterns = [
         r'<script.*?>.*?</script.*?>',  # <script>...</script>
-        r"on\w+\s*=\s*['\"]?.*?['\"]?",  # onerror=, onclick=, etc.
+        r"on\w+\s*=\s*['\"]?.*?['\"]?",  # onerror=, onclick=
         r'<.*?javascript:.*?>',  # <a href="javascript:...">
         r'document\.cookie',
         r'<iframe.*?>',
@@ -234,6 +256,11 @@ def analyze_logs(log_text) -> dict:
 
 
 def validate_inn(inn: str) -> bool:
+    '''
+    function, showing if inn is correct
+    :params: inn
+    :return: True, False
+    '''
     if not inn.isdigit():
         return False
     if len(inn) == 10:
@@ -250,6 +277,11 @@ def validate_inn(inn: str) -> bool:
 
 
 def normalize_and_validate(text) -> dict:
+    '''
+    function, normalaizing and validating all information
+    :params: text
+    :return: result
+    '''
     result = {
         'phones': {'valid': [], 'invalid': []},
         'dates': {'normalized': [], 'invalid': []},
@@ -292,6 +324,11 @@ def normalize_and_validate(text) -> dict:
 
 
 def generate_comprehensive_report(main_text, log_text, messy_data) -> dict:
+    '''
+    function, making an report about validating information
+    :params: main_text, log_text, messy_data
+    :return: report
+    '''
     report = {
         'financial_data': find_and_validate_credit_cards(main_text),
         'secrets': find_secrets(main_text),
@@ -304,6 +341,11 @@ def generate_comprehensive_report(main_text, log_text, messy_data) -> dict:
 
 
 def print_report(report):
+    '''
+    function, printing report
+    :params: report
+    :return: None
+    '''
     print('=' * 50)
     print(ru.data_report)
     print('=' * 50)
