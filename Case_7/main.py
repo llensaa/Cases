@@ -1,22 +1,5 @@
 import turtle as trt
 
-trt.tracer(False)
-
-
-def draw_hexagon(x, y, side_len, color):
-    trt.right(90)
-    trt.fillcolor(color)
-    trt.setpos(x, y)
-    trt.pendown()
-    trt.begin_fill()
-    for _ in range(6):
-        trt.forward(side_len)
-        trt.left(60)
-    trt.end_fill()
-    trt.penup()
-    trt.home()
-    pass
-
 
 def get_num_hexagons() -> int:
     while True:
@@ -31,7 +14,8 @@ def get_num_hexagons() -> int:
 
 
 def color_choice() -> dict:
-    colors = {'c1': 't1', 'c2': 't2', 'c3': 't3', 'c4': 't4', 'c5': 't5', 'c6': 't6'}
+    colors = {'Белый': 'white', 'Красный': 'red', 'Фиолетовый': 'purple',
+              'Жёлтый': 'yellow', 'Чёрный': 'black', 'Оранжевый': 'orange'}
     chosen_colors = {}
     for i in range(2):
         print('Допустимые цвета заливки')
@@ -48,5 +32,45 @@ def color_choice() -> dict:
     return chosen_colors
 
 
-draw_hexagon(0, 0, 50, 'blue')
+def draw_hexagon(x, y, side_len, color):
+    trt.tracer(0)
+    trt.right(90)
+    trt.fillcolor(color)
+    trt.setpos(x, y)
+    trt.pendown()
+    trt.begin_fill()
+    for _ in range(6):
+        trt.forward(side_len)
+        trt.left(60)
+    trt.end_fill()
+    trt.penup()
+    trt.home()
+
+
+def draw_tesselation():
+    colors = color_choice()
+    used_colors = colors.values()
+    colors_list = [a for a in used_colors]
+    num = get_num_hexagons()
+    x0 = 0
+    y0 = 0
+    hex_height = 500 // num
+    hex_side_len = hex_height / (3 ** 0.5)
+    for i in range(num):
+        if (i // 2) % 2:
+            color = colors_list[0]
+        for j in range(num):
+            if (j // 2) % 2:
+                color = colors_list[1]
+            else:
+            draw_hexagon(x0, y0, hex_side_len, color)
+            x0 += hex_height
+        if not i % 2:
+            x0 = -hex_height / 2
+        else:
+            x0 = 0
+        y0 -= hex_height / (2 * 3 ** 0.5) + hex_side_len
+
+draw_tesselation()
+
 trt.done()
