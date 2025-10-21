@@ -1,7 +1,10 @@
 import turtle as trt
 
+trt.tracer(False)
+
 
 def draw_hexagon(x, y, side_len, color):
+    trt.right(90)
     trt.fillcolor(color)
     trt.setpos(x, y)
     trt.pendown()
@@ -45,7 +48,5 @@ def color_choice() -> dict:
     return chosen_colors
 
 
-def draw_tessellation(num):
-    colors_dict = color_choice()
-    for i in range(get_num_hexagons()):
-        for j in
+draw_hexagon(0, 0, 50, 'blue')
+trt.done()
