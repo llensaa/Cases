@@ -48,14 +48,11 @@ def draw_hexagon(x, y, side_len, color):
 
 
 def draw_tesselation():
-    counter_i = 0
-    counter_j = 0
-
     colors = color_choice()
     used_colors = colors.values()
+    
     colors_list = [a for a in used_colors]
-    color1 = colors_list[0]
-    color2 = colors_list[1]
+    color1, color2 = colors_list[0], colors_list[1]
 
     num = get_num_hexagons()
     x0 = 0
@@ -63,7 +60,6 @@ def draw_tesselation():
     hex_height = 500 // num
     hex_side_len = hex_height / (3 ** 0.5)
     for i in range(num):
-        counter_i += 1
         for j in range(num):
             if (i // 2) % 2:
                 if j % 2:
