@@ -1,35 +1,57 @@
 import turtle as trt
+import random
+import ru_local as ru
 
 
 def get_num_hexagons() -> int:
     while True:
         try:
-            num = int(input('Пожалуйста, введите желаемое количество шестиугольников: '))
+            num = int(input(ru.ENTER_HEXAGONS))
             if num in [i for i in range(4, 21)]:
                 break
-            print('Оно должно быть от 4 до 20.')
+            print(ru.MUST_BE_4_TO_20)
         except ValueError:
-            print('Введите число')
+            print(ru.ENTER_NUMBER)
     return num
 
 
 def color_choice() -> dict:
     colors = {'Белый': 'white', 'Красный': 'red', 'Фиолетовый': 'purple',
-              'Жёлтый': 'yellow', 'Чёрный': 'black', 'Оранжевый': 'orange'}
-    chosen_colors = {}
-    for i in range(2):
-        print('Допустимые цвета заливки')
-        for j in colors.keys():
-            print(j)
-        while True:
-            chosen_color = input('Выберите желаемый цвет заливки: ')
-            if chosen_color in colors:
-                chosen_colors[chosen_color] = colors.get(chosen_color)
-                del colors[chosen_color]
-                break
-            print(f'\'{chosen_color}\' не является верным значением')
-
-    return chosen_colors
+              'Жёлтый': 'yellow', 'Чёрный': 'black', 'Оранжевый': 'orange',
+              'Синий': 'blue', 'Зелёный': 'green', 'Розовый': 'pink',
+              'Коричневый': 'brown', 'Серый': 'gray', 'Голубой': 'cyan'}
+    
+    while True:
+        choice = input(ru.CHOOSE_MODE)
+        if choice == '1':
+            color_names = random.sample(list(colors.keys()), 2)
+            chosen_colors = {}
+            for color_name in color_names:
+                chosen_colors[color_name] = colors[color_name]
+            
+            print(f'{ru.RANDOM_CHOSEN} {", ".join(color_names)}')
+            return chosen_colors
+            
+        elif choice == '2':
+            chosen_colors = {}
+            
+            for i in range(2):
+                print(ru.AVAILABLE_COLORS)
+                for color in colors.keys():
+                    print(color)
+                
+                while True:
+                    chosen_color = input(f'{ru.CHOOSE} {i + 1}{ru.FILL_COLOR}')
+                    if chosen_color in colors:
+                        chosen_colors[chosen_color] = colors[chosen_color]
+                        del colors[chosen_color]
+                        break
+                    print(f'\'{chosen_color}\' {ru.INVALID_VALUE}')
+            
+            return chosen_colors
+            
+        else:
+            print(ru.ENTER_1_OR_2)
 
 
 def draw_hexagon(x, y, side_len, color):
@@ -55,8 +77,8 @@ def draw_tesselation():
     color1, color2 = colors_list[0], colors_list[1]
 
     num = get_num_hexagons()
-    x0 = 0
-    y0 = 0
+    x0 = -250
+    y0 = 250
     hex_height = 500 // num
     hex_side_len = hex_height / (3 ** 0.5)
     for i in range(num):
@@ -74,9 +96,9 @@ def draw_tesselation():
             draw_hexagon(x0, y0, hex_side_len, color)
             x0 += hex_height
         if not i % 2:
-            x0 = -hex_height / 2
+            x0 = - 250 + hex_height / 2
         else:
-            x0 = 0
+            x0 = -250
         y0 -= hex_height / (2 * 3 ** 0.5) + hex_side_len
 
 
