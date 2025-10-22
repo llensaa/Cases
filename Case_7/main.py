@@ -47,11 +47,11 @@ def color_choice() -> dict:
                 print('_' * 50)
                 print('\n' + ru.AVAILABLE_COLORS + '\n')
                 color_list = list(colors.keys())
-                for k in range(0, len(color_list), 2):
+                for idx in range(0, len(color_list), 2):
                     line = ""
                     for j in range(2):
-                        if k + j < len(color_list):
-                            color_name = color_list[k + j]
+                        if idx + j < len(color_list):
+                            color_name = color_list[idx + j]
                             padded_color = color_name.ljust(15)
                             line += padded_color
                     print(line)
