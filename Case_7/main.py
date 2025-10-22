@@ -47,11 +47,11 @@ def color_choice() -> dict:
                 print('_' * 50)
                 print('\n' + ru.AVAILABLE_COLORS + '\n')
                 color_list = list(colors.keys())
-                for idx in range(0, len(color_list), 2):
+                for k in range(0, len(color_list), 2):
                     line = ""
                     for j in range(2):
-                        if idx + j < len(color_list):
-                            color_name = color_list[idx + j]
+                        if k + j < len(color_list):
+                            color_name = color_list[k + j]
                             padded_color = color_name.ljust(15)
                             line += padded_color
                     print(line)
@@ -125,7 +125,7 @@ def draw_tesselation():
             draw_hexagon(x0, y0, hex_side_len, color)
             x0 += hex_height
         if not i % 2:
-            x0 = - 250 + hex_height / 2
+            x0 = - 250 - hex_height / 2
         else:
             x0 = -250
         y0 -= hex_height / (2 * 3 ** 0.5) + hex_side_len
