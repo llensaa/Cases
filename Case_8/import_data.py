@@ -65,4 +65,4 @@ def import_financial_data(filename: str) -> list:
     else:
         print(f'Файл содержит смешанные или неизвестные типы данных!')
 
-    return records
+    return sorted(records, key=lambda x: x['date'])
