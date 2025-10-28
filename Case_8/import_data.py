@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 
-def is_valid_date(date_str: str, date_format: str = "%Y-%m-%d") -> bool:
+def is_valid_date(date_str: str, date_format: str = '%Y-%m-%d') -> bool:
     try:
         datetime.strptime(date_str, date_format)
         return True
@@ -44,10 +44,10 @@ def import_financial_data(filename: str) -> list:
                     continue
 
                 record = {
-                    "date": date_str,
-                    "amount": amount,
-                    "description": row[2].strip(),
-                    "type": ''
+                    'date': date_str,
+                    'amount': amount,
+                    'description': row[2].strip(),
+                    'type': ''
                 }
                 if int(record['amount']) >= 0:
                     record['type'] += 'Доход'
@@ -66,3 +66,4 @@ def import_financial_data(filename: str) -> list:
         print(f'Файл содержит смешанные или неизвестные типы данных!')
 
     return sorted(records, key=lambda x: x['date'])
+
