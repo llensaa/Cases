@@ -41,7 +41,7 @@ def calculate_by_category(transactions: list) -> dict:
     return categories_stats
 
 
-def analyze_by_time(transactions: list):
+def analyze_by_time(transactions: list) -> dict:
     time_stats = {}
     russian_months = {1: 'Январь', 2: 'Февраль', 3: 'Март',
                       4: 'Апрель', 5: 'Май', 6: 'Июнь',
@@ -61,3 +61,4 @@ def analyze_by_time(transactions: list):
 stats = im.import_financial_data('data.csv')
 for item in analyze_by_time(trans.categorize_all_transactions(stats)):
     print(f'{item}: {analyze_by_time(trans.categorize_all_transactions(stats))[item]}')
+
