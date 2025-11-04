@@ -1,6 +1,7 @@
 import transaction_class as trans
 import import_files as im
 from datetime import datetime
+import ru_local as ru
 
 
 def calculate_basic_stats(transactions: list) -> dict:
@@ -16,13 +17,13 @@ def calculate_basic_stats(transactions: list) -> dict:
 
     for operation in transactions:
         match operation['type']:
-            case 'Доход':
+            case ru.INCOME:
                 income += float(operation['amount'])
-            case 'Расход':
+            case ru.EXPENSES:
                 expenses += float(operation['amount'])
     balance = income + expenses
-    stats = {'Доходы': income, 'Расходы': abs(expenses),
-             'Баланс': balance, 'Количество операций': transactions_count}
+    stats = {ru.INCOMES: income, ru.EXPENSES: abs(expenses),
+             ru.BALANCE: balance, ru.AMOUNT: transactions_count}
     return stats
 
 
@@ -46,9 +47,9 @@ def calculate_by_category(transactions: list) -> dict:
         balance = calculate_basic_stats(category_transactions)['Расходы']
         transactions_count = calculate_basic_stats(category_transactions)['Количество операций']
         costs_part = balance / calculate_basic_stats(transactions)['Расходы']
-        categories_stats[category] = {'Затраты': balance,
-                                      'Количество операций': transactions_count,
-                                      'Доля в общих расходах': costs_part}
+        categories_stats[category] = {ru.COSTS: balance,
+                                      ru.AMOUNT: transactions_count,
+                                      ru.COSTS_PART: costs_part}
     return categories_stats
 
 
@@ -59,10 +60,10 @@ def analyze_by_time(transactions: list) -> dict:
     :return: time_stats
     '''
     time_stats = {}
-    russian_months = {1: 'Январь', 2: 'Февраль', 3: 'Март',
-                      4: 'Апрель', 5: 'Май', 6: 'Июнь',
-                      7: 'Июль', 8: 'Август', 9: 'Сентябрь',
-                      10: 'Октябрь', 11: 'Ноябрь', 12: 'Декабрь'}
+    russian_months = {1: ru.JANUARY, 2: ru.FEBUARY, 3: ru.MARCH,
+                      4: ru.APRIL, 5: ru.MAY, 6: ru.JUNE,
+                      7: ru.JULY, 8: ru.AUGUST, 9: ru.SEPTEMBER,
+                      10: ru.OCTOBER, 11: ru.NOVEMBER, 12: ru.DECEMBER}
     months = set([datetime.strptime(operation['date'], '%Y-%m-%d').month
                   for operation in transactions])
     for month in months:
@@ -73,3 +74,4 @@ def analyze_by_time(transactions: list) -> dict:
         time_stats[month_name] = month_stats
 
     return time_stats
+
