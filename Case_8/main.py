@@ -18,10 +18,17 @@ def print_comprehensive_report(data):
     print(f'{ru.INCOMES}: {stats[ru.INCOMES]:.2f} {ru.RUB}')
     print(f'{ru.EXPENSES}: {stats[ru.EXPENSES]:.2f} {ru.RUB}')
     print(f'{ru.BALANCE}: {stats[ru.BALANCE]:.2f} {ru.RUB}')
-
     print(ru.CATEGORY_STATS)
+    
     current_stats = full_analysis[ru.HISTORICAL_ANALYSIS][ru.CURRENT_MONTH_STATS]
-    for category, category_data in current_stats.items():
+
+    sorted_categories = sorted(
+    current_stats.items(),
+    key=lambda x: x[1][ru.COSTS],
+    reverse=True
+    )
+
+    for category, category_data in sorted_categories:
         share_percent = category_data.get(ru.COSTS_PART, 0) * 100
         print(f'{category.capitalize()}: {category_data[ru.COSTS]:.2f} {ru.RUB} ({share_percent:.0f}%)')
 
@@ -55,5 +62,4 @@ def print_comprehensive_report(data):
 
 
 if __name__ == '__main__':
-    print_comprehensive_report('data.csv')
-
+    print_comprehensive_report('Cases/Case_8/data.csv')
