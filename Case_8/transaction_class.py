@@ -18,8 +18,8 @@ def create_categories() -> dict:
 def categorize_transaction(description: str, categories: dict) -> str:
     '''
     function returning category for every type of spending in list
-    :param description:
-    :param categories:
+    :param: description
+    :param: categories
     :return: category of spending or 'другое' if no macthes found
     '''
     description_new = description.lower()
@@ -33,7 +33,7 @@ def categorize_transaction(description: str, categories: dict) -> str:
 def categorize_all_transactions(transactions: list) -> list:
     '''
     function, returning a list of transactions with added 'category' field
-    :param transactions:
+    :param: transactions
     :return: transactions updated
     '''
     categories = create_categories()
@@ -42,3 +42,4 @@ def categorize_all_transactions(transactions: list) -> list:
         category_item = categorize_transaction(description, categories)
         transaction.update({'category': category_item})
     return transactions
+
