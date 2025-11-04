@@ -1,4 +1,8 @@
 def create_categories() -> dict:
+    '''
+    function, returning categories of spendings
+    :return: categories
+    '''
     categories = {
         'еда': ['городок', 'пятёрочка', 'ярче', 'самокат', 'продукты', 'обед', 'суши'],
         'транспорт': ['автобус', 'такси', 'бензин', 'самокат'],
@@ -12,6 +16,12 @@ def create_categories() -> dict:
 
 
 def categorize_transaction(description: str, categories: dict) -> str:
+    '''
+    function returning category for every type of spending in list
+    :param description:
+    :param categories:
+    :return: category of spending or 'другое' if no macthes found
+    '''
     description_new = description.lower()
     for category, objects in categories.items():
         for object_ in objects:
@@ -21,6 +31,11 @@ def categorize_transaction(description: str, categories: dict) -> str:
 
 
 def categorize_all_transactions(transactions: list) -> list:
+    '''
+    function, returning a list of transactions with added 'category' field
+    :param transactions:
+    :return: transactions updated with categories assigned
+    '''
     categories = create_categories()
     for transaction in transactions:
         description = transaction.get("description", "")
