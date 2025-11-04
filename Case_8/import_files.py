@@ -3,48 +3,26 @@ from datetime import datetime
 import ru_local as ru
 
 
-def is_valid_date(date_str: str, date_format: str = "%Y-%m-%d") -> bool:
-    '''
-    function, checking wheteher date is correct or not
-    :param: date_str
-    :param: date_format
-    :return: True or False
-    '''
+def is_valid_date(date_str: str, date_format: str = '%Y-%m-%d') -> bool:
     try:
         datetime.strptime(date_str, date_format)
         return True
     except ValueError:
         return False
 
-
 def read_csv_file(filename: str) -> list:
-    '''
-    function, reading csv file with recordings
-    :param: filename
-    :return: csv_list
-    '''
     with open(filename, 'r', encoding='utf-8') as f:
         csv_list = [line.strip().split(',') for line in f]
     return csv_list
 
 
 def read_json_file(filename: str) -> list:
-    '''
-    function, reading json file with recordings
-    :param: filename
-    :return: json_list
-    '''
     with open(filename, 'r', encoding='utf-8') as f:
         json_list = json.load(f)
         return json_list
 
 
 def import_financial_data(filename: str) -> list:
-    '''
-    function, sorting file(csv or json) and creating a list of dictionaries from it
-    :param: filename
-    :return: records
-    '''
     if filename.endswith('.csv'):
         data = read_csv_file(filename)
     else:
@@ -70,8 +48,12 @@ def import_financial_data(filename: str) -> list:
                     'date': date_str,
                     'amount': amount,
                     'description': row[2].strip(),
-                    'type': row[3].strip().lower()
+                    'type': ''
                 }
+                if int(record['amount']) >= 0:
+                    record['type'] += ru.INCOME
+                else:
+                    record['type'] += ru.EXPENSE
                 records.append(record)
 
     elif all(isinstance(row, dict) for row in data):
@@ -84,5 +66,4 @@ def import_financial_data(filename: str) -> list:
     else:
         print(ru.DIVERSED_OR_UNKNOWN)
 
-    return records
-
+    return sorted(records, key=lambda x: x['date'])
