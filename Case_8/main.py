@@ -62,4 +62,5 @@ def print_comprehensive_report(data):
 
 
 if __name__ == '__main__':
-    print_comprehensive_report('Cases/Case_8/data.csv')
+    print_comprehensive_report('data.csv')
+
