@@ -4,6 +4,12 @@ from datetime import datetime
 
 
 def calculate_basic_stats(transactions: list) -> dict:
+    '''
+    function, summarizing all transactions and returning
+    income, balance, expenses and count of all transaction
+    :param: transactions 
+    :return: stats
+    '''
     income = 0
     expenses = 0
     transactions_count = len(transactions)
@@ -21,6 +27,11 @@ def calculate_basic_stats(transactions: list) -> dict:
 
 
 def calculate_by_category(transactions: list) -> dict:
+    '''
+    function, calculating balance, num of operations, part of all costs for every category
+    :param: transactions: 
+    :return: categories_stats
+    '''
     categories = set(operation['category'] for operation in transactions
                      if float(operation['amount']) < 0)
     categories_transactions = {}
@@ -42,6 +53,11 @@ def calculate_by_category(transactions: list) -> dict:
 
 
 def analyze_by_time(transactions: list) -> dict:
+    '''
+    function, analyzing and sorting all transactions depending on time
+    :param transactions: 
+    :return: time_stats
+    '''
     time_stats = {}
     russian_months = {1: 'Январь', 2: 'Февраль', 3: 'Март',
                       4: 'Апрель', 5: 'Май', 6: 'Июнь',
@@ -57,8 +73,3 @@ def analyze_by_time(transactions: list) -> dict:
         time_stats[month_name] = month_stats
 
     return time_stats
-
-stats = im.import_financial_data('data.csv')
-for item in analyze_by_time(trans.categorize_all_transactions(stats)):
-    print(f'{item}: {analyze_by_time(trans.categorize_all_transactions(stats))[item]}')
-
