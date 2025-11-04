@@ -19,7 +19,7 @@ def calculate_basic_stats(transactions: list) -> dict:
         match operation['type']:
             case ru.INCOME:
                 income += float(operation['amount'])
-            case ru.EXPENSES:
+            case ru.EXPENSE:
                 expenses += float(operation['amount'])
     balance = income + expenses
     stats = {ru.INCOMES: income, ru.EXPENSES: abs(expenses),
@@ -52,7 +52,6 @@ def calculate_by_category(transactions: list) -> dict:
                                       ru.COSTS_PART: costs_part}
     return categories_stats
 
-
 def analyze_by_time(transactions: list) -> dict:
     '''
     function, analyzing and sorting all transactions depending on time
@@ -74,4 +73,3 @@ def analyze_by_time(transactions: list) -> dict:
         time_stats[month_name] = month_stats
 
     return time_stats
-
