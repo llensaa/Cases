@@ -78,7 +78,7 @@ def import_financial_data(filename: str) -> list:
             if 'date' in row and is_valid_date(row['date']):
                 records.append(row)
             else:
-                print(f'Пропущен элемент JSON с некорректной датой: {row}')
+                print(f'Пропущен элемент с некорректной датой: {row}')
 
     else:
         print(f'Файл содержит смешанные или неизвестные типы данных!')
