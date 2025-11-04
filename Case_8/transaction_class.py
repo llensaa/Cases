@@ -9,7 +9,7 @@ def create_categories() -> dict:
     categories = {
         ru.FOOD: [ru.GORODOK, ru.X5, ru.YARCHE, ru.SAMOKAT, ru.PRODUCTS, ru.DINNER, ru.SUSHI],
         ru.TRANSPORT: [ru.BUS, ru.TAXI, ru.PETROL, ru.SCOOTER],
-        ru.AMUSEMENT: [ru.RESTAURANT, ru.THEATRE, ru.CINEMA, ru.CONCERT', ru.TOUR, ru.RECREATION],
+        ru.AMUSEMENT: [ru.RESTAURANT, ru.THEATRE, ru.CINEMA, ru.CONCERT, ru.TOUR, ru.RECREATION],
         ru.HEALTH: [ru.DOCTOR, ru.DRUGS, ru.HOSPITAL,
                      ru.EYES, ru.DENTIST, ru.PHARMACY],
         ru.HOME: [ru.UTILITIES, ru.RENT, ru.FURNITURE],
@@ -45,5 +45,3 @@ def categorize_all_transactions(transactions: list) -> list:
         category_item = categorize_transaction(description, categories)
         transaction.update({'category': category_item})
     return transactions
-
-
