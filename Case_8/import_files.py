@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+import ru_local as ru
 
 
 def is_valid_date(date_str: str, date_format: str = "%Y-%m-%d") -> bool:
@@ -56,13 +57,13 @@ def import_financial_data(filename: str) -> list:
             if len(row) >= 4:
                 date_str = row[0].strip()
                 if not is_valid_date(date_str):
-                    print(f'Обнаружена строка с некорректной датой: {date_str}')
+                    print(f'{ru.FOUND_INCORRECT_DATE}: {date_str}')
                     continue
 
                 try:
                     amount = float(row[1])
                 except ValueError:
-                    print(f'Обнаружена строка с некорректной суммой: {row[1]}')
+                    print(f'{ru.FOUND_INCORRECT_SUM}: {row[1]}')
                     continue
 
                 record = {
@@ -78,9 +79,10 @@ def import_financial_data(filename: str) -> list:
             if 'date' in row and is_valid_date(row['date']):
                 records.append(row)
             else:
-                print(f'Пропущен элемент с некорректной датой: {row}')
+                print(f'{ru.LOST_INCORRECT_DATA_EL}: {row}')
 
     else:
-        print(f'Файл содержит смешанные или неизвестные типы данных!')
+        print(ru.DIVERSED_OR_UNKNOWN)
 
     return records
+
