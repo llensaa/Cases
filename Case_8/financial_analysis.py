@@ -44,9 +44,9 @@ def calculate_by_category(transactions: list) -> dict:
 
     for category in categories:
         category_transactions = categories_transactions[category]
-        balance = calculate_basic_stats(category_transactions)['Расходы']
-        transactions_count = calculate_basic_stats(category_transactions)['Количество операций']
-        costs_part = balance / calculate_basic_stats(transactions)['Расходы']
+        balance = calculate_basic_stats(category_transactions)[ru.EXPENSES]
+        transactions_count = calculate_basic_stats(category_transactions)[ru.AMOUNT]
+        costs_part = balance / calculate_basic_stats(transactions)[ru.EXPENSES]
         categories_stats[category] = {ru.COSTS: balance,
                                       ru.AMOUNT: transactions_count,
                                       ru.COSTS_PART: costs_part}
