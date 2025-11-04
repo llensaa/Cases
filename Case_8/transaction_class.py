@@ -34,11 +34,11 @@ def categorize_all_transactions(transactions: list) -> list:
     '''
     function, returning a list of transactions with added 'category' field
     :param transactions:
-    :return: transactions updated with categories assigned
+    :return: transactions updated
     '''
     categories = create_categories()
     for transaction in transactions:
-        description = transaction.get("description", "")
+        description = transaction.get('description', '')
         category_item = categorize_transaction(description, categories)
-        transaction.update({"category": category_item})
+        transaction.update({'category': category_item})
     return transactions
