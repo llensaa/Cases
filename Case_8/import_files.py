@@ -67,3 +67,4 @@ def import_financial_data(filename: str) -> list:
 
     return sorted(records, key=lambda x: x['date'])
 
+
