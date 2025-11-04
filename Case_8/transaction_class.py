@@ -1,16 +1,19 @@
+import ru_local as ru
+
+
 def create_categories() -> dict:
     '''
     function, returning categories of spendings
     :return: categories
     '''
     categories = {
-        'еда': ['городок', 'пятёрочка', 'ярче', 'самокат', 'продукты', 'обед', 'суши'],
-        'транспорт': ['автобус', 'такси', 'бензин', 'самокат'],
-        'развлечения': ['ресторан', 'театр', 'кино', 'концерт', 'тур', 'отдых'],
-        'здоровье': ['врач', 'лекарства', 'больница',
-                     'глаза', 'стоматолог', 'аптека'],
-        'дом': ['коммунальные услуги', 'аренда квартиры', 'мебель'],
-        'спорт': ['фитнес', 'йога', 'бассейн', 'зал', 'теннис', 'массаж']
+        ru.FOOD: [ru.GORODOK, ru.X5, ru.YARCHE, ru.SAMOKAT, ru.PRODUCTS, ru.DINNER, ru.SUSHI],
+        ru.TRANSPORT: [ru.BUS, ru.TAXI, ru.PETROL, ru.SCOOTER],
+        ru.AMUSEMENT: [ru.RESTAURANT, ru.THEATRE, ru.CINEMA, ru.CONCERT', ru.TOUR, ru.RECREATION],
+        ru.HEALTH: [ru.DOCTOR, ru.DRUGS, ru.HOSPITAL,
+                     ru.EYES, ru.DENTIST, ru.PHARMACY],
+        ru.HOME: [ru.UTILITIES, ru.RENT, ru.FURNITURE],
+        ru.SPORT: [ru.FITNESS, ru.YOGA, ru.POOL, ru.GYM, ru.TENNIS, ru.MASSAGE]
     }
     return categories
 
@@ -27,7 +30,7 @@ def categorize_transaction(description: str, categories: dict) -> str:
         for object_ in objects:
             if object_.lower() in description_new:
                 return category
-    return 'другое'
+    return ru.OTHER
 
 
 def categorize_all_transactions(transactions: list) -> list:
@@ -42,4 +45,5 @@ def categorize_all_transactions(transactions: list) -> list:
         category_item = categorize_transaction(description, categories)
         transaction.update({'category': category_item})
     return transactions
+
 
