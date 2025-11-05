@@ -6,6 +6,11 @@ import ru_local as ru
 
 
 def analyze_historical_spending(transactions: list) -> dict:
+    '''
+    Analyze spending history.
+    :param: transactions list of transactions
+    :return: dict with averages, trends, and recommendations
+    '''
     if not transactions:
         return {
             ru.AVERAGE_BY_CATEGORY: {},
@@ -98,6 +103,11 @@ def analyze_historical_spending(transactions: list) -> dict:
 
 
 def create_budget_template(analysis: dict) -> dict:
+    '''
+    Create a budget plan from analysis data.
+    :param analysis: spending analysis dict
+    :return: dict with budget limits and metadata
+    '''
     if not analysis.get(ru.AVERAGE_BY_CATEGORY):
         return {
             ru.METADATA: {
@@ -132,6 +142,12 @@ def create_budget_template(analysis: dict) -> dict:
 
 
 def compare_budget_vs_actual(budget: dict, actual_transactions: list) -> dict:
+    '''
+    Compare planned budget with actual expenses.
+    :param budget: budget data
+    :param actual_transactions: actual transactions list
+    :return: dict with comparison and summary
+    '''
     if not actual_transactions:
         return {
             ru.CATEGORY_COMPARISON: {},
@@ -207,6 +223,11 @@ def compare_budget_vs_actual(budget: dict, actual_transactions: list) -> dict:
 
 
 def complete_financial_analysis(filename: str) -> dict:
+    '''
+    Perform full financial analysis from file.
+    :param filename: data file name
+    :return: dict with analysis, budget, and report
+    '''
     try:
         transactions = im.import_financial_data(filename)
         if not transactions:
@@ -224,4 +245,5 @@ def complete_financial_analysis(filename: str) -> dict:
     except FileNotFoundError:
         return {ru.ERROR: ru.FILE_NOT_FOUND.format(filename=filename)}
     except (ValueError, TypeError) as e:
+
         return {ru.ERROR: ru.ANALYSIS_ERROR.format(error=str(e))}
