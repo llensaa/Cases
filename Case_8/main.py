@@ -6,6 +6,15 @@ import ru_local as ru
 
 
 def print_comprehensive_report(data):
+    '''
+    Generates and prints a comprehensive financial analysis report.
+    
+    Args:
+        data: Path to CSV file containing financial transaction data
+    
+    Returns:
+        None: Outputs report to console
+    '''
     transactions = im.import_financial_data(data)
     categorized_transactions = trans.categorize_all_transactions(transactions)
     stats = fin.calculate_basic_stats(categorized_transactions)
@@ -63,4 +72,5 @@ def print_comprehensive_report(data):
 
 if __name__ == '__main__':
     print_comprehensive_report('data.csv')
+
 
