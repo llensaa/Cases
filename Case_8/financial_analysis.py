@@ -1,5 +1,3 @@
-import transaction_class as trans
-import import_files as im
 from datetime import datetime
 import ru_local as ru
 
@@ -7,7 +5,7 @@ import ru_local as ru
 def calculate_basic_stats(transactions: list) -> dict:
     '''
     function, summarizing all transactions and returning
-    income, balance, expenses and count of all transaction
+    income, balance, expenses and count of all transactions
     :param: transactions 
     :return: stats
     '''
@@ -73,3 +71,4 @@ def analyze_by_time(transactions: list) -> dict:
         time_stats[month_name] = month_stats
 
     return time_stats
+
