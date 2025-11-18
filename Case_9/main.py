@@ -64,7 +64,7 @@ def draw_fractal(iterations: int,
                according to L-system rules.
         angle: Turning angle in degrees for '+' and '-' commands.
         length: Length of each movement forward (default is 8).
-        size: Scale factor for the drawing (currently unused).
+        size: Scale factor for the drawing.
         y: Initial y-coordinate of the turtle (default 0).
         x: Initial x-coordinate of the turtle (default 500).
         offset: Initial heading angle of the turtle (default 0).
@@ -259,7 +259,7 @@ def ice_fract_1(rec_num: int, size: float) -> None:
 
 def sierpinski(size, depth):
     """
-    recursive function drawing sierpinski triangle
+    function drawing sierpinski triangle
     :param size:
     :param depth: depth of recursion
     :return: drawn triangle
@@ -286,6 +286,69 @@ def sierpinski(size, depth):
         trt.backward(size / 2)
         trt.right(60)
 
+def flower(x, y):
+    """
+    function drawing a flower
+    :param x: x-coordinate of the flower center
+    :param y: y-coordinate of the flower center
+    :return: None, draws directly using the turtle graphics
+    """
+    trt.setheading(55)
+    for _ in range(4):
+        trt.penup()
+        trt.goto(x, y)
+        trt.right(90)
+        trt.forward(3)
+        trt.pendown()
+        trt.circle(3)
+
+    trt.penup()
+    trt.goto(x, y + 2)
+    trt.pendown()
+    trt.fillcolor("#CB1A1A")
+    trt.begin_fill()
+    trt.setheading(315)
+    for _ in range(4):
+        trt.forward(3)
+        trt.right(90)
+    trt.end_fill()
+
+
+
+def fractal_tree(length: float, depth: int, angle: float = 28) -> None:
+    """
+    function drawing a deterministic fractal tree with a flower on the end of each branch
+    :param length: length of the current branch
+    :param depth: remaining depth of recursion
+    :param angle: branching angle in degrees (default 28)
+    :return: None, draws directly using the turtle graphics
+    """
+    if depth == 0 or length < 8:
+        pos = trt.position()
+        heading = trt.heading()
+        flower(pos[0], pos[1])
+        trt.penup()
+        trt.goto(pos)
+        trt.setheading(heading)
+        trt.pendown()
+        return
+
+    trt.forward(length)
+
+    pos = trt.position()
+    heading = trt.heading()
+    flower(pos[0], pos[1])
+
+    trt.penup()
+    trt.goto(pos)
+    trt.setheading(heading)
+    trt.pendown()
+    trt.left(angle)
+    fractal_tree(length * 0.7, depth - 1, angle)
+    trt.right(2 * angle)
+    fractal_tree(length * 0.7, depth - 1, angle)
+    trt.left(angle)
+    trt.backward(length)
 
 def get_color_choice():
     """
@@ -375,11 +438,12 @@ def main():
     print(f"│ {ru.FRACTAL_7}")
     print(f"│ {ru.FRACTAL_8}")
     print(f"│ {ru.FRACTAL_9}")
+    print(f"│ {ru.FRACTAL_10}")
     print("└──────────────────────────────────────────────┘")
 
     choice = input(f"\n{ru.CHOOSE_FRACTAL}")
 
-    while not (choice.isdigit() and 1 <= int(choice) <= 9):
+    while not (choice.isdigit() and 1 <= int(choice) <= 10):
         print(ru.INVALID_CHOICE)
         choice = input(f"\n{ru.CHOOSE_FRACTAL}")
 
@@ -553,6 +617,7 @@ def main():
                     print(ru.INVALID_NUM_2)
 
             depth = input(f"{ru.RECURSION_DEPTH}")
+
             while not depth.isdigit():
                 print(ru.INVALID_DEPTH)
                 depth = input(f"{ru.RECURSION_DEPTH}")
@@ -568,6 +633,7 @@ def main():
             print(f"{ru.FRACTAL_8_REC}")
             print("└─────────────────────────────────────────────────────┘")
             iterations = input(f"{ru.RECURSION_DEPTH}")
+
             while not iterations.isdigit():
                 print(ru.INVALID_DEPTH)
                 iterations = input(f"{ru.RECURSION_DEPTH}")
@@ -580,12 +646,37 @@ def main():
             print(f"{ru.FRACTAL_9_REC}")
             print("└─────────────────────────────────────────────────────┘")
             iterations = input(f"{ru.RECURSION_DEPTH}")
+
             while not iterations.isdigit():
                 print(ru.INVALID_DEPTH)
                 iterations = input(f"{ru.RECURSION_DEPTH}")
             iterations = int(iterations)
 
             levi(iterations)
+
+        case 10:
+            print("\n┌─────────────────────────────────────────────────────┐")
+            print(f"{ru.FRACTAL_10_REC}")
+            print("└─────────────────────────────────────────────────────┘")
+
+            depth = input(f"{ru.RECURSION_DEPTH}")
+            while not depth.isdigit():
+                print(ru.INVALID_DEPTH)
+                depth = input(f"{ru.RECURSION_DEPTH}")
+            depth = int(depth)
+
+            size = input(f"{ru.SIZE}")
+            while not size.isdigit():
+                print(ru.INVALID_NUM)
+                size = input(f"{ru.SIZE}")
+            size = int(size)
+
+            trt.penup()
+            trt.goto(0, -250)
+            trt.setheading(90)
+            trt.pendown()
+
+            fractal_tree(size, depth)
 
         case _:
             print(ru.INVALID_CHOICE)
