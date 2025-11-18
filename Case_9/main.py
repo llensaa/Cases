@@ -53,14 +53,14 @@ def draw_fractal(iterations: int,
                  w=450,
                  h=450):
     """
-    function, generating an L-system string using the provided axiom 
-    and rules, then interprets the string as turtle commands to draw 
+    function, generating an L-system string using the provided axiom
+    and rules, then interprets the string as turtle commands to draw
     the corresponding fractal.
 
     Args:
         iterations: Number of iterations to apply the L-system rules.
         axiom: The initial string (starting axiom) of the L-system.
-        rules: A dictionary mapping characters to replacement strings 
+        rules: A dictionary mapping characters to replacement strings
                according to L-system rules.
         angle: Turning angle in degrees for '+' and '-' commands.
         length: Length of each movement forward (default is 8).
@@ -101,7 +101,7 @@ def dragon(iterations: int, angle=90):
     """
     dr_axiom = 'FX'
     dr_rules = {'X': 'X+YF+', 'Y': '-FX-Y'}
-    draw_fractal(iterations, dr_axiom, dr_rules, angle, x = -100)
+    draw_fractal(iterations, dr_axiom, dr_rules, angle, x=-100)
 
 
 def levi(iterations: int, angle=45):
@@ -117,13 +117,13 @@ def levi(iterations: int, angle=45):
 
 
 def ice_fract_2(rec_num: int, size: float) -> None:
-    '''
+    """
     function drawing recursion from rec_num = number of recursions
     and size
     :param rec_num:
     :param size:
     :return: ice fract
-    '''
+    """
     if rec_num == 0:
         trt.forward(size)
 
@@ -142,12 +142,12 @@ def ice_fract_2(rec_num: int, size: float) -> None:
 
 
 def koch_triangle(order: int, size: float) -> None:
-    '''
+    """
     function drawing recursive function of koch
     :param order: number of recursions
     :param size: size of figure
     :return: None
-    '''
+    """
     if order == 0:
         trt.forward(size)
     else:
@@ -182,30 +182,30 @@ def fractal(size, angle, k, depth):
 
 
 def mink_curve(rec_num: int, size: float) -> None:
-    '''
+    """
     function drawing recursion from rec_num = number of recursions
     and size
     :param rec_num:
     :param size:
     :return: None
-    '''
+    """
     if rec_num == 0:
         trt.forward(size)
     else:
-        mink_curve(rec_num-1, size/4)
+        mink_curve(rec_num - 1, size / 4)
         trt.left(90)
-        mink_curve(rec_num-1, size/4)
+        mink_curve(rec_num - 1, size / 4)
         trt.right(90)
-        mink_curve(rec_num-1, size/4)
+        mink_curve(rec_num - 1, size / 4)
         trt.right(90)
-        mink_curve(rec_num-1, size/4)
-        mink_curve(rec_num-1, size/4)
+        mink_curve(rec_num - 1, size / 4)
+        mink_curve(rec_num - 1, size / 4)
         trt.left(90)
-        mink_curve(rec_num-1, size/4)
+        mink_curve(rec_num - 1, size / 4)
         trt.left(90)
-        mink_curve(rec_num-1, size/4)
+        mink_curve(rec_num - 1, size / 4)
         trt.right(90)
-        mink_curve(rec_num-1, size/4)
+        mink_curve(rec_num - 1, size / 4)
 
 
 def tangle_6(rec: int, size: float) -> None:
@@ -222,48 +222,48 @@ def tangle_6(rec: int, size: float) -> None:
     if rec == 0:
         trt.forward(size)
     else:
-        tangle_6(rec-1, size/3)
+        tangle_6(rec - 1, size / 3)
         trt.right(120)
         for _ in range(5):
-            tangle_6(rec-1, size/3)
+            tangle_6(rec - 1, size / 3)
             trt.left(60)
         trt.right(180)
-        tangle_6(rec-1, size/3)
+        tangle_6(rec - 1, size / 3)
 
 
 def ice_fract_1(rec_num: int, size: float) -> None:
-    '''
+    """
     function drawing recursion from rec_num = number of recursions
     and size
     :param rec_num:
     :param size:
     :return: ice fract
-    '''
+    """
     if rec_num == 0:
-        trt.forward(size/2)
+        trt.forward(size / 2)
         trt.left(90)
-        trt.forward(size/3)
-        trt.back(size/3)
+        trt.forward(size / 3)
+        trt.back(size / 3)
         trt.right(90)
-        trt.forward(size/2)
+        trt.forward(size / 2)
 
     else:
-        ice_fract_1(rec_num-1, size/4)
+        ice_fract_1(rec_num - 1, size / 4)
         trt.left(90)
-        ice_fract_1(rec_num-1, size/6)
+        ice_fract_1(rec_num - 1, size / 6)
         trt.right(180)
-        ice_fract_1(rec_num-1, size/6)
+        ice_fract_1(rec_num - 1, size / 6)
         trt.left(90)
-        ice_fract_1(rec_num-1, size/4)
+        ice_fract_1(rec_num - 1, size / 4)
 
 
 def sierpinski(size, depth):
-    '''
+    """
     recursive function drawing sierpinski triangle
     :param size:
     :param depth: depth of recursion
     :return: drawn triangle
-    '''
+    """
     if depth == 0:
         for _ in range(3):
             trt.forward(size)
@@ -288,9 +288,9 @@ def sierpinski(size, depth):
 
 
 def get_color_choice():
-    '''
+    """
     function for color selection
-    '''
+    """
     print("\n┌─────────────────────────────────────────────┐")
     print(f"│ {ru.COLOR_CHOICE}")
     print("├─────────────────────────────────────────────┤")
@@ -299,57 +299,57 @@ def get_color_choice():
     print("└─────────────────────────────────────────────┘")
 
     color_method = input(f"\n{ru.CHOOSE_COLOR_METHOD}")
-    
+
     while color_method not in ("1", "2"):
         print(ru.INVALID_COLOR)
         color_method = input(f"{ru.CHOOSE_COLOR_METHOD}").strip()
-    
+
     match color_method:
         case "1":
             color_map = {
-                ru.BLACK_RU: "black", 
-                ru.BLACK_RU_ALT: "black", 
+                ru.BLACK_RU: "black",
+                ru.BLACK_RU_ALT: "black",
                 "black": "black",
-                ru.WHITE_RU: "white", 
-                "white": "white", 
-                ru.RED_RU: "red", 
+                ru.WHITE_RU: "white",
+                "white": "white",
+                ru.RED_RU: "red",
                 "red": "red",
-                ru.GREEN_RU: "green", 
+                ru.GREEN_RU: "green",
                 "green": "green",
-                ru.BLUE_RU: "blue", 
+                ru.BLUE_RU: "blue",
                 "blue": "blue",
-                ru.YELLOW_RU: "yellow", 
-                ru.YELLOW_RU_ALT: "yellow", 
+                ru.YELLOW_RU: "yellow",
+                ru.YELLOW_RU_ALT: "yellow",
                 "yellow": "yellow",
-                ru.ORANGE_RU: "orange", 
+                ru.ORANGE_RU: "orange",
                 "orange": "orange",
-                ru.PURPLE_RU: "purple", 
+                ru.PURPLE_RU: "purple",
                 "purple": "purple",
-                ru.PINK_RU: "pink", 
+                ru.PINK_RU: "pink",
                 "pink": "pink",
-                ru.BROWN_RU: "brown", 
+                ru.BROWN_RU: "brown",
                 "brown": "brown",
-                ru.GRAY_RU: "gray", 
+                ru.GRAY_RU: "gray",
                 "gray": "gray",
-                ru.CYAN_RU: "cyan", 
+                ru.CYAN_RU: "cyan",
                 "cyan": "cyan",
-                ru.MAGENTA_RU: "magenta", 
+                ru.MAGENTA_RU: "magenta",
                 "magenta": "magenta"
             }
             color_input = input(f"{ru.ENTER_COLOR_NAME}").lower().strip()
-            
+
             while color_input not in color_map:
                 print(f"{ru.UNKNOWN_COLOR}")
                 color_input = input(f"{ru.ENTER_COLOR_NAME}").lower().strip()
             return color_map[color_input]
-            
+
         case "2":
             hex_color = input(f"{ru.ENTER_HEX_CODE}").strip()
 
             while not (hex_color.startswith('#') and len(hex_color) == 7):
                 print(f"{ru.INVALID_HEX_FORMAT}")
                 hex_color = input(f"{ru.ENTER_HEX_CODE}").strip()
-            
+
             while True:
                 try:
                     int(hex_color[1:], 16)
@@ -357,6 +357,7 @@ def get_color_choice():
                 except ValueError:
                     print(f"{ru.INVALID_HEX_CHARS}")
                     hex_color = input(f"{ru.ENTER_HEX_CODE}").strip()
+
 
 def main():
     """
@@ -378,7 +379,7 @@ def main():
 
     choice = input(f"\n{ru.CHOOSE_FRACTAL}")
 
-    while not(choice.isdigit() and 1 <= int(choice) <= 9):
+    while not (choice.isdigit() and 1 <= int(choice) <= 9):
         print(ru.INVALID_CHOICE)
         choice = input(f"\n{ru.CHOOSE_FRACTAL}")
 
@@ -589,7 +590,7 @@ def main():
         case _:
             print(ru.INVALID_CHOICE)
             return
-    
+
     print(ru.BEAUTY)
     trt.update()
     trt.done()
