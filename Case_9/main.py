@@ -166,7 +166,7 @@ def square(size):
         trt.right(90)
 
 
-def fractal(size, angle, k, depth):
+def running_square(size, angle, k, depth):
     if depth == 0:
         return
 
@@ -178,7 +178,7 @@ def fractal(size, angle, k, depth):
     trt.forward(size * k)
     trt.pendown()
 
-    fractal(size * (1 - k), angle, k, depth - 1)
+    running_square(size * (1 - k), angle, k, depth - 1)
 
 
 def mink_curve(rec_num: int, size: float) -> None:
@@ -493,7 +493,7 @@ def main():
             trt.penup()
             trt.goto(-100, 0)
             trt.pendown()
-            fractal(size, angle, k, depth)
+            running_square(size, angle, k, depth)
 
         case 5:
             print("\n┌─────────────────────────────────────────────────────┐")
