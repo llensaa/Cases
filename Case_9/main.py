@@ -116,31 +116,6 @@ def levi(iterations: int, angle=45):
     draw_fractal(iterations, levi_axiom, levi_rules, angle, x=-200)
 
 
-def ice_fract_2(rec_num: int, size: float) -> None:
-    """
-    function drawing recursion from rec_num = number of recursions
-    and size
-    :param rec_num:
-    :param size:
-    :return: ice fract
-    """
-    if rec_num == 0:
-        trt.forward(size)
-
-    else:
-        ice_fract_2(rec_num - 1, size / 2)
-        trt.left(120)
-        ice_fract_2(rec_num - 1, size / 4)
-        trt.right(180)
-        ice_fract_2(rec_num - 1, size / 4)
-        trt.left(120)
-        ice_fract_2(rec_num - 1, size / 4)
-        trt.right(180)
-        ice_fract_2(rec_num - 1, size / 4)
-        trt.left(120)
-        ice_fract_2(rec_num - 1, size / 2)
-
-
 def koch_triangle(order: int, size: float) -> None:
     """
     function drawing recursive function of koch
@@ -257,6 +232,31 @@ def ice_fract_1(rec_num: int, size: float) -> None:
         ice_fract_1(rec_num - 1, size / 4)
 
 
+def ice_fract_2(rec_num: int, size: float) -> None:
+    """
+    function drawing recursion from rec_num = number of recursions
+    and size
+    :param rec_num:
+    :param size:
+    :return: ice fract
+    """
+    if rec_num == 0:
+        trt.forward(size)
+
+    else:
+        ice_fract_2(rec_num - 1, size / 2)
+        trt.left(120)
+        ice_fract_2(rec_num - 1, size / 4)
+        trt.right(180)
+        ice_fract_2(rec_num - 1, size / 4)
+        trt.left(120)
+        ice_fract_2(rec_num - 1, size / 4)
+        trt.right(180)
+        ice_fract_2(rec_num - 1, size / 4)
+        trt.left(120)
+        ice_fract_2(rec_num - 1, size / 2)
+
+
 def sierpinski(size, depth):
     """
     function drawing sierpinski triangle
@@ -286,6 +286,7 @@ def sierpinski(size, depth):
         trt.backward(size / 2)
         trt.right(60)
 
+
 def flower(x, y):
     """
     function drawing a flower
@@ -312,7 +313,6 @@ def flower(x, y):
         trt.forward(3)
         trt.right(90)
     trt.end_fill()
-
 
 
 def fractal_tree(length: float, depth: int, angle: float = 28) -> None:
@@ -349,6 +349,7 @@ def fractal_tree(length: float, depth: int, angle: float = 28) -> None:
     fractal_tree(length * 0.7, depth - 1, angle)
     trt.left(angle)
     trt.backward(length)
+
 
 def get_color_choice():
     """
