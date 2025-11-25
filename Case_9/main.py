@@ -23,7 +23,7 @@ def create_l_system(iters: int, axiom: str, rules: dict) -> str:
 
 
 def draw_l_system(t, instructions: str, angle, dist: int):
-   """
+    """
     function, commanding to turtle how to draw
     :param t: users turtle object
     :param instructions: L-system commands
@@ -52,7 +52,7 @@ def draw_fractal(iterations: int,
                  offset=0,
                  w=450,
                  h=450):
-     """
+    """
     function, generating an L-system string using the provided axiom
     and rules, then interprets the string as turtle commands to draw
     the corresponding fractal.
@@ -70,7 +70,6 @@ def draw_fractal(iterations: int,
     :param h: height of the turtle screen (default 450)
     :return: None
     """
-
     inst = create_l_system(iterations, axiom, rules)
 
     t = trt.Turtle()
@@ -166,7 +165,7 @@ def running_square(size, angle, k, depth):
 
 
 def mink_curve(rec_num: int, size: float) -> None:
-   """
+    """
     function drawing Minkowski curve
     :param rec_num: number of recursions
     :param size: size of curve
@@ -211,7 +210,7 @@ def tangle_6(rec: int, size: float) -> None:
 
 
 def ice_fract_1(rec_num: int, size: float) -> None:
-   """
+    """
     function drawing ice fractal type 1
     :param rec_num: number of recursions
     :param size: size of fractal
@@ -427,7 +426,7 @@ def get_color_choice():
 
 
 def main():
-     """
+    """
     Main function for drawing fractals with user choice
     :return: None
     """
