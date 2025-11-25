@@ -51,7 +51,8 @@ def draw_fractal(iterations: int,
                  x=500,
                  offset=0,
                  w=450,
-                 h=450):
+                 h=450,
+                 color='black'):
     """
     function, generating an L-system string using the provided axiom
     and rules, then interprets the string as turtle commands to draw
@@ -73,6 +74,7 @@ def draw_fractal(iterations: int,
     inst = create_l_system(iterations, axiom, rules)
 
     t = trt.Turtle()
+    t.color(color)
     wn = trt.Screen()
     wn.setup(w, h)
     trt.tracer(False)
@@ -87,7 +89,7 @@ def draw_fractal(iterations: int,
     t.hideturtle()
 
 
-def dragon(iterations: int, angle=90):
+def dragon(iterations: int, angle=90, color="black"):
     """
     function, drawing Harter's dragon
     :param iterations: number of iterations
@@ -96,10 +98,10 @@ def dragon(iterations: int, angle=90):
     """
     dr_axiom = "FX"
     dr_rules = {"X": "X+YF+", "Y": "-FX-Y"}
-    draw_fractal(iterations, dr_axiom, dr_rules, angle, x=-100)
+    draw_fractal(iterations, dr_axiom, dr_rules, angle, x=-100, color=color)
 
 
-def levi(iterations: int, angle=45):
+def levi(iterations: int, angle=45, color="black"):
     """
     function, drawing Levi curve
     :param iterations: number of iterations
@@ -108,7 +110,7 @@ def levi(iterations: int, angle=45):
     """
     levi_axiom = "F"
     levi_rules = {"F": "-F++F-"}
-    draw_fractal(iterations, levi_axiom, levi_rules, angle, x=-200)
+    draw_fractal(iterations, levi_axiom, levi_rules, angle, x=-200, color=color)
 
 
 def koch_triangle(order: int, size: float) -> None:
@@ -643,7 +645,7 @@ def main():
                 iterations = input(f"{ru.RECURSION_DEPTH}")
             iterations = int(iterations)
 
-            dragon(iterations)
+            dragon(iterations, color=color)
 
         case 9:
             print("\n┌─────────────────────────────────────────────────────┐")
@@ -656,7 +658,7 @@ def main():
                 iterations = input(f"{ru.RECURSION_DEPTH}")
             iterations = int(iterations)
 
-            levi(iterations)
+            levi(iterations, color=color)
 
         case 10:
             print("\n┌─────────────────────────────────────────────────────┐")
