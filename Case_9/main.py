@@ -13,10 +13,10 @@ def create_l_system(iters: int, axiom: str, rules: dict) -> str:
     start_str = axiom
     if not iters:
         return axiom
-    end_str = ''
+    end_str = ""
 
     for _ in range(iters):
-        end_str = ''.join(rules[i] if i in rules else i for i in start_str)
+        end_str = "".join(rules[i] if i in rules else i for i in start_str)
         start_str = end_str
 
     return end_str
@@ -33,11 +33,11 @@ def draw_l_system(t, instructions: str, angle, dist: int):
     """
     for cmd in instructions:
         match cmd:
-            case 'F':
+            case "F":
                 t.fd(dist)
-            case '+':
+            case "+":
                 t.left(angle)
-            case '-':
+            case "-":
                 t.right(angle)
 
 
@@ -99,8 +99,8 @@ def dragon(iterations: int, angle=90):
     :param angle: turning angle
     :return: None
     """
-    dr_axiom = 'FX'
-    dr_rules = {'X': 'X+YF+', 'Y': '-FX-Y'}
+    dr_axiom = "FX"
+    dr_rules = {"X": "X+YF+", "Y": "-FX-Y"}
     draw_fractal(iterations, dr_axiom, dr_rules, angle, x=-100)
 
 
@@ -111,8 +111,8 @@ def levi(iterations: int, angle=45):
     :param angle: turning angle
     :return: None
     """
-    levi_axiom = 'F'
-    levi_rules = {'F': '-F++F-'}
+    levi_axiom = "F"
+    levi_rules = {"F": "-F++F-"}
     draw_fractal(iterations, levi_axiom, levi_rules, angle, x=-200)
 
 
@@ -688,5 +688,5 @@ def main():
     trt.done()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
