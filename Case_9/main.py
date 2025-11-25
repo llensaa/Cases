@@ -23,7 +23,7 @@ def create_l_system(iters: int, axiom: str, rules: dict) -> str:
 
 
 def draw_l_system(t, instructions: str, angle, dist: int):
-    """
+   """
     function, commanding to turtle how to draw
     :param t: users turtle object
     :param instructions: L-system commands
@@ -52,27 +52,23 @@ def draw_fractal(iterations: int,
                  offset=0,
                  w=450,
                  h=450):
-    """
+     """
     function, generating an L-system string using the provided axiom
     and rules, then interprets the string as turtle commands to draw
     the corresponding fractal.
-
-    Args:
-        iterations: Number of iterations to apply the L-system rules.
-        axiom: The initial string (starting axiom) of the L-system.
-        rules: A dictionary mapping characters to replacement strings
-               according to L-system rules.
-        angle: Turning angle in degrees for '+' and '-' commands.
-        length: Length of each movement forward (default is 8).
-        size: Scale factor for the drawing.
-        y: Initial y-coordinate of the turtle (default 0).
-        x: Initial x-coordinate of the turtle (default 500).
-        offset: Initial heading angle of the turtle (default 0).
-        w: Width of the turtle screen (default 450).
-        h: Height of the turtle screen (default 450).
-
-    Returns:
-        None: The function draws directly using the turtle graphics window.
+    
+    :param iterations: number of iterations to apply the L-system rules
+    :param axiom: initial string (starting axiom) of the L-system
+    :param rules: dictionary mapping characters to replacement strings
+    :param angle: turning angle in degrees for '+' and '-' commands
+    :param length: length of each movement forward (default is 8)
+    :param size: scale factor for the drawing
+    :param y: initial y-coordinate of the turtle (default 0)
+    :param x: initial x-coordinate of the turtle (default 500)
+    :param offset: initial heading angle of the turtle (default 0)
+    :param w: width of the turtle screen (default 450)
+    :param h: height of the turtle screen (default 450)
+    :return: None
     """
 
     inst = create_l_system(iterations, axiom, rules)
@@ -136,12 +132,25 @@ def koch_triangle(order: int, size: float) -> None:
 
 
 def square(size):
+    """
+    function drawing a square
+    :param size: size of square side
+    :return: None
+    """
     for _ in range(4):
         trt.forward(size)
         trt.right(90)
 
 
 def running_square(size, angle, k, depth):
+    """
+    function drawing running square fractal
+    :param size: initial square size
+    :param angle: rotation angle
+    :param k: coefficient for displacement
+    :param depth: recursion depth
+    :return: None
+    """
     if depth == 0:
         return
 
@@ -157,11 +166,10 @@ def running_square(size, angle, k, depth):
 
 
 def mink_curve(rec_num: int, size: float) -> None:
-    """
-    function drawing recursion from rec_num = number of recursions
-    and size
-    :param rec_num:
-    :param size:
+   """
+    function drawing Minkowski curve
+    :param rec_num: number of recursions
+    :param size: size of curve
     :return: None
     """
     if rec_num == 0:
@@ -185,14 +193,10 @@ def mink_curve(rec_num: int, size: float) -> None:
 
 def tangle_6(rec: int, size: float) -> None:
     """
-    Draws a recursive six-sided fractal line (hexagonal tangle).
-
-    Args:
-        rec: Current recursion depth.
-        size: Length of the current segment.
-
-    Returns:
-        None: The function draws directly using the turtle graphics.
+    function drawing recursive six-sided fractal line
+    :param rec: current recursion depth
+    :param size: length of current segment
+    :return: None
     """
     if rec == 0:
         trt.forward(size)
@@ -207,12 +211,11 @@ def tangle_6(rec: int, size: float) -> None:
 
 
 def ice_fract_1(rec_num: int, size: float) -> None:
-    """
-    function drawing recursion from rec_num = number of recursions
-    and size
-    :param rec_num:
-    :param size:
-    :return: ice fract
+   """
+    function drawing ice fractal type 1
+    :param rec_num: number of recursions
+    :param size: size of fractal
+    :return: None
     """
     if rec_num == 0:
         trt.forward(size / 2)
@@ -234,11 +237,10 @@ def ice_fract_1(rec_num: int, size: float) -> None:
 
 def ice_fract_2(rec_num: int, size: float) -> None:
     """
-    function drawing recursion from rec_num = number of recursions
-    and size
-    :param rec_num:
-    :param size:
-    :return: ice fract
+    function drawing ice fractal type 2
+    :param rec_num: number of recursions
+    :param size: size of fractal
+    :return: None
     """
     if rec_num == 0:
         trt.forward(size)
@@ -259,10 +261,10 @@ def ice_fract_2(rec_num: int, size: float) -> None:
 
 def sierpinski(size, depth):
     """
-    function drawing sierpinski triangle
-    :param size:
+    function drawing Sierpinski triangle
+    :param size: triangle size
     :param depth: depth of recursion
-    :return: drawn triangle
+    :return: None
     """
     if depth == 0:
         for _ in range(3):
@@ -290,9 +292,9 @@ def sierpinski(size, depth):
 def flower(x, y):
     """
     function drawing a flower
-    :param x: x-coordinate of the flower center
-    :param y: y-coordinate of the flower center
-    :return: None, draws directly using the turtle graphics
+    :param x: x-coordinate of flower center
+    :param y: y-coordinate of flower center
+    :return: None
     """
     trt.setheading(55)
     for _ in range(4):
@@ -317,11 +319,11 @@ def flower(x, y):
 
 def fractal_tree(length: float, depth: int, angle: float = 28) -> None:
     """
-    function drawing a deterministic fractal tree with a flower on the end of each branch
-    :param length: length of the current branch
+    function drawing deterministic fractal tree with flowers
+    :param length: length of current branch
     :param depth: remaining depth of recursion
-    :param angle: branching angle in degrees (default 28)
-    :return: None, draws directly using the turtle graphics
+    :param angle: branching angle in degrees
+    :return: None
     """
     if depth == 0 or length < 8:
         pos = trt.position()
@@ -354,6 +356,7 @@ def fractal_tree(length: float, depth: int, angle: float = 28) -> None:
 def get_color_choice():
     """
     function for color selection
+    :return: selected color as string
     """
     print("\n┌─────────────────────────────────────────────┐")
     print(f"│ {ru.COLOR_CHOICE}")
@@ -424,8 +427,9 @@ def get_color_choice():
 
 
 def main():
-    """
+     """
     Main function for drawing fractals with user choice
+    :return: None
     """
     print("\n┌──────────────────────────────────────────────┐")
     print(f"│ {ru.FRACTAL_MENU}")
