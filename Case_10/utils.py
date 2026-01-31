@@ -8,6 +8,8 @@ PathString = Union[str, Path]
 
 FILE_ATTRIBUTE_HIDDEN = 0x02
 
+INVALID_FILE_ATTRIBUTES = 0xFFFFFFFF
+
 
 def is_windows_os() -> bool:
     if platform.system() == 'Windows':
@@ -61,8 +63,8 @@ def safe_windows_listdir(path: PathString) -> List[str]:
         return []
 
 
-def is_hidden_windows_file(path: PathString) -> bool:
+def is_hidden_windows_file(path: str) -> bool:
     attrs = ctypes.windll.kernel32.GetFileAttributesW(path)
-    if attrs == -1:
+    if attrs == INVALID_FILE_ATTRIBUTES:
         return False
     return bool(attrs & FILE_ATTRIBUTE_HIDDEN)
