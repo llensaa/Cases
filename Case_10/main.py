@@ -1,4 +1,3 @@
-
 import os
 import sys
 from typing import NoReturn
@@ -17,7 +16,7 @@ def check_windows_environment() -> bool:
         bool: True if running on Windows (always returns True, exits otherwise).
     """
     if not utils.is_windows_os():
-        print('Программа предназначена только для Windows')
+        print(f'{ru.WINDOWS_ONLY_ERROR}')
         sys.exit(1)
     return True
 
@@ -32,9 +31,9 @@ def display_windows_banner() -> None:
     """
     drive = navigation.get_current_drive()
     print('=' * 60)
-    print('ВИНДОУС ФАЙЛ МАНАГЕР')
-    print(f'Текущий диск: {drive}')
-    print(f'Рабочий каталог: {os.getcwd()}')
+    print(f'{ru.APP_TITLE}')
+    print(f'{ru.CURRENT_DRIVE_LABEL}: {drive}')
+    print(f'{ru.WORKING_DIRECTORY_LABEL}: {os.getcwd()}')
     print('=' * 60)
 
 
@@ -49,21 +48,21 @@ def display_main_menu(current_path: str) -> None:
     Returns:
         None: Outputs menu to console.
     """
-    print(f'\n Текущий путь: {current_path}\n')
+    print(f'\n {ru.CURRENT_PATH_LABEL}: {current_path}\n')
 
-    print('Навигация:')
-    print('  cd <папка>   — перейти в подкаталог')
-    print('  ..           — перейти в родительский каталог')
-    print('  drive <буква>— сменить диск')
+    print(f'{ru.NAVIGATION_SECTION}:')
+    print(f'{ru.CD_COMMAND_HELP}')
+    print(f'{ru.PARENT_DIR_COMMAND_HELP}')
+    print(f'{ru.DRIVE_COMMAND_HELP}')
 
-    print('\nИнструменты:')
-    print('  analyze      — анализ текущего каталога')
-    print('  search       — поиск файлов')
-    print('  ls           — показать содержимое')
+    print(f'\n{ru.TOOLS_SECTION}:')
+    print(f'{ru.ANALYZE_COMMAND_HELP}')
+    print(f'{ru.SEARCH_COMMAND_HELP}')
+    print(f'{ru.LS_COMMAND_HELP}')
 
-    print('\nСистема:')
-    print('  drives       — доступные диски')
-    print('  exit         — выход')
+    print(f'\n{ru.SYSTEM_SECTION}:')
+    print(f'{ru.DRIVES_COMMAND_HELP}')
+    print(f'{ru.EXIT_COMMAND_HELP}')
 
 
 def handle_windows_navigation(command: str, current_path: str) -> str:
@@ -87,18 +86,18 @@ def handle_windows_navigation(command: str, current_path: str) -> str:
 
         case 'cd':
             if len(parts) < 2:
-                print('Укажи имя папки')
+                print(f'{ru.FOLDER_NAME_REQUIRED}')
                 return current_path
 
             ok, new_path = navigation.move_down(current_path, parts[1])
             if not ok:
-                print('Не удалось перейти в каталог')
+                print(f'{ru.NAVIGATION_FAILED}')
                 return current_path
             return new_path
 
         case 'drive':
                 if len(parts) < 2:
-                    print('Укажи букву диска (например: drive D)')
+                    print(f'{ru.DRIVE_LETTER_REQUIRED}')
                     return current_path
 
                 drive_letter = parts[1].upper().strip(':')
@@ -106,17 +105,15 @@ def handle_windows_navigation(command: str, current_path: str) -> str:
 
                 available_drives = navigation.list_available_drives()
                 if drive not in available_drives:
-                    print(f'Доступные диски: {", ".join(available_drives)}')
+                    print(f'{ru.AVAILABLE_DRIVES_LABEL}: {", ".join(available_drives)}')
                     return current_path
 
                 try:
                     os.chdir(drive)
                     return os.getcwd()
                 except OSError:
-                    print('Ошибка')
+                    print(f'{ru.DRIVE_CHANGE_ERROR}')
                     return current_path
-
-
 
 
 def handle_windows_analysis(command: str, current_path: str) -> None:
@@ -172,7 +169,7 @@ def run_windows_command(command: str, current_path: str) -> str:
             if ok:
                 navigation.format_directory_output(items)
             else:
-                print('Ошибка доступа к каталогу')
+                print(f'{ru.DIRECTORY_ACCESS_ERROR}')
             return current_path
 
         case 'analyze':
@@ -184,17 +181,17 @@ def run_windows_command(command: str, current_path: str) -> str:
             return current_path
 
         case 'drives':
-            print('Доступные диски:')
+            print(f'{ru.AVAILABLE_DRIVES_HEADER}:')
             for d in navigation.list_available_drives():
                 print(f'  {d}')
             return current_path
 
         case 'exit':
-            print(' Выход')
+            print(f'{ru.EXIT_MESSAGE}')
             sys.exit(0)
 
         case _:
-            print(' Неизвестная команда')
+            print(f'{ru.UNKNOWN_COMMAND_ERROR}')
             return current_path
 
 
@@ -214,18 +211,18 @@ def main() -> NoReturn:
     while True:
         try:
             display_main_menu(current_path)
-            command = input('\n> ').strip()
+            command = input(f'\n{ru.COMMAND_PROMPT} ').strip()
             if not command:
                 continue
 
             current_path = run_windows_command(command, current_path)
 
         except KeyboardInterrupt:
-            print('\n Завершение работы')
+            print(f'\n{ru.SHUTDOWN_MESSAGE}')
             sys.exit(0)
 
         except Exception as e:
-            print(f' Ошибка: {e}')
+            print(f'{ru.GENERIC_ERROR_PREFIX}: {e}')
 
 
 if __name__ == "__main__":
