@@ -23,7 +23,7 @@ FILES_COUNT = "файлов"
 FOLDERS_COUNT = "папок"
 HIDDEN_COUNT = "скрыто"
 TOTAL_SUMMARY = "Всего:"
-DIRECTORIES_SECTION = "📁Директории:"
+DIRECTORIES_SECTION = "📁 Директории:"
 FILES_SECTION = "📄 Файлы:"
 HIDDEN_LABEL = "[СКРЫТЫЙ]"
 
@@ -45,6 +45,16 @@ HIDDEN_FOLDER_SYMBOL = "🔒"
 VISIBLE_FOLDER_SYMBOL = "📁"
 HIDDEN_FILE_SYMBOL = "🔒"
 VISIBLE_FILE_SYMBOL = "📄"
+
+#commands
+CD_COMMAND_HELP = "  cd <папка>   — перейти в подкаталог"
+PARENT_DIR_COMMAND_HELP = "  ..           — перейти в родительский каталог"
+DRIVE_COMMAND_HELP = "  drive <буква>— сменить диск"
+ANALYZE_COMMAND_HELP = "  analyze      — анализ текущего каталога"
+SEARCH_COMMAND_HELP = "  search       — поиск файлов"
+LS_COMMAND_HELP = "  ls           — показать содержимое"
+DRIVES_COMMAND_HELP = "  drives       — доступные диски"
+EXIT_COMMAND_HELP = "  exit         — выход"
 
 #menu
 SEARCH_MENU_OPTIONS = "1 — По шаблону\n2 — По расширению\n3 — Крупные файлы\n4 — Системные файлы\n5 — Статистика\n6 — Назад"
