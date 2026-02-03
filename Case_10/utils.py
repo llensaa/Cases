@@ -47,13 +47,13 @@ def validate_windows_path(path: PathString) -> Tuple[bool, str]:
 
     for part in path:
         if part in symbols_excepted:
-            return False, f'Путь содержит запрещённый символ'
+            return False, f'{ru.PATH_CONTAINS_FORBIDDEN_CHAR}'
 
     if len(path) > 260:
-        return False, 'Длина пути превышает 260 символов'
+        return False, f'{ru.PATH_TOO_LONG_ERROR}'
 
     if not p.exists():
-        return False, 'Пути не существует'
+        return False, f'{ru.PATH_DOES_NOT_EXIST}'
 
     return True, ''
 
@@ -160,4 +160,4 @@ def is_readonly_windows_file(path: PathString) -> bool:
         return False
 
     return bool(attrs & FILE_ATTRIBUTE_READONLY)
-
+    
