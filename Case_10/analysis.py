@@ -11,6 +11,7 @@ SYSTEM_PATTERNS = { '$RECYCLE.BIN', 'System Volume Information',
 def is_system_file(name: str) -> bool:
     return name in SYSTEM_PATTERNS or name.startswith('.')
 
+
 def count_files(path: str) -> Tuple[bool, int]:
     """Рекурсивный подсчет файлов в Windows каталоге"""
     # TODO: Использовать navigation.list_directory() для получения содержимого
@@ -33,7 +34,6 @@ def count_files(path: str) -> Tuple[bool, int]:
                         total += recurse_count(new_path)
 
         return total
-
     try:
         count = recurse_count(path)
         return True, count
@@ -47,7 +47,29 @@ def count_bytes(path: str) -> Tuple[bool, int]:
     # TODO: Используя count_files() как основу, суммировать размеры файлов
     # Учесть что некоторые файлы могут быть недоступны для чтения размера
     # Пропускать junction points и symlinks чтобы избежать циклов
-    pass
+    def recurse_size(path: str) -> int:
+        status, items = navigation.list_directory(path)
+        if not status:
+            return 0
+
+        total = 0
+        for item in items:
+            if not item['hidden']:
+                match item['type']:
+                    case 'file':
+                        total += item['size']
+                    case 'directory':
+                        new_path = os.path.join(path, item['name'])
+                        total += recurse_size(new_path)
+        return total
+
+    try:
+        size = recurse_size(path)
+        return True, size
+
+    except (PermissionError, FileNotFoundError, OSError):
+        return False, 0
+
 
 def analyze_windows_file_types(path: str) -> Tuple[bool, Dict[str, Dict[str, Any]]]:
     """Анализ типов файлов с учетом Windows расширений"""
@@ -55,6 +77,13 @@ def analyze_windows_file_types(path: str) -> Tuple[bool, Dict[str, Dict[str, Any
     # .exe, .dll, .msi, .bat, .ps1, .docx, .xlsx и т.д.
     # Использовать navigation.list_directory() для получения файлов
     # Группировать по расширениям, считать количество и суммарный размер
+    status, items = navigation.list_directory(path)
+    if not status:
+        return False, {}
+
+    total = 0
+    for item in items:
+
     pass
 
 def get_windows_file_attributes_stats(path: str) -> Dict[str, int]:
