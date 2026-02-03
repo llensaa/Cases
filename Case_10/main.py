@@ -1,3 +1,4 @@
+
 import os
 import sys
 from typing import NoReturn
@@ -8,7 +9,7 @@ import search
 
 
 def check_windows_environment() -> bool:
-    """Проверка что программа запущена в Windows"""
+    """Проверка, что программа запущена в Windows"""
     if not utils.is_windows_os():
         print('Программа предназначена только для Windows')
         sys.exit(1)
@@ -65,23 +66,26 @@ def handle_windows_navigation(command: str, current_path: str) -> str:
             return new_path
 
         case 'drive':
-            if len(parts) < 2:
-                print('Укажи букву диска')
-                return current_path
+                if len(parts) < 2:
+                    print('Укажи букву диска (например: drive D)')
+                    return current_path
 
-            drive = parts[1].upper() + ':\\'
-            if drive[:-1] in navigation.list_available_drives():
+                drive_letter = parts[1].upper().strip(':')
+                drive = f'{drive_letter}:\\'
+
+                available_drives = navigation.list_available_drives()
+                if drive not in available_drives:
+                    print(f'Доступные диски: {", ".join(available_drives)}')
+                    return current_path
+
                 try:
                     os.chdir(drive)
                     return os.getcwd()
                 except OSError:
-                    print('Не удалось переключиться на диск')
+                    print('Ошибка')
                     return current_path
-            else:
-                print('Такого диска нет')
-                return current_path
 
-    return current_path
+
 
 
 def handle_windows_analysis(command: str, current_path: str) -> None:
