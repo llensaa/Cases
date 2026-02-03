@@ -75,7 +75,7 @@ def format_directory_output(items: List[Dict[str, Any]]) -> None:
         items (List[Dict[str, Any]]): List of directory items from list_directory().
     """
     if not items:
-        print('Директория пуста или недоступна')
+        print(f'{ru.DIRECTORY_EMPTY_OR_INACCESSIBLE}')
         return None
 
     files = [item for item in items if item['type'] == 'file']
@@ -84,16 +84,16 @@ def format_directory_output(items: List[Dict[str, Any]]) -> None:
     files.sort(key=lambda x: x['name'].lower())
     directories.sort(key=lambda x: x['name'].lower())
 
-    print('📁Директории:')
+    print(f'{ru.DIRECTORIES_SECTION}')
     for directory in directories:
-        mark = '🔒' if directory['hidden'] else '📁'
+        mark = f'{ru.HIDDEN_FOLDER_SYMBOL}' if directory['hidden'] else f'{ru.VISIBLE_FOLDER_SYMBOL}'
         print(f'    {mark} {directory['name']}')
 
-    print('\n📄 Файлы:')
+    print(f'\n{ru.FILES_SECTION}')
     for file in files:
-        mark = '🔒' if file['hidden'] else '📄'
+        mark = f'{ru.HIDDEN_FILE_SYMBOL}' if file['hidden'] else f'{ru.VISIBLE_FILE_SYMBOL}'
         size = utils.format_size(file['size'])
-        hidden_str = '[СКРЫТЫЙ]' if file['hidden'] else ''
+        hidden_str = f'{ru.HIDDEN_LABEL}' if file['hidden'] else ''
 
         print(f'    {mark} {file['name']} {size} {hidden_str}')
 
@@ -101,9 +101,9 @@ def format_directory_output(items: List[Dict[str, Any]]) -> None:
     total_files = len(files)
     total_hidden = sum(1 for item in items if item['hidden'])
 
-    print(f'\n Всего: {total_dirs} папок, '
-          f'{total_files} файлов, '
-          f'{total_hidden} скрыто')
+    print(f'\n {ru.TOTAL_SUMMARY}: {total_dirs} {ru.FOLDERS_COUNT}, '
+          f'{total_files} {ru.FILES_COUNT}, '
+          f'{total_hidden} {ru.HIDDEN_COUNT}')
 
 
 def move_up(current_path: str) -> str:
@@ -165,4 +165,4 @@ def get_windows_special_folders() -> Dict[str, str]:
         'Downloads': os.path.join(userprofile, 'Downloads')
     }
     return special_folders
-
+    
