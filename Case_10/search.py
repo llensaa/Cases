@@ -4,6 +4,7 @@ from typing import List, Dict, Any
 import utils
 import navigation
 import analysis
+import ru_local as ru
 
 
 def find_files_windows(pattern: str, path: str, case_sensitive: bool = False) -> List[str]:
@@ -304,4 +305,5 @@ def format_windows_search_results(results: List, search_type: str) -> None:
                 print(f'    {k}: {v}')
     except Exception:
         pass
+
 
