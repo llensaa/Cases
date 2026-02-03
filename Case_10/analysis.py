@@ -3,6 +3,7 @@ from typing import Dict, Any, List, Tuple
 from collections import defaultdict
 import utils
 import navigation
+import ru_local as ru
 
 SYSTEM_PATTERNS = { '$RECYCLE.BIN', 'System Volume Information',
     'pagefile.sys', 'hiberfil.sys', 'swapfile.sys'
@@ -212,3 +213,4 @@ def show_windows_directory_stats(path: str) -> bool:
     for attr in file_attrs.keys():
         print(f'    {attr}: {file_attrs[attr]}')
         
+
