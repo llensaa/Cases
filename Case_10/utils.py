@@ -3,6 +3,7 @@ import platform
 from pathlib import Path
 from typing import Union, List, Tuple
 import ctypes
+import ru_local as ru
 
 PathString = Union[str, Path]
 
