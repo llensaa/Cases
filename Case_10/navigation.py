@@ -35,7 +35,7 @@ def list_directory(path: str) -> Tuple[bool, List[Dict[str, Any]]]:
 
         for name in items:
             full_path = os.path.join(path, name)
-            stat = os.stat(name)
+            stat = os.stat(full_path)
             item_type = 'directory' if os.path.isdir(full_path) else 'file'
             size = stat.st_size
             mod_time = stat.st_mtime
