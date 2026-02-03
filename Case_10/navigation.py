@@ -6,15 +6,23 @@ import utils
 
 
 def get_current_drive() -> str:
-    """Получение текущего диска Windows"""
-    # TODO: Вернуть текущий диск (например: "C:")
-    # Использовать os.path.splitdrive()
+    """
+    Gets the current Windows drive letter from the working directory.
+
+    Returns:
+        str: Current drive letter with colon (e.g., "C:").
+    """
     drive, rest = os.path.splitdrive(os.getcwd())
     return drive
 
 
 def list_available_drives() -> List[str]:
-    """Получение списка доступных дисков Windows"""
+    """
+    Lists all available drives in the Windows system.
+
+    Returns:
+        List[str]: List of available drive letters with colons (e.g., ["C:", "D:"]).
+    """
     # TODO: Вернуть список доступных дисков (['C:', 'D:', ...])
     # Использовать os.listdir('/') не подойдет для Windows!
     # Исследовать: использовать win32api или другие методы
@@ -23,7 +31,18 @@ def list_available_drives() -> List[str]:
 
 
 def list_directory(path: str) -> Tuple[bool, List[Dict[str, Any]]]:
-    """Отображение содержимого каталога в Windows"""
+    """
+    Lists contents of a Windows directory with detailed file information.
+
+    Args:
+        path (str): Path to the directory to list.
+
+    Returns:
+        Tuple[bool, List[Dict[str, Any]]]: (success_status, items_list) where 
+        items_list contains dictionaries with keys: 
+        'name', 'type' ('file' or 'directory'), 'size' (in bytes), 
+        'modified' (date string), 'hidden' (boolean).
+    """
     try:
         items = utils.safe_windows_listdir(path)
         results = []
@@ -51,7 +70,13 @@ def list_directory(path: str) -> Tuple[bool, List[Dict[str, Any]]]:
 
 
 def format_directory_output(items: List[Dict[str, Any]]) -> None:
-    """Форматированный вывод содержимого каталога для Windows"""
+    """
+    Formats and displays directory contents with Windows-specific symbols.
+    Shows hidden files with special markers and organized output.
+
+    Args:
+        items (List[Dict[str, Any]]): List of directory items from list_directory().
+    """
     if not items:
         print('Директория пуста или недоступна')
         return None
@@ -85,7 +110,15 @@ def format_directory_output(items: List[Dict[str, Any]]) -> None:
 
 
 def move_up(current_path: str) -> str:
-    """Переход в родительский каталог в Windows"""
+    """
+    Navigates to the parent directory in Windows filesystem.
+
+    Args:
+        current_path (str): Current directory path.
+
+    Returns:
+        str: Parent directory path, or empty string if navigation failed.
+    """
     try:
         parent_path = utils.get_parent_path(current_path)
         if utils.validate_windows_path(parent_path):
@@ -95,7 +128,17 @@ def move_up(current_path: str) -> str:
 
 
 def move_down(current_path: str, target_dir: str) -> Tuple[bool, str]:
-    """Переход в указанный подкаталог в Windows"""
+    """
+    Navigates into a specified subdirectory in Windows filesystem.
+
+    Args:
+        current_path (str): Current directory path.
+        target_dir (str): Name of the subdirectory to enter.
+
+    Returns:
+        Tuple[bool, str]: (success_status, new_path) where success_status 
+        is True if navigation succeeded, False otherwise.
+    """
     try:
         if target_dir in utils.safe_windows_listdir(current_path):
             new_path = os.path.normpath(os.path.join(current_path, target_dir))
@@ -108,7 +151,13 @@ def move_down(current_path: str, target_dir: str) -> Tuple[bool, str]:
 
 
 def get_windows_special_folders() -> Dict[str, str]:
-    """Получение путей к специальным папкам Windows"""
+    """
+    Gets paths to Windows special folders for the current user.
+
+    Returns:
+        Dict[str, str]: Dictionary with folder names as keys and paths as values 
+        (e.g., {'Desktop': 'C:\\Users\\...', 'Documents': '...'}).
+    """
     userprofile = os.environ.get('USERPROFILE')
     if not userprofile:
         return {}
