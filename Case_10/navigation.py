@@ -5,6 +5,7 @@ import utils
 import ru_local as ru
 
 
+
 def get_current_drive() -> str:
     """
     Gets the current Windows drive letter from the working directory.
@@ -87,7 +88,7 @@ def format_directory_output(items: List[Dict[str, Any]]) -> None:
     print(f'{ru.DIRECTORIES_SECTION}')
     for directory in directories:
         mark = f'{ru.HIDDEN_FOLDER_SYMBOL}' if directory['hidden'] else f'{ru.VISIBLE_FOLDER_SYMBOL}'
-        print(f'    {mark} {directory['name']}')
+        print(f"    {mark} {directory['name']}")
 
     print(f'\n{ru.FILES_SECTION}')
     for file in files:
@@ -95,7 +96,7 @@ def format_directory_output(items: List[Dict[str, Any]]) -> None:
         size = utils.format_size(file['size'])
         hidden_str = f'{ru.HIDDEN_LABEL}' if file['hidden'] else ''
 
-        print(f'    {mark} {file['name']} {size} {hidden_str}')
+        print(f"    {mark} {file['name']} {size} {hidden_str}")
 
     total_dirs = len(directories)
     total_files = len(files)
@@ -165,3 +166,4 @@ def get_windows_special_folders() -> Dict[str, str]:
         'Downloads': os.path.join(userprofile, 'Downloads')
     }
     return special_folders
+    
