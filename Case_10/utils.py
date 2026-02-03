@@ -10,6 +10,10 @@ FILE_ATTRIBUTE_HIDDEN = 0x02
 
 INVALID_FILE_ATTRIBUTES = 0xFFFFFFFF
 
+FILE_ATTRIBUTE_SYSTEM = 0x4
+
+FILE_ATTRIBUTE_READONLY = 0x1
+
 
 def is_windows_os() -> bool:
     if platform.system() == 'Windows':
