@@ -9,11 +9,31 @@ SYSTEM_PATTERNS = { '$RECYCLE.BIN', 'System Volume Information',
 }
 
 def is_system_file(name: str) -> bool:
+    """
+    Checks if a file or directory name matches Windows system patterns.
+    Includes standard Windows system folders and hidden files.
+
+    Args:
+        name (str): File or directory name to check.
+
+    Returns:
+        bool: True if the name matches system patterns, False otherwise.
+    """
     return name in SYSTEM_PATTERNS or name.startswith('.')
 
 
 def count_files(path: str) -> Tuple[bool, int]:
-    """Рекурсивный подсчет файлов в Windows каталоге"""
+    """
+    Recursively counts non-system files in a Windows directory.
+    Excludes hidden files, system files, and Windows-specific system patterns.
+    
+    Args:
+        path (str): Path to the directory to analyze.
+    
+    Returns:
+        Tuple[bool, int]: (success_status, file_count) where success_status is True 
+                          if counting succeeded, False otherwise.
+    """
     def recurse_count(path: str) -> int:
         status, items = navigation.list_directory(path)
         if not status:
@@ -39,6 +59,17 @@ def count_files(path: str) -> Tuple[bool, int]:
 
 
 def count_bytes(path: str) -> Tuple[bool, int]:
+    """
+    Recursively calculates total size of files in a Windows directory.
+    Includes all accessible files, excluding symbolic links.
+    
+    Args:
+        path (str): Path to the directory to analyze.
+    
+    Returns:
+        Tuple[bool, int]: (success_status, total_size_in_bytes) where success_status 
+                          is True if calculation succeeded, False otherwise.
+    """
     def recurse_size(path: str) -> int:
         status, items = navigation.list_directory(path)
         if not status:
@@ -64,6 +95,18 @@ def count_bytes(path: str) -> Tuple[bool, int]:
 
 
 def analyze_windows_file_types(path: str) -> Tuple[bool, Dict[str, Dict[str, Any]]]:
+    """
+    Analyzes file types by extension in a Windows directory.
+    Collects statistics including count and total size for each extension.
+    
+    Args:
+        path (str): Path to the directory to analyze.
+    
+    Returns:
+        Tuple[bool, Dict[str, Dict[str, Any]]]: (success_status, statistics) where 
+        statistics is a dictionary with file extensions as keys and values 
+        containing 'count' and 'size' for each extension.
+    """
     status, items = navigation.list_directory(path)
     if not status:
         return False, {}
@@ -93,10 +136,18 @@ def analyze_windows_file_types(path: str) -> Tuple[bool, Dict[str, Dict[str, Any
     return True, dict(stats)
 
 
-
-
 def get_windows_file_attributes_stats(path: str) -> Dict[str, int]:
-    """Статистика по атрибутам файлов Windows"""
+    """
+    Collects statistics on Windows file attributes in a directory.
+    Counts files with hidden, system, and read-only attributes.
+    
+    Args:
+        path (str): Path to the directory to analyze.
+    
+    Returns:
+        Dict[str, int]: Dictionary with attribute counts:
+        {'hidden': count, 'system': count, 'readonly': count}.
+    """
     status, items = navigation.list_directory(path)
     if not status:
         return {'hidden': 0, 'system': 0, 'readonly': 0}
@@ -126,7 +177,16 @@ def get_windows_file_attributes_stats(path: str) -> Dict[str, int]:
 
 
 def show_windows_directory_stats(path: str) -> bool:
-    """Комплексный вывод статистики Windows каталога"""
+    """
+    Displays comprehensive directory statistics for Windows filesystem.
+    Shows file count, total size, file type distribution, and attribute statistics.
+    
+    Args:
+        path (str): Path to the directory to analyze.
+    
+    Returns:
+        bool: True if analysis completed successfully, False otherwise.
+    """
     print('\n=====АНАЛИЗ КАТАЛОГА WINDOWS=====')
     print(f'Путь: {path}')
 
@@ -151,4 +211,5 @@ def show_windows_directory_stats(path: str) -> bool:
     print('\nАтрибуты файлов:')
     for attr in file_attrs.keys():
         print(f'    {attr}: {file_attrs[attr]}')
+
 
