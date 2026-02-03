@@ -174,3 +174,4 @@ def show_windows_directory_stats(path: str) -> bool:
     print('\nАтрибуты файлов:')
     for attr in file_attrs.keys():
         print(f'    {attr}: {file_attrs[attr]}')
+
