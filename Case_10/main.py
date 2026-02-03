@@ -5,6 +5,7 @@ import utils
 import navigation
 import analysis
 import search
+import ru_local as ru
 
 
 def check_windows_environment() -> bool:
