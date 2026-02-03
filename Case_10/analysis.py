@@ -187,29 +187,28 @@ def show_windows_directory_stats(path: str) -> bool:
     Returns:
         bool: True if analysis completed successfully, False otherwise.
     """
-    print('\n=====АНАЛИЗ КАТАЛОГА WINDOWS=====')
-    print(f'Путь: {path}')
+    print(f'\n{ru.ANALYSIS_HEADER}')
+    print(f'{ru.PATH_LABEL}: {path}')
 
     file_status, file_count = count_files(path)
     if not file_status:
-        print('Ошибка')
+        print(f'{ru.ERROR_GENERIC}')
         return False
 
-    print(f'\nВсего файлов: {file_count}')
+    print(f'\n{ru.TOTAL_FILES}: {file_count}')
 
     size_status, size_count = count_bytes(path)
     if size_status:
-        print(f'Размер всех файлов: {utils.format_size(size_count)}')
+        print(f'{ru.TOTAL_SIZE}: {utils.format_size(size_count)}')
 
     type_status, types = analyze_windows_file_types(path)
     if type_status:
-        print('\nВстречающиеся типы файлов:')
+        print(f'\n{ru.FILE_TYPES_HEADER}:')
         for extension, info in sorted(types.items(), key=lambda x: -x[1]['count']):
-            print(f'    {extension}: {info['count']} файлов, {utils.format_size(info['size'])}')
+            print(f'    {extension}: {info['count']} {ru.FILES_COUNT}, {utils.format_size(info['size'])}')
 
     file_attrs = get_windows_file_attributes_stats(path)
-    print('\nАтрибуты файлов:')
+    print(f'\n{ru.FILE_ATTRIBUTES_HEADER}:')
     for attr in file_attrs.keys():
         print(f'    {attr}: {file_attrs[attr]}')
-
-
+        
