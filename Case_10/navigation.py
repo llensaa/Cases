@@ -23,9 +23,6 @@ def list_available_drives() -> List[str]:
     Returns:
         List[str]: List of available drive letters with colons (e.g., ["C:", "D:"]).
     """
-    # TODO: Вернуть список доступных дисков (['C:', 'D:', ...])
-    # Использовать os.listdir('/') не подойдет для Windows!
-    # Исследовать: использовать win32api или другие методы
     drives = os.listdrives()
     return drives
 
