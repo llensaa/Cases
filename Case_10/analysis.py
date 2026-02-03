@@ -1,8 +1,8 @@
 import os
 from typing import Dict, Any, List, Tuple
 from collections import defaultdict
-import utils  # Функции архитектора
-import navigation  # Функции инженера навигации
+import utils
+import navigation
 
 SYSTEM_PATTERNS = { '$RECYCLE.BIN', 'System Volume Information',
     'pagefile.sys', 'hiberfil.sys', 'swapfile.sys'
@@ -14,10 +14,6 @@ def is_system_file(name: str) -> bool:
 
 def count_files(path: str) -> Tuple[bool, int]:
     """Рекурсивный подсчет файлов в Windows каталоге"""
-    # TODO: Использовать navigation.list_directory() для получения содержимого
-    # Рекурсивно обходить подкаталоги, игнорируя системные файлы Windows
-    # Учитывать ограничения доступа через utils.safe_windows_listdir()
-    # Вернуть (True, количество) при успехе, (False, 0) при ошибке
     def recurse_count(path: str) -> int:
         status, items = navigation.list_directory(path)
         if not status:
@@ -43,10 +39,6 @@ def count_files(path: str) -> Tuple[bool, int]:
 
 
 def count_bytes(path: str) -> Tuple[bool, int]:
-    """Рекурсивный подсчет размера файлов в Windows"""
-    # TODO: Используя count_files() как основу, суммировать размеры файлов
-    # Учесть что некоторые файлы могут быть недоступны для чтения размера
-    # Пропускать junction points и symlinks чтобы избежать циклов
     def recurse_size(path: str) -> int:
         status, items = navigation.list_directory(path)
         if not status:
@@ -72,11 +64,6 @@ def count_bytes(path: str) -> Tuple[bool, int]:
 
 
 def analyze_windows_file_types(path: str) -> Tuple[bool, Dict[str, Dict[str, Any]]]:
-    """Анализ типов файлов с учетом Windows расширений"""
-    # TODO: Собрать статистику по расширениям характерным для Windows
-    # .exe, .dll, .msi, .bat, .ps1, .docx, .xlsx и т.д.
-    # Использовать navigation.list_directory() для получения файлов
-    # Группировать по расширениям, считать количество и суммарный размер
     status, items = navigation.list_directory(path)
     if not status:
         return False, {}
@@ -84,24 +71,24 @@ def analyze_windows_file_types(path: str) -> Tuple[bool, Dict[str, Dict[str, Any
     stats = defaultdict(lambda: {'count': 0, 'size': 0})
 
     for item in items:
+        if item['hidden']:
+            continue
+
         new_path = os.path.join(path, item['name'])
         if os.path.islink(new_path):
             continue
 
-        if not item['hidden'] and not utils.is_hidden_windows_file(item['name']):
-            extension = os.path.splitext(item['name'][1]) or 'no extension'
-            extension.lower()
-            match item['type']:
-                case 'file':
-                    stats[extension]['count'] += 1
-                    stats[extension]['size'] += item.get('size')
-                case 'directory':
-                    new_path = os.path.join(path, item['name'])
-                    check, rest = analyze_windows_file_types(new_path)
-                    if check:
-                        for extension, data in rest.items():
-                            stats[extension]['count'] += data['count']
-                            stats[extension]['size'] += data['size']
+        if item['type'] == 'file':
+            extension = os.path.splitext(item['name'])[1].lower() or 'no_ext'
+            stats[extension]['count'] += 1
+            stats[extension]['size'] += item.get('size', 0)
+
+        elif item['type'] == 'directory':
+            check, rest = analyze_windows_file_types(new_path)
+            if check:
+                for ext, data in rest.items():
+                    stats[ext]['count'] += data['count']
+                    stats[ext]['size'] += data['size']
 
     return True, dict(stats)
 
@@ -110,9 +97,6 @@ def analyze_windows_file_types(path: str) -> Tuple[bool, Dict[str, Dict[str, Any
 
 def get_windows_file_attributes_stats(path: str) -> Dict[str, int]:
     """Статистика по атрибутам файлов Windows"""
-    # TODO: Анализировать атрибуты: скрытые, системные, только для чтения
-    # Использовать utils.is_hidden_windows_file() и другие проверки
-    # Вернуть статистику: {'hidden': 5, 'system': 2, 'readonly': 10}
     status, items = navigation.list_directory(path)
     if not status:
         return {'hidden': 0, 'system': 0, 'readonly': 0}
@@ -143,13 +127,6 @@ def get_windows_file_attributes_stats(path: str) -> Dict[str, int]:
 
 def show_windows_directory_stats(path: str) -> bool:
     """Комплексный вывод статистики Windows каталога"""
-    # TODO: Использовать ВСЕ вышеперечисленные функции анализа
-    # Вывести сводную информацию о каталоге:
-    # - Общее количество файлов и папок
-    # - Распределение по типам файлов
-    # - Статистика по атрибутам
-    # - Крупнейшие файлы
-    # Вернуть True при успешном выполнении
     print('\n=====АНАЛИЗ КАТАЛОГА WINDOWS=====')
     print(f'Путь: {path}')
 
@@ -164,7 +141,7 @@ def show_windows_directory_stats(path: str) -> bool:
     if size_status:
         print(f'Размер всех файлов: {utils.format_size(size_count)}')
 
-    type_status, type_count = analyze_windows_file_types(path)
+    type_status, types = analyze_windows_file_types(path)
     if type_status:
         print('\nВстречающиеся типы файлов:')
         for extension, info in sorted(types.items(), key=lambda x: -x[1]['count']):
