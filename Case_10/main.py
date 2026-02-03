@@ -9,7 +9,13 @@ import search
 
 
 def check_windows_environment() -> bool:
-    """Проверка, что программа запущена в Windows"""
+    """
+    Verifies that the program is running on Windows OS.
+    Exits the program if not running on Windows.
+    
+    Returns:
+        bool: True if running on Windows (always returns True, exits otherwise).
+    """
     if not utils.is_windows_os():
         print('Программа предназначена только для Windows')
         sys.exit(1)
@@ -17,7 +23,13 @@ def check_windows_environment() -> bool:
 
 
 def display_windows_banner() -> None:
-    """Отображение баннера с информацией о Windows"""
+    """
+    Displays program banner with Windows-specific information.
+    Shows current drive and working directory.
+    
+    Returns:
+        None: Outputs information to console.
+    """
     drive = navigation.get_current_drive()
     print('=' * 60)
     print('ВИНДОУС ФАЙЛ МАНАГЕР')
@@ -27,7 +39,16 @@ def display_windows_banner() -> None:
 
 
 def display_main_menu(current_path: str) -> None:
-    """Отображение главного меню для Windows"""
+    """
+    Displays the main menu interface for Windows file manager.
+    Shows current path and available commands.
+    
+    Args:
+        current_path (str): Current working directory path.
+    
+    Returns:
+        None: Outputs menu to console.
+    """
     print(f'\n Текущий путь: {current_path}\n')
 
     print('Навигация:')
@@ -46,7 +67,17 @@ def display_main_menu(current_path: str) -> None:
 
 
 def handle_windows_navigation(command: str, current_path: str) -> str:
-    """Обработка команд навигации в Windows"""
+    """
+    Handles navigation commands in Windows filesystem.
+    Processes directory navigation and drive changes.
+    
+    Args:
+        command (str): Navigation command (e.g., "cd folder", "..", "drive C").
+        current_path (str): Current working directory path.
+    
+    Returns:
+        str: New path after navigation, or same path if navigation failed.
+    """
     parts = command.split(maxsplit=1)
 
     match parts[0]:
@@ -89,19 +120,49 @@ def handle_windows_navigation(command: str, current_path: str) -> str:
 
 
 def handle_windows_analysis(command: str, current_path: str) -> None:
-    """Обработка команд анализа Windows файловой системы"""
+    """
+    Handles analysis commands for Windows filesystem.
+    Processes directory analysis and statistics.
+    
+    Args:
+        command (str): Analysis command.
+        current_path (str): Current working directory path.
+    
+    Returns:
+        None: Executes analysis and displays results.
+    """
     if command == 'analyze':
         analysis.show_windows_directory_stats(current_path)
 
 
 def handle_windows_search(command: str, current_path: str) -> None:
-    """Обработка команд поиска в Windows"""
+    """
+    Handles search commands in Windows filesystem.
+    Processes file search operations.
+    
+    Args:
+        command (str): Search command.
+        current_path (str): Current working directory path.
+    
+    Returns:
+        None: Executes search and displays results.
+    """
     if command == 'search':
         search.search_menu_handler(current_path)
 
 
 def run_windows_command(command: str, current_path: str) -> str:
-    """Главный обработчик команд"""
+    """
+    Main command handler for Windows file manager.
+    Routes commands to appropriate handlers.
+    
+    Args:
+        command (str): User command input.
+        current_path (str): Current working directory path.
+    
+    Returns:
+        str: Updated current path after command execution.
+    """
     match command.split()[0]:
         case 'cd' | '..' | 'drive':
             return handle_windows_navigation(command, current_path)
@@ -138,7 +199,13 @@ def run_windows_command(command: str, current_path: str) -> str:
 
 
 def main() -> NoReturn:
-    """Главная функция программы для Windows"""
+    """
+    Main function for Windows file manager program.
+    Initializes and runs the command-line interface.
+    
+    Returns:
+        NoReturn: Program runs indefinitely until exit command.
+    """
     check_windows_environment()
     display_windows_banner()
 
