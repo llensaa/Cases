@@ -16,12 +16,29 @@ FILE_ATTRIBUTE_READONLY = 0x1
 
 
 def is_windows_os() -> bool:
+    """
+    Checks if the current operating system is Windows.
+    
+    Returns:
+        bool: True if running on Windows, False otherwise.
+    """
     if platform.system() == 'Windows':
         return True
     return False
 
 
 def validate_windows_path(path: PathString) -> Tuple[bool, str]:
+    """
+    Validates a Windows filesystem path for correctness and accessibility.
+    Checks for forbidden characters, path length limits, and existence.
+    
+    Args:
+        path (Union[str, Path]): Path to validate.
+    
+    Returns:
+        Tuple[bool, str]: (is_valid, error_message) where is_valid is True 
+        if path is valid, error_message contains description if invalid.
+    """
     path = str(path)
 
     p = Path(path)
@@ -42,6 +59,16 @@ def validate_windows_path(path: PathString) -> Tuple[bool, str]:
 
 
 def format_size(size_bytes: int) -> str:
+    """
+    Formats file size in bytes to human-readable string.
+    Uposes standard units: B, KB, MB, GB.
+    
+    Args:
+        size_bytes (int): File size in bytes.
+    
+    Returns:
+        str: Formatted size string (e.g., "1.5 MB", "256 B").
+    """
     if size_bytes < 1000:
         return f'{size_bytes} B'
 
@@ -55,11 +82,29 @@ def format_size(size_bytes: int) -> str:
 
 
 def get_parent_path(path: PathString) -> str:
+    """
+    Gets the parent directory path of a given path.
+    
+    Args:
+        path (Union[str, Path]): Original file or directory path.
+    
+    Returns:
+        str: Parent directory path.
+    """
     path = str(path)
     return os.path.dirname(path)
 
 
 def safe_windows_listdir(path: PathString) -> List[str]:
+    """
+    Safely lists directory contents, handling permission and access errors.
+    
+    Args:
+        path (Union[str, Path]): Directory path to list.
+    
+    Returns:
+        List[str]: List of file and directory names, or empty list on error.
+    """
     try:
         return os.listdir(path)
 
@@ -68,6 +113,15 @@ def safe_windows_listdir(path: PathString) -> List[str]:
 
 
 def is_hidden_windows_file(path: str) -> bool:
+    """
+    Checks if a file or directory has the hidden attribute in Windows.
+    
+    Args:
+        path (str): Path to check.
+    
+    Returns:
+        bool: True if file is hidden, False otherwise or on error.
+    """
     attrs = ctypes.windll.kernel32.GetFileAttributesW(path)
     if attrs == INVALID_FILE_ATTRIBUTES:
         return False
@@ -75,6 +129,15 @@ def is_hidden_windows_file(path: str) -> bool:
 
 
 def is_system_windows_file(path: PathString) -> bool:
+    """
+    Checks if a file or directory has the system attribute in Windows.
+    
+    Args:
+        path (Union[str, Path]): Path to check.
+    
+    Returns:
+        bool: True if file is a system file, False otherwise or on error.
+    """
     attrs = ctypes.windll.kernel32.GetFileAttributesW(path)
     if attrs == INVALID_FILE_ATTRIBUTES:
         return False
@@ -83,8 +146,18 @@ def is_system_windows_file(path: PathString) -> bool:
 
 
 def is_readonly_windows_file(path: PathString) -> bool:
+    """
+    Checks if a file or directory has the read-only attribute in Windows.
+    
+    Args:
+        path (Union[str, Path]): Path to check.
+    
+    Returns:
+        bool: True if file is read-only, False otherwise or on error.
+    """
     attrs = ctypes.windll.kernel32.GetFileAttributesW(path)
     if attrs == INVALID_FILE_ATTRIBUTES:
         return False
 
     return bool(attrs & FILE_ATTRIBUTE_READONLY)
+
