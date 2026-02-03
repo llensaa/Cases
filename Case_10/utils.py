@@ -68,3 +68,19 @@ def is_hidden_windows_file(path: str) -> bool:
     if attrs == INVALID_FILE_ATTRIBUTES:
         return False
     return bool(attrs & FILE_ATTRIBUTE_HIDDEN)
+
+
+def is_system_windows_file(path: PathString) -> bool:
+    attrs = ctypes.windll.kernel32.GetFileAttributesW(path)
+    if attrs == INVALID_FILE_ATTRIBUTES:
+        return False
+
+    return bool(attrs & FILE_ATTRIBUTE_SYSTEM)
+
+
+def is_readonly_windows_file(path: PathString) -> bool:
+    attrs = ctypes.windll.kernel32.GetFileAttributesW(path)
+    if attrs == INVALID_FILE_ATTRIBUTES:
+        return False
+
+    return bool(attrs & FILE_ATTRIBUTE_READONLY)
