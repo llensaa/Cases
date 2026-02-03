@@ -206,11 +206,10 @@ def show_windows_directory_stats(path: str) -> bool:
     if type_status:
         print(f'\n{ru.FILE_TYPES_HEADER}:')
         for extension, info in sorted(types.items(), key=lambda x: -x[1]['count']):
-            print(f'    {extension}: {info['count']} {ru.FILES_COUNT}, {utils.format_size(info['size'])}')
+            print(f"    {extension}: {info['count']} {ru.FILES_COUNT}, {utils.format_size(info['size'])}")
 
     file_attrs = get_windows_file_attributes_stats(path)
     print(f'\n{ru.FILE_ATTRIBUTES_HEADER}:')
     for attr in file_attrs.keys():
         print(f'    {attr}: {file_attrs[attr]}')
         
-
