@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from typing import List, Dict, Any, Tuple
 import utils
-
+import ru_local as ru
 
 
 def get_current_drive() -> str:
@@ -165,4 +165,3 @@ def get_windows_special_folders() -> Dict[str, str]:
         'Downloads': os.path.join(userprofile, 'Downloads')
     }
     return special_folders
-    
