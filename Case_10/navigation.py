@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from typing import List, Dict, Any, Tuple
 import utils
-from utils import safe_windows_listdir
+
 
 
 def get_current_drive() -> str:
@@ -24,11 +24,6 @@ def list_available_drives() -> List[str]:
 
 def list_directory(path: str) -> Tuple[bool, List[Dict[str, Any]]]:
     """Отображение содержимого каталога в Windows"""
-    # TODO: Используя utils.safe_windows_listdir(), получить содержимое
-    # Для каждого элемента вернуть словарь с информацией:
-    # {'name': 'file.txt', 'type': 'file', 'size': 1024, 'modified': '2024-01-15', 'hidden': False}
-    # Использовать utils.is_hidden_windows_file() для проверки скрытых файлов
-    # Вернуть (True, данные) при успехе, (False, []) при ошибке
     try:
         items = utils.safe_windows_listdir(path)
         results = []
@@ -57,9 +52,6 @@ def list_directory(path: str) -> Tuple[bool, List[Dict[str, Any]]]:
 
 def format_directory_output(items: List[Dict[str, Any]]) -> None:
     """Форматированный вывод содержимого каталога для Windows"""
-    # TODO: Красиво отформатировать вывод используя данные из list_directory()
-    # Учесть что в Windows есть системные и скрытые файлы
-    # Показать диски если находимся в корне
     if not items:
         print('Директория пуста или недоступна')
         return None
@@ -94,9 +86,6 @@ def format_directory_output(items: List[Dict[str, Any]]) -> None:
 
 def move_up(current_path: str) -> str:
     """Переход в родительский каталог в Windows"""
-    # TODO: Использовать utils.get_parent_path() для получения родителя
-    # Проверить валидность нового пути через utils.validate_windows_path()
-    # Учесть переход между дисками
     try:
         parent_path = utils.get_parent_path(current_path)
         if utils.validate_windows_path(parent_path):
@@ -107,9 +96,6 @@ def move_up(current_path: str) -> str:
 
 def move_down(current_path: str, target_dir: str) -> Tuple[bool, str]:
     """Переход в указанный подкаталог в Windows"""
-    # TODO: Проверить что target_dir существует через utils.safe_windows_listdir()
-    # Сформировать новый путь и проверить через utils.validate_windows_path()
-    # Вернуть (True, новый_путь) при успехе, (False, текущий_путь) при ошибке
     try:
         if target_dir in utils.safe_windows_listdir(current_path):
             new_path = os.path.normpath(os.path.join(current_path, target_dir))
@@ -123,9 +109,6 @@ def move_down(current_path: str, target_dir: str) -> Tuple[bool, str]:
 
 def get_windows_special_folders() -> Dict[str, str]:
     """Получение путей к специальным папкам Windows"""
-    # TODO: Вернуть словарь с путями к папкам:
-    # {'Desktop': 'C:\\Users\\...', 'Documents': '...', 'Downloads': '...'}
-    # Использовать os.environ для получения USERPROFILE и других переменных
     userprofile = os.environ.get('USERPROFILE')
     if not userprofile:
         return {}
@@ -136,3 +119,4 @@ def get_windows_special_folders() -> Dict[str, str]:
         'Downloads': os.path.join(userprofile, 'Downloads')
     }
     return special_folders
+
