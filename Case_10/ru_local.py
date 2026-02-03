@@ -1,0 +1,63 @@
+#headers
+APP_TITLE = "ВИНДОУС ФАЙЛ МАНАГЕР"
+ANALYSIS_HEADER = "=====АНАЛИЗ КАТАЛОГА WINDOWS====="
+FILE_TYPES_HEADER = "Встречающиеся типы файлов"
+FILE_ATTRIBUTES_HEADER = "Атрибуты файлов"
+NAVIGATION_SECTION = "Навигация"
+TOOLS_SECTION = "Инструменты"
+SYSTEM_SECTION = "Система"
+AVAILABLE_DRIVES_HEADER = "Доступные диски"
+
+#interface
+PATH_LABEL = "Путь"
+CURRENT_PATH_LABEL = "Текущий путь"
+CURRENT_DRIVE_LABEL = "Текущий диск"
+WORKING_DIRECTORY_LABEL = "Рабочий каталог"
+AVAILABLE_DRIVES_LABEL = "Доступные диски"
+PATH_CONTAINS_FORBIDDEN_CHAR = "Путь содержит запрещённый символ"
+PATH_TOO_LONG_ERROR = "Длина пути превышает 260 символов"
+PATH_DOES_NOT_EXIST = "Пути не существует"
+TOTAL_FILES = "Всего файлов"
+TOTAL_SIZE = "Размер всех файлов"
+FILES_COUNT = "файлов"
+FOLDERS_COUNT = "папок"
+HIDDEN_COUNT = "скрыто"
+TOTAL_SUMMARY = "Всего:"
+DIRECTORIES_SECTION = "📁Директории:"
+FILES_SECTION = "📄 Файлы:"
+HIDDEN_LABEL = "[СКРЫТЫЙ]"
+
+#errors
+ERROR_GENERIC = "Ошибка"
+SEARCH_ERROR = "Ошибка поиска"
+INVALID_SIZE_ERROR = "Некорректный размер"
+STATS_ERROR = "Ошибка получения статистики"
+FORMATTING_ERROR = "Ошибка форматирования результатов"
+WINDOWS_ONLY_ERROR = "Программа предназначена только для Windows"
+DIRECTORY_EMPTY_OR_INACCESSIBLE = "Директория пуста или недоступна"
+NAVIGATION_FAILED = "Не удалось перейти в каталог"
+DRIVE_CHANGE_ERROR = "Ошибка"
+DIRECTORY_ACCESS_ERROR = "Ошибка доступа к каталогу"
+GENERIC_ERROR_PREFIX = " Ошибка"
+
+#symbols
+HIDDEN_FOLDER_SYMBOL = "🔒"
+VISIBLE_FOLDER_SYMBOL = "📁"
+HIDDEN_FILE_SYMBOL = "🔒"
+VISIBLE_FILE_SYMBOL = "📄"
+
+#menu
+SEARCH_MENU_OPTIONS = "1 — По шаблону\n2 — По расширению\n3 — Крупные файлы\n4 — Системные файлы\n5 — Статистика\n6 — Назад"
+CHOICE_PROMPT = "Выбор"
+PATTERN_PROMPT = "Шаблон"
+EXTENSIONS_PROMPT = "Расширения"
+MIN_SIZE_PROMPT = "Минимальный размер (MB): "
+COMMAND_PROMPT = ">"
+FOLDER_NAME_REQUIRED = "Укажи имя папки"
+DRIVE_LETTER_REQUIRED = "Укажи букву диска (например: drive D)"
+
+#system messages
+NOTHING_FOUND = "Ничего не найдено"
+EXIT_MESSAGE = " Выход"
+UNKNOWN_COMMAND_ERROR = " Неизвестная команда"
+SHUTDOWN_MESSAGE = " Завершение работы"
