@@ -7,7 +7,18 @@ import analysis
 
 
 def find_files_windows(pattern: str, path: str, case_sensitive: bool = False) -> List[str]:
-    """Поиск файлов по шаблону в Windows"""
+    """
+    Searches for files matching a pattern in Windows directory tree.
+    Supports wildcards (* and ?) in the pattern.
+
+    Args:
+        pattern (str): Search pattern with wildcards (e.g., "*.txt", "file?.doc").
+        path (str): Root directory path to start searching from.
+        case_sensitive (bool, optional): Whether search is case-sensitive. Defaults to False.
+
+    Returns:
+        List[str]: List of full paths to matching files.
+    """
     results = []
 
     regex = re.escape(pattern).replace(r'\*', '.*').replace(r'\?', '.')
@@ -44,7 +55,16 @@ def find_files_windows(pattern: str, path: str, case_sensitive: bool = False) ->
 
 
 def find_by_windows_extension(extensions: List[str], path: str) -> List[str]:
-    """Поиск файлов по списку расширений Windows"""
+    """
+    Searches for files with specified extensions in Windows directory tree.
+
+    Args:
+        extensions (List[str]): List of file extensions (e.g., ["txt", "docx", ".pdf"]).
+        path (str): Root directory path to start searching from.
+
+    Returns:
+        List[str]: List of full paths to files with matching extensions.
+    """
     results = []
     exts = {e.lower() if e.startswith('.') else '.' + e.lower() for e in extensions}
 
@@ -80,7 +100,20 @@ def find_by_windows_extension(extensions: List[str], path: str) -> List[str]:
 
 
 def find_large_files_windows(min_size_mb: float, path: str) -> List[Dict[str, Any]]:
-    """Поиск крупных файлов в Windows"""
+    """
+    Finds large files exceeding specified minimum size in Windows directory tree.
+
+    Args:
+        min_size_mb (float): Minimum file size in megabytes.
+        path (str): Root directory path to start searching from.
+
+    Returns:
+        List[Dict[str, Any]]: List of dictionaries with keys:
+            'path' (str): Full file path,
+            'size_mb' (float): File size in megabytes,
+            'type' (str): File extension.
+        Sorted by size in descending order.
+    """
     results = []
     min_bytes = min_size_mb * 1024 * 1024
 
@@ -119,7 +152,16 @@ def find_large_files_windows(min_size_mb: float, path: str) -> List[Dict[str, An
 
 
 def find_windows_system_files(path: str) -> List[str]:
-    """Поиск системных файлов Windows"""
+    """
+    Finds Windows system files in specified directory.
+    Identifies system files by location and extension patterns.
+
+    Args:
+        path (str): Root directory path to start searching from.
+
+    Returns:
+        List[str]: List of full paths to system files.
+    """
     results = []
     system_exts = {'.exe', '.dll', '.sys', '.msi'}
     system_dirs = {'windows', 'system32', 'program files'}
@@ -160,7 +202,16 @@ def find_windows_system_files(path: str) -> List[str]:
 
 
 def search_menu_handler(current_path: str) -> bool:
-    """Обработчик меню поиска для Windows"""
+    """
+    Handles the search menu interface for Windows file operations.
+    Displays search options and processes user choices.
+
+    Args:
+        current_path (str): Current working directory path.
+
+    Returns:
+        bool: True to continue showing menu, False to exit.
+    """
     print('\n1 — По шаблону\n2 — По расширению\n3 — Крупные файлы\n4 — Системные файлы\n5 — Статистика\n6 — Назад')
     choice = input('Выбор: ').strip()
 
@@ -211,7 +262,18 @@ def search_menu_handler(current_path: str) -> bool:
 
 
 def format_windows_search_results(results: List, search_type: str) -> None:
-    """Форматированный вывод результатов поиска для Windows"""
+    """
+    Formats and displays search results with Windows-specific information.
+    Shows file sizes, paths, and optional attribute statistics.
+
+    Args:
+        results (List): Search results from find functions.
+        search_type (str): Type of search performed:
+        'pattern', 'extension', 'large', or 'system'.
+
+    Returns:
+        None: Outputs results to console.
+    """
     if not results:
         print('Ничего не найдено')
         return
@@ -242,3 +304,4 @@ def format_windows_search_results(results: List, search_type: str) -> None:
                 print(f'    {k}: {v}')
     except Exception:
         pass
+
