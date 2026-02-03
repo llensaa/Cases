@@ -306,4 +306,3 @@ def format_windows_search_results(results: List, search_type: str) -> None:
     except Exception:
         pass
 
-
