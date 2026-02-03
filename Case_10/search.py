@@ -212,48 +212,48 @@ def search_menu_handler(current_path: str) -> bool:
     Returns:
         bool: True to continue showing menu, False to exit.
     """
-    print('\n1 — По шаблону\n2 — По расширению\n3 — Крупные файлы\n4 — Системные файлы\n5 — Статистика\n6 — Назад')
-    choice = input('Выбор: ').strip()
+    print(f'\n{ru.SEARCH_MENU_OPTIONS}')
+    choice = input(f'{ru.CHOICE_PROMPT}: ').strip()
 
     match choice:
         case '1':
             try:
-                pattern = input('Шаблон: ')
+                pattern = input(f'{ru.PATTERN_PROMPT}: ')
                 res = find_files_windows(pattern, current_path)
                 format_windows_search_results(res, 'pattern')
             except Exception:
-                print('Ошибка поиска')
+                print(f'{ru.SEARCH_ERROR}')
 
         case '2':
             try:
-                ext = input('Расширения: ').split(',')
+                ext = input(f'{ru.EXTENSIONS_PROMPT}: ').split(',')
                 res = find_by_windows_extension(ext, current_path)
                 format_windows_search_results(res, 'extension')
             except Exception:
-                print('Ошибка поиска')
+                print(f'{ru.SEARCH_ERROR}')
 
         case '3':
             try:
-                size = float(input('Минимальный размер (MB): '))
+                size = float(input(f'{ru.MIN_SIZE_PROMPT}'))
                 res = find_large_files_windows(size, current_path)
                 format_windows_search_results(res, 'large')
             except ValueError:
-                print('Некорректный размер')
+                print(f'{ru.INVALID_SIZE_ERROR}')
             except Exception:
-                print('Ошибка поиска')
+                print(f'{ru.SEARCH_ERROR}')
 
         case '4':
             try:
                 res = find_windows_system_files(current_path)
                 format_windows_search_results(res, 'system')
             except Exception:
-                print('Ошибка поиска')
+                print(f'{ru.SEARCH_ERROR}')
 
         case '5':
             try:
                 analysis.show_windows_directory_stats(current_path)
             except Exception:
-                print('Ошибка получения статистики')
+                print(f'{ru.STATS_ERROR}')
 
         case '6':
             return False
@@ -275,7 +275,7 @@ def format_windows_search_results(results: List, search_type: str) -> None:
         None: Outputs results to console.
     """
     if not results:
-        print('Ничего не найдено')
+        print(f'{ru.NOTHING_FOUND}')
         return
 
     try:
@@ -292,14 +292,14 @@ def format_windows_search_results(results: List, search_type: str) -> None:
                 print(f"{r['path']} — {r['size_mb']:.1f} MB")
 
     except Exception:
-        print('Ошибка форматирования результатов')
+        print(f'{ru.FORMATTING_ERROR}')
 
     try:
         base = results[0] if isinstance(results[0], str) else results[0]['path']
         parent = os.path.dirname(base)
         if parent:
             stats = analysis.get_windows_file_attributes_stats(parent)
-            print('\nАтрибуты:')
+            print(f'\n{ru.ATTRIBUTES_HEADER}:')
             for k, v in stats.items():
                 print(f'    {k}: {v}')
     except Exception:
