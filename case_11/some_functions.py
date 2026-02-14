@@ -38,7 +38,7 @@ def queue_add(car: dict, gas_st: list[dict], gas_st_q: dict):
 
     for station in gas_st:
         num = station['num']
-        if (car['oil type'] in station['oil type']) \
+        if (car['oil type'] in station['oil types']) \
                 and (gas_st_q[num] < station['car capacity']):
             suitable_st.append(num)
 
@@ -54,3 +54,4 @@ def queue_add(car: dict, gas_st: list[dict], gas_st_q: dict):
 
 def time_for_fueling(tank_capacity: int) -> int:
     return (mt.ceil(tank_capacity / 10) * 10) // (10 + rm.randint(-1, 1))
+
