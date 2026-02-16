@@ -18,7 +18,6 @@ def main():
 
     for minute in range(1440):
         current_time = f'{minute // 60:02d}:{minute % 60:02d}'
-        current_minute = minute
 
         current_cars = [car for car in cars_info if car['time'] == current_time]
         for car in current_cars:
@@ -32,7 +31,7 @@ def main():
 
 
             car_in_queue = car.copy()
-            car_in_queue['end_minute'] = car['fuel_end_minutes']
+            car_in_queue['end_time'] = car['fuel_end_time']
             gas_st_queue[best_st].append(car_in_queue)
 
             print(f'Клиент {car['time']} {car['oil type']} {car['fuel amount']} встал в очередь к автомату {best_st}')
@@ -40,11 +39,10 @@ def main():
             total_rev += ef.revenue(car)
 
         for st_num, queue in gas_st_queue.items():
-            leaving_cars = [car for car in queue if car['end_minute'] <= current_minute]
+            leaving_cars = [car for car in queue if car['end_time'] == current_time]
             for car in leaving_cars:
                 queue.remove(car)
-                end_time_str = f'{car['end_minute'] // 60:02d}:{car['end_minute'] % 60:02d}'
-                print(f'В {end_time_str} клиент {car['time']} заправил свой автомобиль и покинул АЗС')
+                print(f'В {car['end_time']} клиент {car['time']} {car['oil type']} {car['fuel amount']} заправил свой автомобиль и покинул АЗС')
 
     ef.print_stat(petrol_info, total_rev, lost_rev)
 
