@@ -40,6 +40,3 @@ def print_stat(petrol_st: dict, rev: int, lost_rev: int) -> None:
     print(f'\nУпущенная выгода: {lost_rev:.2f} руб')
 
 
-cars = sf.input_read('input_file')
-for car in cars:
-    print(count_time(car))
