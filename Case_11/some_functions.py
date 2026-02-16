@@ -3,7 +3,7 @@ import math as mt
 
 
 def gas_st_read(filename):
-    fuel_types = {'АИ-80', 'АИ-92', 'АИ-95', 'АИ-98'}
+    fuel_types = {'АИ-100', 'АИ-92', 'АИ-95', 'АИ-98'}
     gas_st_list = []
 
     with open(filename, 'r', encoding='utf-8') as f:
@@ -33,25 +33,24 @@ def input_read(filename):
     return cars_list
 
 
-def queue_add(car: dict, gas_st: list[dict], gas_st_q: dict):
+def queue_add(car: dict, gas_st: list[dict], gas_st_q: dict) -> int:
     suitable_st = []
 
     for station in gas_st:
         num = station['num']
         if (car['oil type'] in station['oil types']) \
-                and (gas_st_q[num] < station['car capacity']):
+                and (len(gas_st_q[num]) < station['car capacity']):
             suitable_st.append(num)
 
     if not suitable_st:
-        return None
+        return 0
 
-    best_st = min(suitable_st, key=lambda x: gas_st_q[x])
-
-    gas_st_q[best_st] += 1
+    best_st = min(suitable_st, key=lambda x: len(gas_st_q[x]))
 
     return best_st
 
 
 def time_for_fueling(tank_capacity: int) -> int:
-    return (mt.ceil(tank_capacity / 10) * 10) // (10 + rm.randint(-1, 1))
+    return mt.ceil(tank_capacity / 10) + rm.randint(-1, 1)
+
 
