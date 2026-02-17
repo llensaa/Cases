@@ -29,12 +29,12 @@ def main():
                       f'не смог заправиться и покинул АЗС')
                 continue
 
-
             car_in_queue = car.copy()
             car_in_queue['end_time'] = car['fuel_end_time']
             gas_st_queue[best_st].append(car_in_queue)
 
-            print(f'Клиент {car['time']} {car['oil type']} {car['fuel amount']} встал в очередь к автомату {best_st}')
+            print(f'Клиент {car['time']} {car['oil type']} {car['fuel amount']}'
+                  f' встал в очередь к автомату {best_st}')
             petrol_info[car['oil type']] += car['fuel amount']
             total_rev += ef.revenue(car)
 
@@ -42,26 +42,12 @@ def main():
             leaving_cars = [car for car in queue if car['end_time'] == current_time]
             for car in leaving_cars:
                 queue.remove(car)
-                print(f'В {car['end_time']} клиент {car['time']} {car['oil type']} {car['fuel amount']} заправил свой автомобиль и покинул АЗС')
+                print(
+                    f'В {car['end_time']} клиент {car['time']} {car['oil type']}'
+                    f' {car['fuel amount']} заправил свой автомобиль и покинул АЗС')
 
     ef.print_stat(petrol_info, total_rev, lost_rev)
 
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
