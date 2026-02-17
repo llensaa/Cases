@@ -3,8 +3,8 @@ import economic_analysis as ef
 
 
 def main():
-    gas_st_info = sf.gas_st_read('gas_stations')
-    cars_info = sf.input_read('input_file')
+    gas_st_info = sf.gas_st_read('gas_stations.txt')
+    cars_info = sf.input_read('input_file.txt')
     petrol_info = ef.petrol_stat()
 
     for car in cars_info:
@@ -49,6 +49,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
