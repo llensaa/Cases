@@ -20,8 +20,8 @@ def main() -> None:
     Returns:
         None
     """
-    stations = fo.read_gas_stations('gas_stations.txt')
-    cars = fo.read_cars_input('input_file.txt')
+    stations = fo.read_gas_stations('Cases/Case_11/gas_stations.txt')
+    cars = fo.read_cars_input('Cases/Case_11/input_file.txt')
 
     queues = sm.create_station_queues(stations)
     fuel_stats = ec.create_fuel_statistics()
@@ -40,7 +40,7 @@ def main() -> None:
             if not best_station:
                 lost_revenue += ec.calculate_revenue(car)
                 print(
-                    f"{ru.messages['new_client']} {car[ru.car_keys['time']]} "
+                    f"{ru.messages['new_client']} {car[ru.car_keys['time']]} {ru.messages['client']} "
                     f"{car[ru.car_keys['oil_type']]} {car[ru.car_keys['fuel_amount']]} "
                     f"{ru.messages['client_unserved']}"
                 )
@@ -51,7 +51,7 @@ def main() -> None:
             sm.start_service_if_possible(best_station, queues, car[ru.car_keys['time']])
 
             print(
-                f"{ru.messages['new_client']} {car[ru.car_keys['time']]} "
+                f"{ru.messages['new_client']} {car[ru.car_keys['time']]} {ru.messages['client']} "
                 f"{car[ru.car_keys['oil_type']]} {car[ru.car_keys['fuel_amount']]} "
                 f"{ru.messages['client_added']} №{best_station}"
             )
@@ -63,9 +63,9 @@ def main() -> None:
         departed_cars = sm.remove_departed_cars(queues, current_time)
         for car in departed_cars:
             print(
-                f"{ru.messages['client_departed']} {car[ru.car_keys['end_time']]} "
+                f"{ru.messages['new_client']} {car[ru.car_keys['end_time']]} {ru.messages['client']} "
                 f"{car[ru.car_keys['time']]} {car[ru.car_keys['oil_type']]} "
-                f"{car[ru.car_keys['fuel_amount']]}"
+                f"{car[ru.car_keys['fuel_amount']]} {ru.messages['client_departed']}"
             )
             ec.print_station_status(stations, queues)
 
@@ -74,4 +74,3 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-
