@@ -20,8 +20,8 @@ def main() -> None:
     Returns:
         None
     """
-    stations = fo.read_gas_stations('Cases/Case_11/gas_stations.txt')
-    cars = fo.read_cars_input('Cases/Case_11/input_file.txt')
+    stations = fo.read_gas_stations('gas_stations.txt')
+    cars = fo.read_cars_input('input_file.txt')
 
     queues = sm.create_station_queues(stations)
     fuel_stats = ec.create_fuel_statistics()
@@ -74,3 +74,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
