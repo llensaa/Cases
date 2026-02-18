@@ -14,9 +14,10 @@ car_keys = {
 
 messages = {
     'new_client': 'В',
+    'client' : 'клиент',
     'client_added': 'встал в очередь к автомату',
     'client_unserved': 'не смог заправить автомобиль и покинул АЗС',
-    'client_departed': 'Клиент завершил заправку и покинул АЗС',
+    'client_departed': 'завершил заправку и покинул АЗС',
     'file_read_error': 'Ошибка чтения файла',
     'invalid_format': 'Неверный формат данных в файле'
 }
